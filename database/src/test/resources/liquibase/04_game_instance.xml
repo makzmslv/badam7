@@ -5,11 +5,12 @@
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
     <changeSet author="mk" id="1">
         <!--                                 -->
-        <!-- GAME_INSTANCE -->
+        <!-- PLAYER_CURRENT_GAME_INSTANCE -->
+        <!-- This table contains information for the player's current status for a game -->
         <!--                                 -->
-        <createTable tableName="GAME_INSTANCE" remarks="GAME_INSTANCE">
+        <createTable tableName="PLAYER_CURRENT_GAME_INSTANCE" remarks="PLAYER_CURRENT_GAME_INSTANCE">
             <column name="ID" type="INTEGER" autoIncrement="true">
-                <constraints primaryKey="true" primaryKeyName="GAME_INSTANCE_PK" nullable="false"/>
+                <constraints primaryKey="true" primaryKeyName="PLAYER_CURRENT_GAME_INSTANCE_PK" nullable="false"/>
             </column>
             <column name="STATUS" type="INTEGER">
                 <constraints nullable="false"/>
@@ -24,8 +25,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint constraintName="FK_GAME_INSTANCE_REF_PLAYER" baseTableName="GAME_INSTANCE" baseColumnNames="REF_PLAYER" referencedTableName="PLAYER" referencedColumnNames="ID"/>
-        <addForeignKeyConstraint constraintName="FK_GAME_INSTANCE_REF_GAME" baseTableName="GAME_INSTANCE" baseColumnNames="REF_GAME" referencedTableName="GAME" referencedColumnNames="ID"/>
+        <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_GAME_INSTANCE_REF_PLAYER" baseTableName="PLAYER_CURRENT_GAME_INSTANCE" baseColumnNames="REF_PLAYER" referencedTableName="PLAYER" referencedColumnNames="ID"/>
+        <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_GAME_INSTANCE_REF_GAME" baseTableName="PLAYER_CURRENT_GAME_INSTANCE" baseColumnNames="REF_GAME" referencedTableName="GAME" referencedColumnNames="ID"/>
 
     </changeSet>
 </databaseChangeLog>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    <changeSet author="mk" id="1">
+        <!--                                 -->
+        <!-- PLAYER_CURRENT_CARDS -->
+        <!--                                 -->
+        <createTable tableName="PLAYER_CURRENT_CARDS" remarks="PLAYER_CURRENT_CARDS">
+            <column name="ID" type="INTEGER" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PLAYER_CURRENT_CARDS_PK" nullable="false"/>
+            </column>
+            <column name="REF_PLAYER" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REF_CARD" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REF_PLAYER_CURRENT_GAME_INSTANCE" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="STATUS" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CARD_REMOVAL_RANK" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_CARDS_REF_PLAYER" baseTableName="PLAYER_CURRENT_CARDS" baseColumnNames="REF_PLAYER" referencedTableName="PLAYER" referencedColumnNames="ID"/>
+        <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_CARDS_REF_GAME_INSTANCE" baseTableName="PLAYER_CURRENT_CARDS" baseColumnNames="REF_PLAYER_CURRENT_GAME_INSTANCE" referencedTableName="PLAYER_CURRENT_GAME_INSTANCE" referencedColumnNames="ID"/>
+
+    </changeSet>
+</databaseChangeLog>
