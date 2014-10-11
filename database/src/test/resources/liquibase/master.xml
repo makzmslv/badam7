@@ -7,4 +7,5 @@
     <!-- Liquibase Changesets -->
     <include file="../database/src/test/resources/liquibase/01_player.xml"/>
     <include file="../database/src/test/resources/liquibase/02_game.xml"/>
+    <include file="../database/src/test/resources/liquibase/03_card.xml"/>
 </databaseChangeLog>
