@@ -69,13 +69,13 @@
                         <password>neptune</password>
                         <database.defaultSchemaName>badam7</database.defaultSchemaName>
                     </configuration>
-<!--                     <executions> -->
-<!--                         <execution> -->
-<!--                             <goals> -->
-<!--                                 <goal>update</goal> -->
-<!--                             </goals> -->
-<!--                         </execution> -->
-<!--                     </executions> -->
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>update</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

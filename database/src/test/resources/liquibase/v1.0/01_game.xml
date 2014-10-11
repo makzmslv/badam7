@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    <changeSet author="mk" id="1">
+        <!--                                 -->
+        <!-- GAME -->
+        <!--                                 -->
+        <createTable tableName="GAME" remarks="GAME">
+            <column name="ID" type="INTEGER" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="GAME_PK" nullable="false"/>
+            </column>
+            <column name="GAME_TYPE" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="NO_OF_PLAYERS" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STATUS" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REF_PLAYERS" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REF_GAME_RESULT" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
