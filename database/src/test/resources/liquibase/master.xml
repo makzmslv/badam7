@@ -11,5 +11,6 @@
     <include file="../database/src/test/resources/liquibase/04_game_instance.xml"/>
     <include file="../database/src/test/resources/liquibase/05_hand.xml"/>
     <include file="../database/src/test/resources/liquibase/06_player_current_cards.xml"/>
+    <include file="../database/src/test/resources/liquibase/07_hand_current_cards.xml"/>
 
 </databaseChangeLog>

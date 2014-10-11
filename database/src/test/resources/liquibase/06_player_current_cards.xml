@@ -28,7 +28,8 @@
             </column>
         </createTable>
         <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_CARDS_REF_PLAYER" baseTableName="PLAYER_CURRENT_CARDS" baseColumnNames="REF_PLAYER" referencedTableName="PLAYER" referencedColumnNames="ID"/>
-        <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_CARDS_REF_GAME_INSTANCE" baseTableName="PLAYER_CURRENT_CARDS" baseColumnNames="REF_PLAYER_CURRENT_GAME_INSTANCE" referencedTableName="PLAYER_CURRENT_GAME_INSTANCE" referencedColumnNames="ID"/>
+        <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_CARDS_REF_PLAYER_CURRENT_GAME_INSTANCE" baseTableName="PLAYER_CURRENT_CARDS" baseColumnNames="REF_PLAYER_CURRENT_GAME_INSTANCE" referencedTableName="PLAYER_CURRENT_GAME_INSTANCE" referencedColumnNames="ID"/>
+        <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_CARDS_REF_CARD" baseTableName="PLAYER_CURRENT_CARDS" baseColumnNames="REF_CARD" referencedTableName="CARD" referencedColumnNames="ID"/>
 
     </changeSet>
 </databaseChangeLog>
