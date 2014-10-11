@@ -20,12 +20,11 @@
             <column name="STATUS" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
-            <column name="REF_PLAYERS" type="INTEGER">
-                <constraints nullable="false"/>
-            </column>
-            <column name="REF_GAME_RESULT" type="INTEGER">
+            <column name="REF_PLAYER" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
         </createTable>
+        <addForeignKeyConstraint constraintName="FK_GAME_REF_PLAYER" baseTableName="GAME" baseColumnNames="REF_PLAYER" referencedTableName="PLAYER" referencedColumnNames="ID"/>
+
     </changeSet>
 </databaseChangeLog>
