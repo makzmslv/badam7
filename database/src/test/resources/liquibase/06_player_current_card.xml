@@ -11,9 +11,6 @@
             <column name="ID" type="INTEGER" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="PLAYER_CURRENT_CARD_PK" nullable="false"/>
             </column>
-            <column name="REF_PLAYER" type="INTEGER">
-                <constraints nullable="false"/>
-            </column>
             <column name="REF_CARD" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
@@ -27,7 +24,6 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_CARD_REF_PLAYER" baseTableName="PLAYER_CURRENT_CARD" baseColumnNames="REF_PLAYER" referencedTableName="PLAYER" referencedColumnNames="ID"/>
         <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_CARD_REF_PLAYER_CURRENT_GAME_INSTANCE" baseTableName="PLAYER_CURRENT_CARD" baseColumnNames="REF_PLAYER_CURRENT_GAME_INSTANCE" referencedTableName="PLAYER_CURRENT_GAME_INSTANCE" referencedColumnNames="ID"/>
         <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_CARD_REF_CARD" baseTableName="PLAYER_CURRENT_CARD" baseColumnNames="REF_CARD" referencedTableName="CARD" referencedColumnNames="ID"/>
 
