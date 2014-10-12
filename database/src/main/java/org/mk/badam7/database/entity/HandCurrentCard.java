@@ -26,9 +26,6 @@ public class HandCurrentCard
     @JoinColumn(name = "REF_CARD")
     private Card card;
 
-    @Column(name = "STATUS")
-    private Integer status;
-
     @Column(name = "CARD_INSERTION_RANK")
     private Integer cardInsertionRank;
 
@@ -62,16 +59,6 @@ public class HandCurrentCard
         this.card = card;
     }
 
-    public Integer getStatus()
-    {
-        return status;
-    }
-
-    public void setStatus(Integer status)
-    {
-        this.status = status;
-    }
-
     public Integer getCardInsertionRank()
     {
         return cardInsertionRank;
@@ -85,7 +72,7 @@ public class HandCurrentCard
     @Override
     public String toString()
     {
-        return "HandCurrentCard [id=" + id + ", hand=" + hand + ", card=" + card + ", status=" + status + ", cardInsertionRank=" + cardInsertionRank + "]";
+        return "HandCurrentCard [id=" + id + ", hand=" + hand + ", card=" + card + ", cardInsertionRank=" + cardInsertionRank + "]";
     }
 
 }

@@ -17,9 +17,6 @@
             <column name="REF_CARD" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
-            <column name="STATUS" type="INTEGER">
-                <constraints nullable="false"/>
-            </column>
             <column name="CARD_INSERTION_RANK" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
