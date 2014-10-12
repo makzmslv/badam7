@@ -8,10 +8,10 @@
     <include file="../database/src/test/resources/liquibase/01_player.xml"/>
     <include file="../database/src/test/resources/liquibase/02_game.xml"/>
     <include file="../database/src/test/resources/liquibase/03_card.xml"/>
-    <include file="../database/src/test/resources/liquibase/04_game_instance.xml"/>
+    <include file="../database/src/test/resources/liquibase/04_player_current_game_instance.xml"/>
     <include file="../database/src/test/resources/liquibase/05_hand.xml"/>
-    <include file="../database/src/test/resources/liquibase/06_player_current_cards.xml"/>
-    <include file="../database/src/test/resources/liquibase/07_hand_current_cards.xml"/>
+    <include file="../database/src/test/resources/liquibase/06_player_current_card.xml"/>
+    <include file="../database/src/test/resources/liquibase/07_hand_current_card.xml"/>
     <include file="../database/src/test/resources/liquibase/08_result_hand.xml"/>
     <include file="../database/src/test/resources/liquibase/09_result_game.xml"/>
 

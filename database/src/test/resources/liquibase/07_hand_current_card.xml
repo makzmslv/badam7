@@ -5,11 +5,11 @@
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
     <changeSet author="mk" id="1">
         <!--                                 -->
-        <!-- PLAYER_CURRENT_CARDS -->
+        <!-- PLAYER_CURRENT_CARD -->
         <!--                                 -->
-        <createTable tableName="HAND_CURRENT_CARDS" remarks="HAND_CURRENT_CARDS">
+        <createTable tableName="HAND_CURRENT_CARD" remarks="HAND_CURRENT_CARD">
             <column name="ID" type="INTEGER" autoIncrement="true">
-                <constraints primaryKey="true" primaryKeyName="HAND_CURRENT_CARDS_PK" nullable="false"/>
+                <constraints primaryKey="true" primaryKeyName="HAND_CURRENT_CARD_PK" nullable="false"/>
             </column>
             <column name="REF_HAND" type="INTEGER">
                 <constraints nullable="false"/>
@@ -24,8 +24,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint constraintName="FK_HAND_CURRENT_CARDS_REF_HAND" baseTableName="HAND_CURRENT_CARDS" baseColumnNames="REF_HAND" referencedTableName="HAND" referencedColumnNames="ID"/>
-        <addForeignKeyConstraint constraintName="FK_HAND_CURRENT_CARDS_REF_CARD" baseTableName="HAND_CURRENT_CARDS" baseColumnNames="REF_CARD" referencedTableName="CARD" referencedColumnNames="ID"/>
+        <addForeignKeyConstraint constraintName="FK_HAND_CURRENT_CARD_REF_HAND" baseTableName="HAND_CURRENT_CARD" baseColumnNames="REF_HAND" referencedTableName="HAND" referencedColumnNames="ID"/>
+        <addForeignKeyConstraint constraintName="FK_HAND_CURRENT_CARD_REF_CARD" baseTableName="HAND_CURRENT_CARD" baseColumnNames="REF_CARD" referencedTableName="CARD" referencedColumnNames="ID"/>
 
     </changeSet>
 </databaseChangeLog>
