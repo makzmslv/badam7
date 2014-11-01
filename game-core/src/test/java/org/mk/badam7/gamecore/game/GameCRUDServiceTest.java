@@ -1,6 +1,6 @@
 package org.mk.badam7.gamecore.game;
 
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,14 +20,21 @@ public class GameCRUDServiceTest
     @Test
     public void createGameTest()
     {
+        GameInDTO gameInDTO = createGameInDTO();
+
+        GameDTO gameDTO = gameCRUDService.createGame(gameInDTO);
+
+        assertNotNull(gameDTO);
+        System.out.println(gameDTO);
+    }
+
+    private GameInDTO createGameInDTO()
+    {
         GameInDTO gameInDTO = new GameInDTO();
         gameInDTO.setGameType(1);
         gameInDTO.setNoOfHands(4);
         gameInDTO.setNoOfPlayers(4);
-
-        GameDTO gameDTO = gameCRUDService.createGame(gameInDTO);
-
-        assertNull(gameDTO);
+        return gameInDTO;
     }
 
 }

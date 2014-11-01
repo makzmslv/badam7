@@ -27,6 +27,7 @@ public class GameCRUDServiceImpl implements GameCRUDService
         validateInput(gameInDTO);
 
         Game game = createEntityFromDTO(gameInDTO);
+        game = gameDAO.save(game);
 
         GameDTO gameDTO = dozerMapper.map(game, GameDTO.class);
         return gameDTO;
