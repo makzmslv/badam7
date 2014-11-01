@@ -4,6 +4,7 @@ import org.dozer.Mapper;
 import org.mk.badam7.database.dao.PlayerDAO;
 import org.mk.badam7.database.entity.Player;
 import org.mk.badam7.database.enums.UserAuthorities;
+import org.mk.badam7.gamecore.common.EmailSender;
 import org.mk.badam7.gamedto.player.PlayerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,9 @@ public class PlayerCRUDServiceImpl implements PlayerCRUDService
 {
     @Autowired
     private PlayerDAO playerDAO;
+
+    @Autowired
+    private EmailSender emailSender;
 
     @Autowired
     private Mapper dozerMapper;
@@ -37,7 +41,6 @@ public class PlayerCRUDServiceImpl implements PlayerCRUDService
 
     private void sendVerificationMail(String email)
     {
-        // TODO Auto-generated method stub
-
+        emailSender.sendMail(email);
     }
 }
