@@ -10,9 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -30,7 +30,7 @@ public class Hand
     @JoinColumn(name = "REF_GAME")
     private Game game;
 
-    @ManyToMany
+    @OneToOne
     @JoinColumn(name = "REF_PLAYER")
     private Player currentPlayer;
 

@@ -9,7 +9,9 @@ import org.mk.badam7.gamecore.dto.GameDTO;
 import org.mk.badam7.gamecore.dto.GameInDTO;
 import org.mk.badam7.gamecore.library.Badam7Constants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GameCRUDServiceImpl implements GameCRUDService
 {
 

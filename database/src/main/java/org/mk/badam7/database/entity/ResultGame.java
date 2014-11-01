@@ -1,17 +1,12 @@
 package org.mk.badam7.database.entity;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -36,9 +31,6 @@ public class ResultGame
 
     @Column(name = "POSITION")
     private Integer position;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "game", cascade = CascadeType.REMOVE)
-    private List<ResultHand> handResults;
 
     public Integer getId()
     {
@@ -90,20 +82,10 @@ public class ResultGame
         this.position = position;
     }
 
-    public List<ResultHand> getHandResults()
-    {
-        return handResults;
-    }
-
-    public void setHandResults(List<ResultHand> handResults)
-    {
-        this.handResults = handResults;
-    }
-
     @Override
     public String toString()
     {
-        return "ResultGame [id=" + id + ", game=" + game + ", player=" + player + ", points=" + points + ", position=" + position + ", handResults=" + handResults + "]";
+        return "ResultGame [id=" + id + ", game=" + game + ", player=" + player + ", points=" + points + ", position=" + position + "]";
     }
 
 }

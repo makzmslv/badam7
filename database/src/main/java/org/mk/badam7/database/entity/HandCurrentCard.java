@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,7 +22,7 @@ public class HandCurrentCard
     @JoinColumn(name = "REF_HAND")
     private Hand hand;
 
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "REF_CARD")
     private Card card;
 
