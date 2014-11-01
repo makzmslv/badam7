@@ -13,6 +13,15 @@
         <cglib.version>2.2.2</cglib.version>
     </properties>
   <dependencies>
+
+        <!-- database -->
+        <dependency>
+            <groupId>org.mk.badam7</groupId>
+            <artifactId>database</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
         <!-- game-core -->
         <dependency>
             <groupId>org.mk.badam7</groupId>
