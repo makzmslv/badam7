@@ -9,6 +9,9 @@
   <packaging>war</packaging>
   <name>web</name>
 
+    <properties>
+        <cglib.version>2.2.2</cglib.version>
+    </properties>
   <dependencies>
           <!-- game-core -->
         <dependency>
@@ -79,6 +82,28 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+
+        <!-- jackson -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+            </dependency>
+            <dependency>
+                <artifactId>jackson-module-scala_2.10</artifactId>
+                <groupId>com.fasterxml.jackson.module</groupId>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-joda</artifactId>
+            </dependency>
 
         <!-- CGLib for @Configuration -->
         <dependency>
