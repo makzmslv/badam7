@@ -1,6 +1,6 @@
 package org.mk.badam7.database.enums;
 
-public enum PlayerCurrentGameInstance
+public enum PlayerCurrentGameInstanceStatus
 {
     JOINED_GAME(1),
     HAND_IN_PROGRESS(2),
@@ -10,7 +10,7 @@ public enum PlayerCurrentGameInstance
 
     private Integer status;
 
-    PlayerCurrentGameInstance(Integer id)
+    PlayerCurrentGameInstanceStatus(Integer id)
     {
         this.status = id;
     }
