@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mk.badam7.gamedto.game.GameDTO;
 import org.mk.badam7.gamedto.game.GameInDTO;
+import org.mk.badam7.gamedto.game.GameUpdateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -26,6 +27,21 @@ public class GameCRUDServiceTest
 
         assertNotNull(gameDTO);
         System.out.println(gameDTO);
+    }
+
+    @Test
+    public void updateGameTest()
+    {
+        GameInDTO gameInDTO = createGameInDTO();
+        int gameId = gameCRUDService.createGame(gameInDTO).getId();
+        GameUpdateDTO gameUpdateDTO = new GameUpdateDTO();
+        gameUpdateDTO.setStatus(2);
+
+        GameDTO gameDTO = gameCRUDService.updateGame(gameId, gameUpdateDTO);
+
+        assertNotNull(gameDTO);
+        System.out.println(gameDTO);
+
     }
 
     private GameInDTO createGameInDTO()
