@@ -4,8 +4,8 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mk.badam7.gamecore.dto.GameDTO;
-import org.mk.badam7.gamecore.dto.GameInDTO;
+import org.mk.badam7.gamedto.game.GameDTO;
+import org.mk.badam7.gamedto.game.GameInDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

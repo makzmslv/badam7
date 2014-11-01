@@ -13,10 +13,18 @@
         <cglib.version>2.2.2</cglib.version>
     </properties>
   <dependencies>
-          <!-- game-core -->
+        <!-- game-core -->
         <dependency>
             <groupId>org.mk.badam7</groupId>
             <artifactId>game-core</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- DTOs -->
+        <dependency>
+            <groupId>org.mk.badam7</groupId>
+            <artifactId>gamedto</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>

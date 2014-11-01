@@ -25,6 +25,15 @@
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
+
+        <!-- DTOs -->
+        <dependency>
+            <groupId>org.mk.badam7</groupId>
+            <artifactId>gamedto</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
         <!-- CGLib for @Configuration -->
         <dependency>
             <groupId>cglib</groupId>
@@ -89,13 +98,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>hamcrest-core</artifactId>
-                    <groupId>org.hamcrest</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
+
+        <dependency>
+           <groupId>org.hamcrest</groupId>
+           <artifactId>hamcrest-all</artifactId>
+       </dependency>
 
     </dependencies>
 

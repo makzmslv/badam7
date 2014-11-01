@@ -5,9 +5,9 @@ import org.mk.badam7.database.dao.GameDAO;
 import org.mk.badam7.database.entity.Game;
 import org.mk.badam7.database.enums.GameStatus;
 import org.mk.badam7.database.enums.GameType;
-import org.mk.badam7.gamecore.dto.GameDTO;
-import org.mk.badam7.gamecore.dto.GameInDTO;
 import org.mk.badam7.gamecore.library.Badam7Constants;
+import org.mk.badam7.gamedto.game.GameDTO;
+import org.mk.badam7.gamedto.game.GameInDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

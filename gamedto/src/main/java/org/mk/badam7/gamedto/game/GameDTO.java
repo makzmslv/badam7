@@ -1,4 +1,4 @@
-package org.mk.badam7.gamecore.dto;
+package org.mk.badam7.gamedto.game;
 
 public class GameDTO
 {
