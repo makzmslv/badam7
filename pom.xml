@@ -213,12 +213,6 @@
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
                 <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <artifactId>hamcrest-core</artifactId>
-                        <groupId>org.hamcrest</groupId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
         </dependencies>
@@ -226,6 +220,7 @@
   <modules>
       <module>database</module>
     <module>game-core</module>
+    <module>web</module>
   </modules>
   <build>
         <pluginManagement>
