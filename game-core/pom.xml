@@ -71,6 +71,26 @@
             <artifactId>spring-orm</artifactId>
         </dependency>
 
+        <!-- Spring test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>hamcrest-core</artifactId>
+                    <groupId>org.hamcrest</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
     </dependencies>
 
     <repositories>
@@ -84,6 +104,37 @@
     <build>
         <finalName>game-core</finalName>
         <plugins>
+            <plugin>
+                    <artifactId>maven-eclipse-plugin</artifactId>
+                    <configuration>
+                        <additionalProjectnatures>
+                            <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+                        </additionalProjectnatures>
+                        <additionalBuildcommands>
+                            <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+                        </additionalBuildcommands>
+                        <downloadSources>true</downloadSources>
+                        <downloadJavadocs>true</downloadJavadocs>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.6</source>
+                        <target>1.6</target>
+                        <compilerArgument>-Xlint:all</compilerArgument>
+                        <showWarnings>true</showWarnings>
+                        <showDeprecation>true</showDeprecation>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <configuration>
+                        <mainClass>org.test.int1.Main</mainClass>
+                    </configuration>
+                </plugin>
         </plugins>
     </build>
 </project>
