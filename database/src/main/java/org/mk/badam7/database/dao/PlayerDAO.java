@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PlayerDAO extends JpaRepository<Player, Integer>
 {
-    public Player findByUsername(String username);
+    public Player findByUsernameAndVerified(String username, Boolean isVerified);
 
 }

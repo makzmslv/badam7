@@ -30,7 +30,7 @@ public class LoginAuthenticationImpl implements UserDetailsService
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
 
-        Player player = playerDAO.findByUsername(username);
+        Player player = playerDAO.findByUsernameAndVerified(username, true);
 
         org.springframework.security.core.userdetails.User userDetail = new org.springframework.security.core.userdetails.User(player.getUsername(), player.getPassword(), true, true, true, true,
                 getAuthorities(ROLE_USER));

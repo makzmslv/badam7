@@ -28,6 +28,12 @@ public class Player
     @Column(name = "PASSWORD")
     private String password;
 
+    @Column(name = "VERIFIED")
+    private Boolean verified;
+
+    @Column(name = "ROLE")
+    private Integer role;
+
     public Integer getId()
     {
         return id;

@@ -23,6 +23,23 @@
             <column name="PASSWORD" type="VARCHAR(500)">
                 <constraints nullable="false"/>
             </column>
+            <column name="VERIFIED" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
+    </changeSet>
+
+    <changeSet author="mk" id="2">
+        <insert tableName="PLAYER">
+            <column name="NAME" value="Makarandh"/>
+            <column name="EMAIL" value="makzmslv@gmail.com"/>
+            <column name="USERNAME" value="mk"/>
+            <column name="PASSWORD" value="2bfbefb9fb8b800d6355f5b265a455d01c951f73"/>
+            <column name="VERIFIED" valueBoolean="true"/>
+            <column name="ROLE" valueNumeric="1"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>
