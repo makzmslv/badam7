@@ -22,7 +22,10 @@ public class Game
     @Column(name = "NO_OF_PLAYERS")
     private Integer noOfPlayers;
 
-    @Column(name = "status")
+    @Column(name = "NO_OF_HANDS")
+    private Integer noOfHands;
+
+    @Column(name = "STATUS")
     private Integer status;
 
     public Integer getId()
@@ -65,10 +68,20 @@ public class Game
         this.status = status;
     }
 
+    public Integer getNoOfHands()
+    {
+        return noOfHands;
+    }
+
+    public void setNoOfHands(Integer noOfHands)
+    {
+        this.noOfHands = noOfHands;
+    }
+
     @Override
     public String toString()
     {
-        return "Game [id=" + id + ", gameType=" + gameType + ", noOfPlayers=" + noOfPlayers + ", status=" + status + "]";
+        return "Game [id=" + id + ", gameType=" + gameType + ", noOfPlayers=" + noOfPlayers + ", noOfHands=" + noOfHands + ", status=" + status + "]";
     }
 
 }

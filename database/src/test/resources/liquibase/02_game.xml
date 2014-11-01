@@ -20,6 +20,9 @@
             <column name="STATUS" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
+            <column name="NO_OF_HANDS" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
 
     </changeSet>
