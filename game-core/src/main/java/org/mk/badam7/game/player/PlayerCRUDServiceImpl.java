@@ -6,6 +6,7 @@ import org.mk.badam7.database.entity.Player;
 import org.mk.badam7.database.enums.UserAuthorities;
 import org.mk.badam7.gamecore.common.EmailSender;
 import org.mk.badam7.gamedto.player.PlayerDTO;
+import org.mk.badam7.gamedto.player.PlayerInDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class PlayerCRUDServiceImpl implements PlayerCRUDService
     private Mapper dozerMapper;
 
     @Override
-    public PlayerDTO createPlayer(PlayerDTO playerInDTO)
+    public PlayerDTO createPlayer(PlayerInDTO playerInDTO)
     {
         if (playerInDTO == null)
         {
@@ -38,7 +39,7 @@ public class PlayerCRUDServiceImpl implements PlayerCRUDService
         return playerDTO;
     }
 
-    private void validateInputDTO(PlayerDTO playerInDTO)
+    private void validateInputDTO(PlayerInDTO playerInDTO)
     {
         String emailId = playerInDTO.getEmail();
         Player player = playerDAO.findByEmail(emailId);
@@ -56,7 +57,7 @@ public class PlayerCRUDServiceImpl implements PlayerCRUDService
 
     }
 
-    private Player createPlayerEntityFromDTO(PlayerDTO playerInDTO)
+    private Player createPlayerEntityFromDTO(PlayerInDTO playerInDTO)
     {
         Player player = dozerMapper.map(playerInDTO, Player.class);
         player.setVerified(false);

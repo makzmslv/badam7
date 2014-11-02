@@ -1,6 +1,6 @@
 package org.mk.badam7.gamedto.player;
 
-public class PlayerDTO
+public class PlayerInDTO
 {
     private String name;
 
@@ -9,10 +9,6 @@ public class PlayerDTO
     private String username;
 
     private String password;
-
-    private Boolean verified;
-
-    private Integer role;
 
     public String getName()
     {
@@ -54,24 +50,10 @@ public class PlayerDTO
         this.password = password;
     }
 
-    public Boolean getVerified()
+    @Override
+    public String toString()
     {
-        return verified;
-    }
-
-    public void setVerified(Boolean verified)
-    {
-        this.verified = verified;
-    }
-
-    public Integer getRole()
-    {
-        return role;
-    }
-
-    public void setRole(Integer role)
-    {
-        this.role = role;
+        return "PlayerDTO [name=" + name + ", email=" + email + ", username=" + username + ", password=" + password + "]";
     }
 
 }
