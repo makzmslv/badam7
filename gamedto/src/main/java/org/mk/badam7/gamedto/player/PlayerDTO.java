@@ -2,6 +2,8 @@ package org.mk.badam7.gamedto.player;
 
 public class PlayerDTO
 {
+    private Integer id;
+
     private String name;
 
     private String email;
@@ -13,6 +15,16 @@ public class PlayerDTO
     private Boolean verified;
 
     private Integer role;
+
+    public Integer getId()
+    {
+        return id;
+    }
+
+    public void setId(Integer id)
+    {
+        this.id = id;
+    }
 
     public String getName()
     {

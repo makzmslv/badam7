@@ -19,7 +19,7 @@ public enum GameStatus
         this.status = id;
     }
 
-    public Integer getStatusCode()
+    public Integer getCode()
     {
         return status;
     }
@@ -27,12 +27,12 @@ public enum GameStatus
     public static final List<Integer> getAllStatuses()
     {
         List<Integer> statuses = new ArrayList<Integer>();
-        statuses.add(CREATED.getStatusCode());
-        statuses.add(WAITING_FOR_PLAYERS.getStatusCode());
-        statuses.add(WAITING_TO_START.getStatusCode());
-        statuses.add(IN_PROGRESS.getStatusCode());
-        statuses.add(ABANDONED.getStatusCode());
-        statuses.add(COMPLETED.getStatusCode());
+        statuses.add(CREATED.getCode());
+        statuses.add(WAITING_FOR_PLAYERS.getCode());
+        statuses.add(WAITING_TO_START.getCode());
+        statuses.add(IN_PROGRESS.getCode());
+        statuses.add(ABANDONED.getCode());
+        statuses.add(COMPLETED.getCode());
         return statuses;
     }
 

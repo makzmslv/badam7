@@ -91,12 +91,12 @@ public class GameCRUDServiceImpl implements GameCRUDService
 
     private boolean canGameBeUpdated(Integer gameStatus)
     {
-        if (gameStatus == GameStatus.COMPLETED.getStatusCode())
+        if (gameStatus == GameStatus.COMPLETED.getCode())
         {
             return false;
         }
 
-        if (gameStatus == GameStatus.ABANDONED.getStatusCode())
+        if (gameStatus == GameStatus.ABANDONED.getCode())
         {
             return false;
         }
@@ -133,7 +133,7 @@ public class GameCRUDServiceImpl implements GameCRUDService
         game.setGameType(gameInDTO.getGameType());
         game.setNoOfHands(gameInDTO.getNoOfHands());
         game.setNoOfPlayers(gameInDTO.getNoOfHands());
-        game.setStatus(GameStatus.CREATED.getStatusCode());
+        game.setStatus(GameStatus.CREATED.getCode());
 
         return game;
     }
