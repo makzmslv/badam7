@@ -29,13 +29,31 @@ public class PlayerCRUDServiceImpl implements PlayerCRUDService
         {
             throw new IllegalArgumentException("dto cannot be null");
         }
-
+        validateInputDTO(playerInDTO);
         Player player = createPlayerEntityFromDTO(playerInDTO);
         player = playerDAO.save(player);
         sendVerificationMail(player.getEmail());
         PlayerDTO playerDTO = dozerMapper.map(player, PlayerDTO.class);
 
         return playerDTO;
+    }
+
+    private void validateInputDTO(PlayerDTO playerInDTO)
+    {
+        String emailId = playerInDTO.getEmail();
+        Player player = playerDAO.findByEmail(emailId);
+        if (player != null)
+        {
+            throw new IllegalArgumentException("Email already registered");
+        }
+
+        String username = playerInDTO.getUsername();
+        player = playerDAO.findByUsername(username);
+        if (player != null)
+        {
+            throw new IllegalArgumentException("Username already used");
+        }
+
     }
 
     private Player createPlayerEntityFromDTO(PlayerDTO playerInDTO)

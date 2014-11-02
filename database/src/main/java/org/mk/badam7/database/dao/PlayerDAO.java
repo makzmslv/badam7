@@ -7,4 +7,8 @@ public interface PlayerDAO extends JpaRepository<Player, Integer>
 {
     public Player findByUsernameAndVerified(String username, Boolean isVerified);
 
+    public Player findByUsername(String username);
+
+    public Player findByEmail(String email);
+
 }
