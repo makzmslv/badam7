@@ -47,6 +47,18 @@ public class GameCRUDServiceImpl implements GameCRUDService
         return gameDTO;
     }
 
+    @Override
+    public GameDTO getById(Integer gameId)
+    {
+        Game gameEntity = gameDAO.findOne(gameId);
+        if (gameEntity == null)
+        {
+            throw new IllegalArgumentException("Game with given id does not exist");
+        }
+        GameDTO gameDTO = dozerMapper.map(gameEntity, GameDTO.class);
+        return gameDTO;
+    }
+
     private void validateUpdateOperation(Integer gameId, GameUpdateDTO gameUpdateDTO)
     {
         if (gameId == null)

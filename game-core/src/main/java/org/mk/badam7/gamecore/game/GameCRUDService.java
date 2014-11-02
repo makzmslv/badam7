@@ -9,4 +9,6 @@ public interface GameCRUDService
     public GameDTO createGame(GameInDTO gameInDTO);
 
     public GameDTO updateGame(Integer gameId, GameUpdateDTO gameUpdateDTO);
+
+    public GameDTO getById(Integer gameId);
 }
