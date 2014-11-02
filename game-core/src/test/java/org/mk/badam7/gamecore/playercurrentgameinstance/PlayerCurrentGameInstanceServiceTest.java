@@ -1,4 +1,7 @@
 package org.mk.badam7.gamecore.playercurrentgameinstance;
+
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mk.badam7.gamecore.PlayerCurrentGameInstanceService.PlayerCurrentGameInstanceService;
@@ -14,8 +17,9 @@ public class PlayerCurrentGameInstanceServiceTest
     private PlayerCurrentGameInstanceService playerCurrentGameInstanceService;
 
     @Test
-    public void creaetPlayerCurrentGameInstanceTest()
+    public void createPlayerCurrentGameInstanceTest()
     {
-        playerCurrentGameInstanceService.createPlayerCurrentGameInstance(1, 1);
+        PlayerCurrentGameInstanceDTO playerCurrentGameInstanceDTO = playerCurrentGameInstanceService.createPlayerCurrentGameInstance(1, 1);
+        assertNotNull(playerCurrentGameInstanceDTO);
     }
 }
