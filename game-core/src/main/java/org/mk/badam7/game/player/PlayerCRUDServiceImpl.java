@@ -54,6 +54,18 @@ public class PlayerCRUDServiceImpl implements PlayerCRUDService
         return playerDTO;
     }
 
+    @Override
+    public PlayerDTO getPlayerById(Integer playerId)
+    {
+        Player player = playerDAO.findOne(playerId);
+        if (player == null)
+        {
+            throw new IllegalArgumentException("Player does not exist");
+        }
+        PlayerDTO playerDTO = dozerMapper.map(player, PlayerDTO.class);
+        return playerDTO;
+    }
+
     private void validateInputDTO(PlayerInDTO playerInDTO)
     {
         String emailId = playerInDTO.getEmail();
@@ -93,3 +105,4 @@ public class PlayerCRUDServiceImpl implements PlayerCRUDService
         return encoder.encodePassword(username, password);
     }
 
+}

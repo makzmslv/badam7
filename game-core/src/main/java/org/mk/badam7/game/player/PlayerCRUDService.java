@@ -8,4 +8,6 @@ public interface PlayerCRUDService
     public PlayerDTO createPlayer(PlayerInDTO playerInDTO);
 
     public PlayerDTO verifyPlayer(Integer playerId);
+
+    public PlayerDTO getPlayerById(Integer playerId);
 }
