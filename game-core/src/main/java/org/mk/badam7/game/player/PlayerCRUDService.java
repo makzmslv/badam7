@@ -6,4 +6,6 @@ import org.mk.badam7.gamedto.player.PlayerInDTO;
 public interface PlayerCRUDService
 {
     public PlayerDTO createPlayer(PlayerInDTO playerInDTO);
+
+    public PlayerDTO verifyPlayer(Integer playerId);
 }

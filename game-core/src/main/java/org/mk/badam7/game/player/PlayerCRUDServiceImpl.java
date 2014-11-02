@@ -39,6 +39,21 @@ public class PlayerCRUDServiceImpl implements PlayerCRUDService
         return playerDTO;
     }
 
+    @Override
+    public PlayerDTO verifyPlayer(Integer playerId)
+    {
+        Player player = playerDAO.findOne(playerId);
+        if (player == null)
+        {
+            throw new IllegalArgumentException("Player does not exist");
+        }
+        player.setVerified(true);
+        player.setRole(UserAuthorities.USER.getRole());
+        player = playerDAO.save(player);
+        PlayerDTO playerDTO = dozerMapper.map(player, PlayerDTO.class);
+        return playerDTO;
+    }
+
     private void validateInputDTO(PlayerInDTO playerInDTO)
     {
         String emailId = playerInDTO.getEmail();
@@ -77,4 +92,4 @@ public class PlayerCRUDServiceImpl implements PlayerCRUDService
         ShaPasswordEncoder encoder = new ShaPasswordEncoder();
         return encoder.encodePassword(username, password);
     }
-}
+
