@@ -14,7 +14,7 @@
             <column name="SUITE" type="VARCHAR(50)">
                 <constraints nullable="false" />
             </column>
-            <column name="VALUE" type="VARCHAR(50)">
+            <column name="VALUE" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
             <column name="DESCRIPTION" type="VARCHAR(50)">
@@ -85,89 +85,89 @@
         </insert>
         <insert tableName="CARD">
             <column name="SUITE" value="H" />
-            <column name="VALUE" value="J" />
+            <column name="VALUE" value="11" />
             <column name="DESCRIPTION" value="Jack of Hearts" />
         </insert>
         <insert tableName="CARD">
             <column name="SUITE" value="H" />
-            <column name="VALUE" value="Q" />
+            <column name="VALUE" value="12" />
             <column name="DESCRIPTION" value="Queen of Hearts" />
         </insert>
         <insert tableName="CARD">
             <column name="SUITE" value="H" />
-            <column name="VALUE" value="K" />
+            <column name="VALUE" value="13" />
             <column name="DESCRIPTION" value="King of Hearts" />
         </insert>
         <insert tableName="CARD">
             <column name="SUITE" value="H" />
-            <column name="VALUE" value="A" />
+            <column name="VALUE" value="1" />
             <column name="DESCRIPTION" value="Ace of Hearts" />
         </insert>
 
         <!-- ACES -->
         <insert tableName="CARD">
-            <column name="SUITE" value="A" />
+            <column name="SUITE" value="1" />
             <column name="VALUE" value="2" />
             <column name="DESCRIPTION" value="2 of Aces" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="A" />
+            <column name="SUITE" value="1" />
             <column name="VALUE" value="3" />
             <column name="DESCRIPTION" value="3 of Aces" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="A" />
+            <column name="SUITE" value="1" />
             <column name="VALUE" value="4" />
             <column name="DESCRIPTION" value="4 of Aces" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="A" />
+            <column name="SUITE" value="1" />
             <column name="VALUE" value="5" />
             <column name="DESCRIPTION" value="5 of Aces" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="A" />
+            <column name="SUITE" value="1" />
             <column name="VALUE" value="6" />
             <column name="DESCRIPTION" value="6 of Aces" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="A" />
+            <column name="SUITE" value="1" />
             <column name="VALUE" value="7" />
             <column name="DESCRIPTION" value="7 of Aces" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="A" />
+            <column name="SUITE" value="1" />
             <column name="VALUE" value="8" />
             <column name="DESCRIPTION" value="8 of Aces" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="A" />
+            <column name="SUITE" value="1" />
             <column name="VALUE" value="9" />
             <column name="DESCRIPTION" value="9 of Aces" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="A" />
+            <column name="SUITE" value="1" />
             <column name="VALUE" value="10" />
             <column name="DESCRIPTION" value="10 of Aces" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="A" />
-            <column name="VALUE" value="J" />
+            <column name="SUITE" value="1" />
+            <column name="VALUE" value="11" />
             <column name="DESCRIPTION" value="Jack of Aces" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="A" />
-            <column name="VALUE" value="Q" />
+            <column name="SUITE" value="1" />
+            <column name="VALUE" value="12" />
             <column name="DESCRIPTION" value="Queen of Aces" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="A" />
-            <column name="VALUE" value="K" />
+            <column name="SUITE" value="1" />
+            <column name="VALUE" value="13" />
             <column name="DESCRIPTION" value="King of Aces" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="A" />
-            <column name="VALUE" value="A" />
+            <column name="SUITE" value="1" />
+            <column name="VALUE" value="1" />
             <column name="DESCRIPTION" value="Ace of Aces" />
         </insert>
 
@@ -219,22 +219,22 @@
         </insert>
         <insert tableName="CARD">
             <column name="SUITE" value="S" />
-            <column name="VALUE" value="J" />
+            <column name="VALUE" value="11" />
             <column name="DESCRIPTION" value="Jack of Spades" />
         </insert>
         <insert tableName="CARD">
             <column name="SUITE" value="S" />
-            <column name="VALUE" value="Q" />
+            <column name="VALUE" value="12" />
             <column name="DESCRIPTION" value="Queen of Spades" />
         </insert>
         <insert tableName="CARD">
             <column name="SUITE" value="S" />
-            <column name="VALUE" value="K" />
+            <column name="VALUE" value="13" />
             <column name="DESCRIPTION" value="King of Spades" />
         </insert>
         <insert tableName="CARD">
             <column name="SUITE" value="S" />
-            <column name="VALUE" value="A" />
+            <column name="VALUE" value="1" />
             <column name="DESCRIPTION" value="Ace of Spades" />
         </insert>
 
@@ -286,22 +286,22 @@
         </insert>
         <insert tableName="CARD">
             <column name="SUITE" value="D" />
-            <column name="VALUE" value="J" />
+            <column name="VALUE" value="11" />
             <column name="DESCRIPTION" value="Jack of Diamonds" />
         </insert>
         <insert tableName="CARD">
             <column name="SUITE" value="D" />
-            <column name="VALUE" value="Q" />
+            <column name="VALUE" value="12" />
             <column name="DESCRIPTION" value="Queen of Diamonds" />
         </insert>
         <insert tableName="CARD">
             <column name="SUITE" value="D" />
-            <column name="VALUE" value="K" />
+            <column name="VALUE" value="13" />
             <column name="DESCRIPTION" value="King of Diamonds" />
         </insert>
         <insert tableName="CARD">
             <column name="SUITE" value="D" />
-            <column name="VALUE" value="A" />
+            <column name="VALUE" value="1" />
             <column name="DESCRIPTION" value="Ace of Diamonds" />
         </insert>
     </changeSet>

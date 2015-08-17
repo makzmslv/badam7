@@ -19,7 +19,7 @@ public class Card
     private String suite;
 
     @Column(name = "VALUE")
-    private String value;
+    private Integer value;
 
     @Column(name = "DESCRIPTION")
     private String description;
@@ -44,12 +44,12 @@ public class Card
         this.suite = suite;
     }
 
-    public String getValue()
+    public Integer getValue()
     {
         return value;
     }
 
-    public void setValue(String value)
+    public void setValue(Integer value)
     {
         this.value = value;
     }
