@@ -1,5 +1,6 @@
 package org.mk.badam7.gamecore.player;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mk.badam7.gamecore.common.EmailSender;
@@ -15,6 +16,7 @@ public class PlayerCRUDServiceTest
     private EmailSender emailSender;
 
     @Test
+    @Ignore
     public void testEmailSending()
     {
         emailSender.sendMail("makzmslv@gmail.com");

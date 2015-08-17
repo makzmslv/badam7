@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "HAND_CURRENT_CARD")
-public class HandCurrentCard
+public class HandCurrentCardEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,11 +20,11 @@ public class HandCurrentCard
 
     @ManyToOne
     @JoinColumn(name = "REF_HAND")
-    private Hand hand;
+    private HandEntity handEntity;
 
     @OneToOne
     @JoinColumn(name = "REF_CARD")
-    private Card card;
+    private CardEntity cardEntity;
 
     @Column(name = "CARD_INSERTION_RANK")
     private Integer cardInsertionRank;
@@ -39,24 +39,24 @@ public class HandCurrentCard
         this.id = id;
     }
 
-    public Hand getHand()
+    public HandEntity getHand()
     {
-        return hand;
+        return handEntity;
     }
 
-    public void setHand(Hand hand)
+    public void setHand(HandEntity handEntity)
     {
-        this.hand = hand;
+        this.handEntity = handEntity;
     }
 
-    public Card getCard()
+    public CardEntity getCard()
     {
-        return card;
+        return cardEntity;
     }
 
-    public void setCard(Card card)
+    public void setCard(CardEntity cardEntity)
     {
-        this.card = card;
+        this.cardEntity = cardEntity;
     }
 
     public Integer getCardInsertionRank()
@@ -72,7 +72,7 @@ public class HandCurrentCard
     @Override
     public String toString()
     {
-        return "HandCurrentCard [id=" + id + ", hand=" + hand + ", card=" + card + ", cardInsertionRank=" + cardInsertionRank + "]";
+        return "HandCurrentCard [id=" + id + ", hand=" + handEntity + ", card=" + cardEntity + ", cardInsertionRank=" + cardInsertionRank + "]";
     }
 
 }

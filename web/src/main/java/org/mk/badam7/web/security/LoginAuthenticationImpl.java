@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mk.badam7.database.dao.PlayerDAO;
-import org.mk.badam7.database.entity.Player;
+import org.mk.badam7.database.entity.PlayerEntity;
 import org.mk.badam7.database.enums.UserAuthorities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -29,10 +29,10 @@ public class LoginAuthenticationImpl implements UserDetailsService
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
 
-        Player player = playerDAO.findByUsernameAndVerified(username, true);
+        PlayerEntity playerEntity = playerDAO.findByUsernameAndVerified(username, true);
 
-        org.springframework.security.core.userdetails.User userDetail = new org.springframework.security.core.userdetails.User(player.getUsername(), player.getPassword(), true, true, true, true,
-                getAuthorities(player.getRole()));
+        org.springframework.security.core.userdetails.User userDetail = new org.springframework.security.core.userdetails.User(playerEntity.getUsername(), playerEntity.getPassword(), true, true, true, true,
+                getAuthorities(playerEntity.getRole()));
 
         return userDetail;
     }

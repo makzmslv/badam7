@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PLAYER_CURRENT_CARD")
-public class PlayerCurrentCard
+public class PlayerCurrentCardEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,11 +20,11 @@ public class PlayerCurrentCard
 
     @OneToOne
     @JoinColumn(name = "REF_CARD")
-    private Card card;
+    private CardEntity cardEntity;
 
     @ManyToOne
     @JoinColumn(name = "REF_PLAYER_CURRENT_GAME_INSTANCE")
-    private PlayerCurrentGameInstance playerCurrentGameInstance;
+    private PlayerCurrentGameInstanceEntity playerCurrentGameInstanceEntity;
 
     @Column(name = "STATUS")
     private Integer status;
@@ -42,24 +42,24 @@ public class PlayerCurrentCard
         this.id = id;
     }
 
-    public Card getCard()
+    public CardEntity getCard()
     {
-        return card;
+        return cardEntity;
     }
 
-    public void setCard(Card card)
+    public void setCard(CardEntity cardEntity)
     {
-        this.card = card;
+        this.cardEntity = cardEntity;
     }
 
-    public PlayerCurrentGameInstance getPlayerCurrentGameInstance()
+    public PlayerCurrentGameInstanceEntity getPlayerCurrentGameInstance()
     {
-        return playerCurrentGameInstance;
+        return playerCurrentGameInstanceEntity;
     }
 
-    public void setPlayerCurrentGameInstance(PlayerCurrentGameInstance playerCurrentGameInstance)
+    public void setPlayerCurrentGameInstance(PlayerCurrentGameInstanceEntity playerCurrentGameInstanceEntity)
     {
-        this.playerCurrentGameInstance = playerCurrentGameInstance;
+        this.playerCurrentGameInstanceEntity = playerCurrentGameInstanceEntity;
     }
 
     public Integer getStatus()
@@ -85,7 +85,7 @@ public class PlayerCurrentCard
     @Override
     public String toString()
     {
-        return "PlayerCurrentCard [id=" + id + ", card=" + card + ", playerCurrentGameInstance=" + playerCurrentGameInstance + ", status=" + status + ", cardRemovalRank=" + cardRemovalRank + "]";
+        return "PlayerCurrentCard [id=" + id + ", card=" + cardEntity + ", playerCurrentGameInstance=" + playerCurrentGameInstanceEntity + ", status=" + status + ", cardRemovalRank=" + cardRemovalRank + "]";
     }
 
     @Override
@@ -93,9 +93,9 @@ public class PlayerCurrentCard
     {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((card == null) ? 0 : card.hashCode());
+        result = prime * result + ((cardEntity == null) ? 0 : cardEntity.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((playerCurrentGameInstance == null) ? 0 : playerCurrentGameInstance.hashCode());
+        result = prime * result + ((playerCurrentGameInstanceEntity == null) ? 0 : playerCurrentGameInstanceEntity.hashCode());
         return result;
     }
 
@@ -108,13 +108,13 @@ public class PlayerCurrentCard
             return false;
         if (getClass() != obj.getClass())
             return false;
-        PlayerCurrentCard other = (PlayerCurrentCard) obj;
-        if (card == null)
+        PlayerCurrentCardEntity other = (PlayerCurrentCardEntity) obj;
+        if (cardEntity == null)
         {
-            if (other.card != null)
+            if (other.cardEntity != null)
                 return false;
         }
-        else if (!card.equals(other.card))
+        else if (!cardEntity.equals(other.cardEntity))
             return false;
         if (id == null)
         {
@@ -123,12 +123,12 @@ public class PlayerCurrentCard
         }
         else if (!id.equals(other.id))
             return false;
-        if (playerCurrentGameInstance == null)
+        if (playerCurrentGameInstanceEntity == null)
         {
-            if (other.playerCurrentGameInstance != null)
+            if (other.playerCurrentGameInstanceEntity != null)
                 return false;
         }
-        else if (!playerCurrentGameInstance.equals(other.playerCurrentGameInstance))
+        else if (!playerCurrentGameInstanceEntity.equals(other.playerCurrentGameInstanceEntity))
             return false;
         return true;
     }

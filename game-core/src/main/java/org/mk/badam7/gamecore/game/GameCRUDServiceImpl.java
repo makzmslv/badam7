@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.dozer.Mapper;
 import org.mk.badam7.database.dao.GameDAO;
-import org.mk.badam7.database.entity.Game;
+import org.mk.badam7.database.entity.GameEntity;
 import org.mk.badam7.database.enums.GameStatus;
 import org.mk.badam7.database.enums.GameType;
 import org.mk.badam7.gamecore.library.Badam7Constants;
@@ -29,10 +29,10 @@ public class GameCRUDServiceImpl implements GameCRUDService
     {
         validateInput(gameInDTO);
 
-        Game game = createEntityFromDTO(gameInDTO);
-        game = gameDAO.save(game);
+        GameEntity gameEntity = createEntityFromDTO(gameInDTO);
+        gameEntity = gameDAO.save(gameEntity);
 
-        GameDTO gameDTO = dozerMapper.map(game, GameDTO.class);
+        GameDTO gameDTO = dozerMapper.map(gameEntity, GameDTO.class);
         return gameDTO;
     }
 
@@ -40,7 +40,7 @@ public class GameCRUDServiceImpl implements GameCRUDService
     public GameDTO updateGame(Integer gameId, GameUpdateDTO gameUpdateDTO)
     {
         validateUpdateOperation(gameId, gameUpdateDTO);
-        Game gameEntity = gameDAO.findOne(gameId);
+        GameEntity gameEntity = gameDAO.findOne(gameId);
         gameEntity.setStatus(gameUpdateDTO.getStatus());
         gameEntity = gameDAO.save(gameEntity);
         GameDTO gameDTO = dozerMapper.map(gameEntity, GameDTO.class);
@@ -50,7 +50,7 @@ public class GameCRUDServiceImpl implements GameCRUDService
     @Override
     public GameDTO getById(Integer gameId)
     {
-        Game gameEntity = gameDAO.findOne(gameId);
+        GameEntity gameEntity = gameDAO.findOne(gameId);
         if (gameEntity == null)
         {
             throw new IllegalArgumentException("Game with given id does not exist");
@@ -66,7 +66,7 @@ public class GameCRUDServiceImpl implements GameCRUDService
             throw new IllegalArgumentException("GameId cannot be null");
         }
 
-        Game gameEntity = gameDAO.findOne(gameId);
+        GameEntity gameEntity = gameDAO.findOne(gameId);
         if (gameEntity == null)
         {
             throw new IllegalArgumentException("Game with given id does not exist");
@@ -127,15 +127,15 @@ public class GameCRUDServiceImpl implements GameCRUDService
 
     }
 
-    private Game createEntityFromDTO(GameInDTO gameInDTO)
+    private GameEntity createEntityFromDTO(GameInDTO gameInDTO)
     {
-        Game game = new Game();
-        game.setGameType(gameInDTO.getGameType());
-        game.setNoOfHands(gameInDTO.getNoOfHands());
-        game.setNoOfPlayers(gameInDTO.getNoOfHands());
-        game.setStatus(GameStatus.CREATED.getCode());
+        GameEntity gameEntity = new GameEntity();
+        gameEntity.setGameType(gameInDTO.getGameType());
+        gameEntity.setNoOfHands(gameInDTO.getNoOfHands());
+        gameEntity.setNoOfPlayers(gameInDTO.getNoOfHands());
+        gameEntity.setStatus(GameStatus.CREATED.getCode());
 
-        return game;
+        return gameEntity;
     }
 
 }

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "RESULT_GAME")
-public class ResultGame
+public class ResultGameEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,11 +20,11 @@ public class ResultGame
 
     @ManyToOne
     @JoinColumn(name = "REF_GAME")
-    private Game game;
+    private GameEntity gameEntity;
 
     @OneToOne
     @JoinColumn(name = "REF_PLAYER")
-    private Player player;
+    private PlayerEntity playerEntity;
 
     @Column(name = "POINTS")
     private Integer points;
@@ -42,24 +42,24 @@ public class ResultGame
         this.id = id;
     }
 
-    public Game getGame()
+    public GameEntity getGame()
     {
-        return game;
+        return gameEntity;
     }
 
-    public void setGame(Game game)
+    public void setGame(GameEntity gameEntity)
     {
-        this.game = game;
+        this.gameEntity = gameEntity;
     }
 
-    public Player getPlayer()
+    public PlayerEntity getPlayer()
     {
-        return player;
+        return playerEntity;
     }
 
-    public void setPlayer(Player player)
+    public void setPlayer(PlayerEntity playerEntity)
     {
-        this.player = player;
+        this.playerEntity = playerEntity;
     }
 
     public Integer getPoints()
@@ -85,7 +85,7 @@ public class ResultGame
     @Override
     public String toString()
     {
-        return "ResultGame [id=" + id + ", game=" + game + ", player=" + player + ", points=" + points + ", position=" + position + "]";
+        return "ResultGame [id=" + id + ", game=" + gameEntity + ", player=" + playerEntity + ", points=" + points + ", position=" + position + "]";
     }
 
 }

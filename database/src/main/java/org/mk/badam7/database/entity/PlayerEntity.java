@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PLAYER")
-public class Player
+public class PlayerEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -128,7 +128,7 @@ public class Player
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Player other = (Player) obj;
+        PlayerEntity other = (PlayerEntity) obj;
         if (email == null)
         {
             if (other.email != null)

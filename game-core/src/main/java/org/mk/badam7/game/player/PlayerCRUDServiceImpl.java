@@ -2,7 +2,7 @@ package org.mk.badam7.game.player;
 
 import org.dozer.Mapper;
 import org.mk.badam7.database.dao.PlayerDAO;
-import org.mk.badam7.database.entity.Player;
+import org.mk.badam7.database.entity.PlayerEntity;
 import org.mk.badam7.database.enums.UserAuthorities;
 import org.mk.badam7.gamecore.common.EmailSender;
 import org.mk.badam7.gamedto.player.PlayerDTO;
@@ -31,10 +31,10 @@ public class PlayerCRUDServiceImpl implements PlayerCRUDService
             throw new IllegalArgumentException("dto cannot be null");
         }
         validateInputDTO(playerInDTO);
-        Player player = createPlayerEntityFromDTO(playerInDTO);
-        player = playerDAO.save(player);
-        sendVerificationMail(player.getEmail());
-        PlayerDTO playerDTO = dozerMapper.map(player, PlayerDTO.class);
+        PlayerEntity playerEntity = createPlayerEntityFromDTO(playerInDTO);
+        playerEntity = playerDAO.save(playerEntity);
+        sendVerificationMail(playerEntity.getEmail());
+        PlayerDTO playerDTO = dozerMapper.map(playerEntity, PlayerDTO.class);
 
         return playerDTO;
     }
@@ -42,56 +42,56 @@ public class PlayerCRUDServiceImpl implements PlayerCRUDService
     @Override
     public PlayerDTO verifyPlayer(Integer playerId)
     {
-        Player player = playerDAO.findOne(playerId);
-        if (player == null)
+        PlayerEntity playerEntity = playerDAO.findOne(playerId);
+        if (playerEntity == null)
         {
             throw new IllegalArgumentException("Player does not exist");
         }
-        player.setVerified(true);
-        player.setRole(UserAuthorities.USER.getRole());
-        player = playerDAO.save(player);
-        PlayerDTO playerDTO = dozerMapper.map(player, PlayerDTO.class);
+        playerEntity.setVerified(true);
+        playerEntity.setRole(UserAuthorities.USER.getRole());
+        playerEntity = playerDAO.save(playerEntity);
+        PlayerDTO playerDTO = dozerMapper.map(playerEntity, PlayerDTO.class);
         return playerDTO;
     }
 
     @Override
     public PlayerDTO getPlayerById(Integer playerId)
     {
-        Player player = playerDAO.findOne(playerId);
-        if (player == null)
+        PlayerEntity playerEntity = playerDAO.findOne(playerId);
+        if (playerEntity == null)
         {
             throw new IllegalArgumentException("Player does not exist");
         }
-        PlayerDTO playerDTO = dozerMapper.map(player, PlayerDTO.class);
+        PlayerDTO playerDTO = dozerMapper.map(playerEntity, PlayerDTO.class);
         return playerDTO;
     }
 
     private void validateInputDTO(PlayerInDTO playerInDTO)
     {
         String emailId = playerInDTO.getEmail();
-        Player player = playerDAO.findByEmail(emailId);
-        if (player != null)
+        PlayerEntity playerEntity = playerDAO.findByEmail(emailId);
+        if (playerEntity != null)
         {
             throw new IllegalArgumentException("Email already registered");
         }
 
         String username = playerInDTO.getUsername();
-        player = playerDAO.findByUsername(username);
-        if (player != null)
+        playerEntity = playerDAO.findByUsername(username);
+        if (playerEntity != null)
         {
             throw new IllegalArgumentException("Username already used");
         }
 
     }
 
-    private Player createPlayerEntityFromDTO(PlayerInDTO playerInDTO)
+    private PlayerEntity createPlayerEntityFromDTO(PlayerInDTO playerInDTO)
     {
-        Player player = dozerMapper.map(playerInDTO, Player.class);
-        player.setVerified(false);
+        PlayerEntity playerEntity = dozerMapper.map(playerInDTO, PlayerEntity.class);
+        playerEntity.setVerified(false);
         String encodedPassword = encodeUserPassword(playerInDTO.getUsername(), playerInDTO.getPassword());
-        player.setPassword(encodedPassword);
-        player.setRole(UserAuthorities.NOT_VERIFIED.getRole());
-        return player;
+        playerEntity.setPassword(encodedPassword);
+        playerEntity.setRole(UserAuthorities.NOT_VERIFIED.getRole());
+        return playerEntity;
     }
 
     private void sendVerificationMail(String email)

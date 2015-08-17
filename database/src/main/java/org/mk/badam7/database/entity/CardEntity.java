@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CARD")
-public class Card
+public class CardEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -89,7 +89,7 @@ public class Card
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Card other = (Card) obj;
+        CardEntity other = (CardEntity) obj;
         if (suite == null)
         {
             if (other.suite != null)

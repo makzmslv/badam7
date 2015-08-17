@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "RESULT_HAND")
-public class ResultHand
+public class ResultHandEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,11 +20,11 @@ public class ResultHand
 
     @ManyToOne
     @JoinColumn(name = "REF_HAND")
-    private Hand hand;
+    private HandEntity handEntity;
 
     @OneToOne
     @JoinColumn(name = "REF_PLAYER")
-    private Player player;
+    private PlayerEntity playerEntity;
 
     @Column(name = "POINTS")
     private Integer points;
@@ -39,24 +39,24 @@ public class ResultHand
         this.id = id;
     }
 
-    public Hand getHand()
+    public HandEntity getHand()
     {
-        return hand;
+        return handEntity;
     }
 
-    public void setHand(Hand hand)
+    public void setHand(HandEntity handEntity)
     {
-        this.hand = hand;
+        this.handEntity = handEntity;
     }
 
-    public Player getPlayer()
+    public PlayerEntity getPlayer()
     {
-        return player;
+        return playerEntity;
     }
 
-    public void setPlayer(Player player)
+    public void setPlayer(PlayerEntity playerEntity)
     {
-        this.player = player;
+        this.playerEntity = playerEntity;
     }
 
     public Integer getPoints()
@@ -72,7 +72,7 @@ public class ResultHand
     @Override
     public String toString()
     {
-        return "ResultHand [id=" + id + ", hand=" + hand + ", player=" + player + ", points=" + points + "]";
+        return "ResultHand [id=" + id + ", hand=" + handEntity + ", player=" + playerEntity + ", points=" + points + "]";
     }
 
     @Override
@@ -80,9 +80,9 @@ public class ResultHand
     {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((hand == null) ? 0 : hand.hashCode());
+        result = prime * result + ((handEntity == null) ? 0 : handEntity.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((player == null) ? 0 : player.hashCode());
+        result = prime * result + ((playerEntity == null) ? 0 : playerEntity.hashCode());
         result = prime * result + ((points == null) ? 0 : points.hashCode());
         return result;
     }
@@ -96,13 +96,13 @@ public class ResultHand
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ResultHand other = (ResultHand) obj;
-        if (hand == null)
+        ResultHandEntity other = (ResultHandEntity) obj;
+        if (handEntity == null)
         {
-            if (other.hand != null)
+            if (other.handEntity != null)
                 return false;
         }
-        else if (!hand.equals(other.hand))
+        else if (!handEntity.equals(other.handEntity))
             return false;
         if (id == null)
         {
@@ -111,12 +111,12 @@ public class ResultHand
         }
         else if (!id.equals(other.id))
             return false;
-        if (player == null)
+        if (playerEntity == null)
         {
-            if (other.player != null)
+            if (other.playerEntity != null)
                 return false;
         }
-        else if (!player.equals(other.player))
+        else if (!playerEntity.equals(other.playerEntity))
             return false;
         if (points == null)
         {

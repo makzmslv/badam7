@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PLAYER_GAME_CURRENT_INSTANCE")
-public class PlayerCurrentGameInstance
+public class PlayerCurrentGameInstanceEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,11 +25,11 @@ public class PlayerCurrentGameInstance
 
     @ManyToOne
     @JoinColumn(name = "REF_GAME")
-    private Game game;
+    private GameEntity gameEntity;
 
     @OneToOne
     @JoinColumn(name = "REF_PLAYER")
-    private Player player;
+    private PlayerEntity playerEntity;
 
     @Column(name = "PLAYER_NO")
     private Integer playerNo;
@@ -37,8 +37,8 @@ public class PlayerCurrentGameInstance
     @Column(name = "STATUS")
     private Integer status;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "playerCurrentGameInstance", cascade = CascadeType.REMOVE)
-    private List<PlayerCurrentCard> playerCurrentCards;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "playerCurrentGameInstanceEntity", cascade = CascadeType.REMOVE)
+    private List<PlayerCurrentCardEntity> playerCurrentCardEntities;
 
     public Integer getId()
     {
@@ -50,24 +50,24 @@ public class PlayerCurrentGameInstance
         this.id = id;
     }
 
-    public Game getGame()
+    public GameEntity getGame()
     {
-        return game;
+        return gameEntity;
     }
 
-    public void setGame(Game game)
+    public void setGame(GameEntity gameEntity)
     {
-        this.game = game;
+        this.gameEntity = gameEntity;
     }
 
-    public Player getPlayer()
+    public PlayerEntity getPlayer()
     {
-        return player;
+        return playerEntity;
     }
 
-    public void setPlayer(Player player)
+    public void setPlayer(PlayerEntity playerEntity)
     {
-        this.player = player;
+        this.playerEntity = playerEntity;
     }
 
     public Integer getPlayerNo()
@@ -90,20 +90,21 @@ public class PlayerCurrentGameInstance
         this.status = status;
     }
 
-    public List<PlayerCurrentCard> getPlayerCurrentCards()
+    public List<PlayerCurrentCardEntity> getPlayerCurrentCards()
     {
-        return playerCurrentCards;
+        return playerCurrentCardEntities;
     }
 
-    public void setPlayerCurrentCards(List<PlayerCurrentCard> playerCurrentCards)
+    public void setPlayerCurrentCards(List<PlayerCurrentCardEntity> playerCurrentCardEntities)
     {
-        this.playerCurrentCards = playerCurrentCards;
+        this.playerCurrentCardEntities = playerCurrentCardEntities;
     }
 
     @Override
     public String toString()
     {
-        return "PlayerCurrentGameInstance [id=" + id + ", game=" + game + ", player=" + player + ", playerNo=" + playerNo + ", status=" + status + ", playerCurrentCards=" + playerCurrentCards + "]";
+        return "PlayerCurrentGameInstance [id=" + id + ", game=" + gameEntity + ", player=" + playerEntity + ", playerNo=" + playerNo + ", status=" + status + ", playerCurrentCards="
+                + playerCurrentCardEntities + "]";
     }
 
 }

@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "HAND")
-public class Hand
+public class HandEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,17 +28,17 @@ public class Hand
 
     @ManyToOne
     @JoinColumn(name = "REF_GAME")
-    private Game game;
+    private GameEntity gameEntity;
 
     @OneToOne
     @JoinColumn(name = "REF_PLAYER")
-    private Player currentPlayer;
+    private PlayerEntity currentPlayer;
 
     @Column(name = "STATUS")
     private Integer status;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "hand", cascade = CascadeType.REMOVE)
-    private List<HandCurrentCard> handCurrentCards;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "handEntity", cascade = CascadeType.REMOVE)
+    private List<HandCurrentCardEntity> handCurrentCardEntities;
 
     public Integer getId()
     {
@@ -60,22 +60,22 @@ public class Hand
         this.handNo = handNo;
     }
 
-    public Game getGame()
+    public GameEntity getGame()
     {
-        return game;
+        return gameEntity;
     }
 
-    public void setGame(Game game)
+    public void setGame(GameEntity gameEntity)
     {
-        this.game = game;
+        this.gameEntity = gameEntity;
     }
 
-    public Player getCurrentPlayer()
+    public PlayerEntity getCurrentPlayer()
     {
         return currentPlayer;
     }
 
-    public void setCurrentPlayer(Player currentPlayer)
+    public void setCurrentPlayer(PlayerEntity currentPlayer)
     {
         this.currentPlayer = currentPlayer;
     }
@@ -90,20 +90,20 @@ public class Hand
         this.status = status;
     }
 
-    public List<HandCurrentCard> getHandCurrentCards()
+    public List<HandCurrentCardEntity> getHandCurrentCards()
     {
-        return handCurrentCards;
+        return handCurrentCardEntities;
     }
 
-    public void setHandCurrentCards(List<HandCurrentCard> handCurrentCards)
+    public void setHandCurrentCards(List<HandCurrentCardEntity> handCurrentCardEntities)
     {
-        this.handCurrentCards = handCurrentCards;
+        this.handCurrentCardEntities = handCurrentCardEntities;
     }
 
     @Override
     public String toString()
     {
-        return "Hand [id=" + id + ", handNo=" + handNo + ", game=" + game + ", currentPlayer=" + currentPlayer + ", status=" + status + ", handCurrentCards=" + handCurrentCards + "]";
+        return "Hand [id=" + id + ", handNo=" + handNo + ", game=" + gameEntity + ", currentPlayer=" + currentPlayer + ", status=" + status + ", handCurrentCards=" + handCurrentCardEntities + "]";
     }
 
 }

@@ -4,9 +4,9 @@ import org.dozer.Mapper;
 import org.mk.badam7.database.dao.GameDAO;
 import org.mk.badam7.database.dao.PlayerCurrentGameInstanceDAO;
 import org.mk.badam7.database.dao.PlayerDAO;
-import org.mk.badam7.database.entity.Game;
-import org.mk.badam7.database.entity.Player;
-import org.mk.badam7.database.entity.PlayerCurrentGameInstance;
+import org.mk.badam7.database.entity.GameEntity;
+import org.mk.badam7.database.entity.PlayerEntity;
+import org.mk.badam7.database.entity.PlayerCurrentGameInstanceEntity;
 import org.mk.badam7.database.enums.GameStatus;
 import org.mk.badam7.database.enums.PlayerCurrentGameInstanceStatus;
 import org.mk.badam7.gamecore.playercurrentgameinstance.PlayerCurrentGameInstanceDTO;
@@ -32,63 +32,63 @@ public class PlayerCurrentGameInstanceServiceImpl implements PlayerCurrentGameIn
     @Override
     public PlayerCurrentGameInstanceDTO createPlayerCurrentGameInstance(Integer gameId, Integer playerId)
     {
-        Game game = getGame(gameId);
-        Player player = getPlayer(playerId);
-        PlayerCurrentGameInstance playerCurrentGameInstance = createPlayerGameInstanceEntity(game, player);
-        playerCurrentGameInstance = playerCurrentGameInstanceDAO.save(playerCurrentGameInstance);
-        updateGameStatus(game, playerCurrentGameInstance.getPlayerNo());
-        PlayerCurrentGameInstanceDTO playerCurrentGameInstanceDTO = dozerMapper.map(playerCurrentGameInstance, PlayerCurrentGameInstanceDTO.class);
+        GameEntity gameEntity = getGame(gameId);
+        PlayerEntity playerEntity = getPlayer(playerId);
+        PlayerCurrentGameInstanceEntity playerCurrentGameInstanceEntity = createPlayerGameInstanceEntity(gameEntity, playerEntity);
+        playerCurrentGameInstanceEntity = playerCurrentGameInstanceDAO.save(playerCurrentGameInstanceEntity);
+        updateGameStatus(gameEntity, playerCurrentGameInstanceEntity.getPlayerNo());
+        PlayerCurrentGameInstanceDTO playerCurrentGameInstanceDTO = dozerMapper.map(playerCurrentGameInstanceEntity, PlayerCurrentGameInstanceDTO.class);
 
         return playerCurrentGameInstanceDTO;
     }
 
-    private Player getPlayer(Integer playerId)
+    private PlayerEntity getPlayer(Integer playerId)
     {
-        Player player = playerDAO.findOne(playerId);
-        if (player == null)
+        PlayerEntity playerEntity = playerDAO.findOne(playerId);
+        if (playerEntity == null)
         {
             throw new IllegalArgumentException("Player does not exist");
         }
-        return player;
+        return playerEntity;
     }
 
-    private Game getGame(Integer gameId)
+    private GameEntity getGame(Integer gameId)
     {
-        Game game = gameDAO.findOne(gameId);
-        if (game == null)
+        GameEntity gameEntity = gameDAO.findOne(gameId);
+        if (gameEntity == null)
         {
             throw new IllegalArgumentException("Game with given id does not exist");
         }
-        return game;
+        return gameEntity;
     }
 
-    private PlayerCurrentGameInstance createPlayerGameInstanceEntity(Game game, Player player)
+    private PlayerCurrentGameInstanceEntity createPlayerGameInstanceEntity(GameEntity gameEntity, PlayerEntity playerEntity)
     {
-        PlayerCurrentGameInstance playerCurrentGameInstance = new PlayerCurrentGameInstance();
-        playerCurrentGameInstance.setGame(game);
-        playerCurrentGameInstance.setPlayer(player);
-        playerCurrentGameInstance.setStatus(PlayerCurrentGameInstanceStatus.JOINED_GAME.getStatusCode());
-        Integer playerNo = playerCurrentGameInstanceDAO.getPlayerCountForGame(game);
-        playerCurrentGameInstance.setPlayerNo(playerNo + 1);
+        PlayerCurrentGameInstanceEntity playerCurrentGameInstanceEntity = new PlayerCurrentGameInstanceEntity();
+        playerCurrentGameInstanceEntity.setGame(gameEntity);
+        playerCurrentGameInstanceEntity.setPlayer(playerEntity);
+        playerCurrentGameInstanceEntity.setStatus(PlayerCurrentGameInstanceStatus.JOINED_GAME.getStatusCode());
+        Integer playerNo = playerCurrentGameInstanceDAO.getPlayerCountForGame(gameEntity);
+        playerCurrentGameInstanceEntity.setPlayerNo(playerNo + 1);
 
-        return playerCurrentGameInstance;
+        return playerCurrentGameInstanceEntity;
     }
 
-    private void updateGameStatus(Game game, Integer playerNo)
+    private void updateGameStatus(GameEntity gameEntity, Integer playerNo)
     {
-        Integer gameStatus = game.getStatus();
+        Integer gameStatus = gameEntity.getStatus();
         if (gameStatus == GameStatus.CREATED.getCode())
         {
-            game.setStatus(GameStatus.WAITING_FOR_PLAYERS.getCode());
-            gameDAO.save(game);
+            gameEntity.setStatus(GameStatus.WAITING_FOR_PLAYERS.getCode());
+            gameDAO.save(gameEntity);
         }
 
-        if (game.getNoOfPlayers() == playerNo)
+        if (gameEntity.getNoOfPlayers() == playerNo)
         {
             if (gameStatus == GameStatus.CREATED.getCode())
             {
-                game.setStatus(GameStatus.WAITING_TO_START.getCode());
-                gameDAO.save(game);
+                gameEntity.setStatus(GameStatus.WAITING_TO_START.getCode());
+                gameDAO.save(gameEntity);
             }
         }
 
