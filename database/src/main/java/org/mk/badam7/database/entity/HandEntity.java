@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,10 +28,6 @@ public class HandEntity
     @ManyToOne
     @JoinColumn(name = "REF_GAME")
     private GameEntity gameEntity;
-
-    @OneToOne
-    @JoinColumn(name = "REF_PLAYER")
-    private PlayerEntity currentPlayer;
 
     @Column(name = "STATUS")
     private Integer status;
@@ -70,16 +65,6 @@ public class HandEntity
         this.gameEntity = gameEntity;
     }
 
-    public PlayerEntity getCurrentPlayer()
-    {
-        return currentPlayer;
-    }
-
-    public void setCurrentPlayer(PlayerEntity currentPlayer)
-    {
-        this.currentPlayer = currentPlayer;
-    }
-
     public Integer getStatus()
     {
         return status;
@@ -103,7 +88,7 @@ public class HandEntity
     @Override
     public String toString()
     {
-        return "Hand [id=" + id + ", handNo=" + handNo + ", game=" + gameEntity + ", currentPlayer=" + currentPlayer + ", status=" + status + ", handCurrentCards=" + handCurrentCardEntities + "]";
+        return "Hand [id=" + id + ", handNo=" + handNo + ", game=" + gameEntity + ", status=" + status + ", handCurrentCards=" + handCurrentCardEntities + "]";
     }
 
 }

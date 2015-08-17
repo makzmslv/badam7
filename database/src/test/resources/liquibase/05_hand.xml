@@ -17,14 +17,10 @@
             <column name="REF_GAME" type="INTEGER">
                 <constraints nullable="false" />
             </column>
-            <column name="REF_PLAYER" type="INTEGER">
-                <constraints nullable="false"/>
-            </column>
             <column name="STATUS" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint constraintName="FK_HAND_REF_PLAYER" baseTableName="HAND" baseColumnNames="REF_PLAYER" referencedTableName="PLAYER" referencedColumnNames="ID"/>
         <addForeignKeyConstraint constraintName="FK_HAND_REF_GAME" baseTableName="HAND" baseColumnNames="REF_GAME" referencedTableName="GAME" referencedColumnNames="ID"/>
 
     </changeSet>
