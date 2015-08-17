@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PLAYER_CURRENT_CARD")
-public class PlayerCurrentCardEntity
+public class PlayerCurrentHandCardEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,10 @@ public class PlayerCurrentCardEntity
     @OneToOne
     @JoinColumn(name = "REF_CARD")
     private CardEntity cardEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "REF_HAND")
+    private HandEntity handEntity;
 
     @ManyToOne
     @JoinColumn(name = "REF_PLAYER_CURRENT_GAME_INSTANCE")
@@ -72,6 +76,36 @@ public class PlayerCurrentCardEntity
         this.status = status;
     }
 
+    public CardEntity getCardEntity()
+    {
+        return cardEntity;
+    }
+
+    public void setCardEntity(CardEntity cardEntity)
+    {
+        this.cardEntity = cardEntity;
+    }
+
+    public HandEntity getHandEntity()
+    {
+        return handEntity;
+    }
+
+    public void setHandEntity(HandEntity handEntity)
+    {
+        this.handEntity = handEntity;
+    }
+
+    public PlayerCurrentGameInstanceEntity getPlayerCurrentGameInstanceEntity()
+    {
+        return playerCurrentGameInstanceEntity;
+    }
+
+    public void setPlayerCurrentGameInstanceEntity(PlayerCurrentGameInstanceEntity playerCurrentGameInstanceEntity)
+    {
+        this.playerCurrentGameInstanceEntity = playerCurrentGameInstanceEntity;
+    }
+
     public Integer getCardRemovalRank()
     {
         return cardRemovalRank;
@@ -85,7 +119,8 @@ public class PlayerCurrentCardEntity
     @Override
     public String toString()
     {
-        return "PlayerCurrentCard [id=" + id + ", card=" + cardEntity + ", playerCurrentGameInstance=" + playerCurrentGameInstanceEntity + ", status=" + status + ", cardRemovalRank=" + cardRemovalRank + "]";
+        return "PlayerCurrentCard [id=" + id + ", card=" + cardEntity + ", playerCurrentGameInstance=" + playerCurrentGameInstanceEntity + ", status=" + status + ", cardRemovalRank="
+                + cardRemovalRank + "]";
     }
 
     @Override
@@ -108,7 +143,7 @@ public class PlayerCurrentCardEntity
             return false;
         if (getClass() != obj.getClass())
             return false;
-        PlayerCurrentCardEntity other = (PlayerCurrentCardEntity) obj;
+        PlayerCurrentHandCardEntity other = (PlayerCurrentHandCardEntity) obj;
         if (cardEntity == null)
         {
             if (other.cardEntity != null)

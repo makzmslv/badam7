@@ -38,7 +38,7 @@ public class PlayerCurrentGameInstanceEntity
     private Integer status;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "playerCurrentGameInstanceEntity", cascade = CascadeType.REMOVE)
-    private List<PlayerCurrentCardEntity> playerCurrentCardEntities;
+    private List<PlayerCurrentHandCardEntity> playerCurrentHandCardEntities;
 
     public Integer getId()
     {
@@ -90,21 +90,21 @@ public class PlayerCurrentGameInstanceEntity
         this.status = status;
     }
 
-    public List<PlayerCurrentCardEntity> getPlayerCurrentCards()
+    public List<PlayerCurrentHandCardEntity> getPlayerCurrentCards()
     {
-        return playerCurrentCardEntities;
+        return playerCurrentHandCardEntities;
     }
 
-    public void setPlayerCurrentCards(List<PlayerCurrentCardEntity> playerCurrentCardEntities)
+    public void setPlayerCurrentCards(List<PlayerCurrentHandCardEntity> playerCurrentHandCardEntities)
     {
-        this.playerCurrentCardEntities = playerCurrentCardEntities;
+        this.playerCurrentHandCardEntities = playerCurrentHandCardEntities;
     }
 
     @Override
     public String toString()
     {
         return "PlayerCurrentGameInstance [id=" + id + ", game=" + gameEntity + ", player=" + playerEntity + ", playerNo=" + playerNo + ", status=" + status + ", playerCurrentCards="
-                + playerCurrentCardEntities + "]";
+                + playerCurrentHandCardEntities + "]";
     }
 
 }

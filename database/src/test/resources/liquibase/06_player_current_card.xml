@@ -7,11 +7,14 @@
         <!--                                 -->
         <!-- PLAYER_CURRENT_CARD -->
         <!--                                 -->
-        <createTable tableName="PLAYER_CURRENT_CARD" remarks="PLAYER_CURRENT_CARD">
+        <createTable tableName="PLAYER_CURRENT_HAND_CARD" remarks="PLAYER_CURRENT_HAND_CARD">
             <column name="ID" type="INTEGER" autoIncrement="true">
-                <constraints primaryKey="true" primaryKeyName="PLAYER_CURRENT_CARD_PK" nullable="false"/>
+                <constraints primaryKey="true" primaryKeyName="PLAYER_CURRENT_HAND_CARD_PK" nullable="false"/>
             </column>
             <column name="REF_CARD" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REF_HAND" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
             <column name="REF_PLAYER_CURRENT_GAME_INSTANCE" type="INTEGER">
@@ -24,8 +27,10 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_CARD_REF_PLAYER_CURRENT_GAME_INSTANCE" baseTableName="PLAYER_CURRENT_CARD" baseColumnNames="REF_PLAYER_CURRENT_GAME_INSTANCE" referencedTableName="PLAYER_CURRENT_GAME_INSTANCE" referencedColumnNames="ID"/>
-        <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_CARD_REF_CARD" baseTableName="PLAYER_CURRENT_CARD" baseColumnNames="REF_CARD" referencedTableName="CARD" referencedColumnNames="ID"/>
+        <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_HAND_CARD_REF_PLAYER_CURRENT_GAME_INSTANCE" baseTableName="PLAYER_CURRENT_HAND_CARD" baseColumnNames="REF_PLAYER_CURRENT_GAME_INSTANCE" referencedTableName="PLAYER_CURRENT_GAME_INSTANCE" referencedColumnNames="ID"/>
+        <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_HAND_CARD_REF_CARD" baseTableName="PLAYER_CURRENT_HAND_CARD" baseColumnNames="REF_CARD" referencedTableName="CARD" referencedColumnNames="ID"/>
+        <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_HAND_CARD_REF_HAND" baseTableName="PLAYER_CURRENT_HAND_CARD" baseColumnNames="REF_HAND" referencedTableName="HAND" referencedColumnNames="ID"/>
+
 
     </changeSet>
 </databaseChangeLog>
