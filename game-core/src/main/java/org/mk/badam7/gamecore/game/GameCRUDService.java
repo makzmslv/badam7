@@ -11,4 +11,6 @@ public interface GameCRUDService
     public GameDTO updateGame(Integer gameId, GameUpdateDTO gameUpdateDTO);
 
     public GameDTO getById(Integer gameId);
+
+    public GameDTO startGame(Integer gameId);
 }
