@@ -21,6 +21,6 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint constraintName="FK_PLAYER_CURRENT_HAND_CARD_REF_PLAYER_CURRENT_GAME_INSTANCE" baseTableName="RESULT_HAND" baseColumnNames="REF_PLAYER" referencedTableName="PLAYER_CURRENT_GAME_INSTANCE" referencedColumnNames="ID"/>
+        <addForeignKeyConstraint constraintName="FK_RESULT_HAND_REF_PLAYER_CURRENT_GAME_INSTANCE" baseTableName="RESULT_HAND" baseColumnNames="REF_PLAYER" referencedTableName="PLAYER_CURRENT_GAME_INSTANCE" referencedColumnNames="ID"/>
     </changeSet>
 </databaseChangeLog>

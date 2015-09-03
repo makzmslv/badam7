@@ -1,4 +1,4 @@
-package org.mk.badam7.game.player;
+package org.mk.badam7.gamecore.player;
 
 import org.dozer.Mapper;
 import org.mk.badam7.database.dao.PlayerDAO;

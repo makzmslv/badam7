@@ -23,42 +23,52 @@
     <!-- activate annotation config -->
     <!--                            -->
     <context:annotation-config />
-    <context:component-scan base-package="org.mk.badam7.database" />
+    <context:component-scan base-package="org.mk.badam7" />
     <tx:annotation-driven />
 
-    <!-- DB access -->
-    <bean name="dataSource"
-        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/badam7" />
-        <property name="username" value="mk" />
-        <property name="password" value="geek" />
-    </bean>
+    <!-- Database configuration -->
+    <jdbc:embedded-database id="testDataSource" type="HSQL"/>
 
     <!-- JPA EntityManagerFactory -->
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="org.mk.badam7.database" />
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" p:dataSource-ref="testDataSource" >
+        <property name="packagesToScan" value="org.mk.badam7.database.entity" />
         <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="generateDdl" value="true" />
-                <property name="showSql" value="false" />
-                <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
-                <property name="database" value="MYSQL" />
-            </bean>
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
         </property>
     </bean>
 
     <!-- transaction manager -->
-    <bean class="org.springframework.orm.jpa.JpaTransactionManager"
-        id="transactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory" />
-        <property name="jpaDialect">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" p:entityManagerFactory-ref="entityManagerFactory" lazy-init="true" p:dataSource-ref="testDataSource" />
+
+    <!-- DAOs -->
+    <jpa:repositories base-package="org.mk.badam7" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager"/>
+
+    <!-- dozer -->
+    <bean id="dozerMapper" name="dozerMapper" class="org.dozer.DozerBeanMapper">
+        <property name="mappingFiles">
+            <list>
+                <value>dozer-mappings.xml</value>
+            </list>
         </property>
     </bean>
 
-    <!-- DAOs -->
-    <jpa:repositories base-package="org.mk.badam7.database.dao" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager"/>
+    <!-- mailSender -->
+    <!--       -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="username" value="badam7.official@gmail.com" />
+        <property name="password" value="officialpasswordforbadam7" />
 
+        <property name="javaMailProperties">
+           <props>
+              <prop key="mail.smtp.auth">true</prop>
+              <prop key="mail.smtp.starttls.enable">true</prop>
+           </props>
+        </property>
+    </bean>
+
+    <bean id="emailSender" class="org.mk.badam7.gamecore.common.EmailSender">
+        <property name="mailSender" ref="mailSender" />
+    </bean>
 </beans>
