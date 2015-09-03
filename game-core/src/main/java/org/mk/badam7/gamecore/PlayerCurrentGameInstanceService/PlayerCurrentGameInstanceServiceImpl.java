@@ -5,10 +5,11 @@ import org.mk.badam7.database.dao.GameDAO;
 import org.mk.badam7.database.dao.PlayerCurrentGameInstanceDAO;
 import org.mk.badam7.database.dao.PlayerDAO;
 import org.mk.badam7.database.entity.GameEntity;
-import org.mk.badam7.database.entity.PlayerEntity;
 import org.mk.badam7.database.entity.PlayerCurrentGameInstanceEntity;
+import org.mk.badam7.database.entity.PlayerEntity;
 import org.mk.badam7.database.enums.GameStatus;
 import org.mk.badam7.database.enums.PlayerCurrentGameInstanceStatus;
+import org.mk.badam7.gamecore.common.Badam7Util;
 import org.mk.badam7.gamecore.playercurrentgameinstance.PlayerCurrentGameInstanceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,13 +28,16 @@ public class PlayerCurrentGameInstanceServiceImpl implements PlayerCurrentGameIn
     private PlayerCurrentGameInstanceDAO playerCurrentGameInstanceDAO;
 
     @Autowired
+    private Badam7Util badam7Util;
+
+    @Autowired
     private Mapper dozerMapper;
 
     @Override
     public PlayerCurrentGameInstanceDTO createPlayerCurrentGameInstance(Integer gameId, Integer playerId)
     {
         GameEntity gameEntity = getGame(gameId);
-        PlayerEntity playerEntity = getPlayer(playerId);
+        PlayerEntity playerEntity = badam7Util.getPlayerFromId(playerId);
         PlayerCurrentGameInstanceEntity playerCurrentGameInstanceEntity = createPlayerGameInstanceEntity(gameEntity, playerEntity);
         playerCurrentGameInstanceEntity = playerCurrentGameInstanceDAO.save(playerCurrentGameInstanceEntity);
         updateGameStatus(gameEntity, playerCurrentGameInstanceEntity.getPlayerNo());
@@ -42,23 +46,9 @@ public class PlayerCurrentGameInstanceServiceImpl implements PlayerCurrentGameIn
         return playerCurrentGameInstanceDTO;
     }
 
-    private PlayerEntity getPlayer(Integer playerId)
-    {
-        PlayerEntity playerEntity = playerDAO.findOne(playerId);
-        if (playerEntity == null)
-        {
-            throw new IllegalArgumentException("Player does not exist");
-        }
-        return playerEntity;
-    }
-
     private GameEntity getGame(Integer gameId)
     {
-        GameEntity gameEntity = gameDAO.findOne(gameId);
-        if (gameEntity == null)
-        {
-            throw new IllegalArgumentException("Game with given id does not exist");
-        }
+        GameEntity gameEntity = badam7Util.getGameFromId(gameId);
         return gameEntity;
     }
 

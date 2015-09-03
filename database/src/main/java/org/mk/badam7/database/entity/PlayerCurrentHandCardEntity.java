@@ -46,36 +46,6 @@ public class PlayerCurrentHandCardEntity
         this.id = id;
     }
 
-    public CardEntity getCard()
-    {
-        return cardEntity;
-    }
-
-    public void setCard(CardEntity cardEntity)
-    {
-        this.cardEntity = cardEntity;
-    }
-
-    public PlayerCurrentGameInstanceEntity getPlayerCurrentGameInstance()
-    {
-        return playerCurrentGameInstanceEntity;
-    }
-
-    public void setPlayerCurrentGameInstance(PlayerCurrentGameInstanceEntity playerCurrentGameInstanceEntity)
-    {
-        this.playerCurrentGameInstanceEntity = playerCurrentGameInstanceEntity;
-    }
-
-    public Integer getStatus()
-    {
-        return status;
-    }
-
-    public void setStatus(Integer status)
-    {
-        this.status = status;
-    }
-
     public CardEntity getCardEntity()
     {
         return cardEntity;
@@ -104,6 +74,16 @@ public class PlayerCurrentHandCardEntity
     public void setPlayerCurrentGameInstanceEntity(PlayerCurrentGameInstanceEntity playerCurrentGameInstanceEntity)
     {
         this.playerCurrentGameInstanceEntity = playerCurrentGameInstanceEntity;
+    }
+
+    public Integer getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(Integer status)
+    {
+        this.status = status;
     }
 
     public Integer getCardRemovalRank()

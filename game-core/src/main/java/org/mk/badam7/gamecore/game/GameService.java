@@ -4,7 +4,7 @@ import org.mk.badam7.gamedto.game.GameDTO;
 import org.mk.badam7.gamedto.game.GameInDTO;
 import org.mk.badam7.gamedto.game.GameUpdateDTO;
 
-public interface GameCRUDService
+public interface GameService
 {
     public GameDTO createGame(GameInDTO gameInDTO);
 
@@ -13,4 +13,6 @@ public interface GameCRUDService
     public GameDTO getById(Integer gameId);
 
     public GameDTO startGame(Integer gameId);
+
+    public GameDTO endGame(Integer gameId);
 }

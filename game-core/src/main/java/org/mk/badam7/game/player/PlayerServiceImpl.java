@@ -4,6 +4,7 @@ import org.dozer.Mapper;
 import org.mk.badam7.database.dao.PlayerDAO;
 import org.mk.badam7.database.entity.PlayerEntity;
 import org.mk.badam7.database.enums.UserAuthorities;
+import org.mk.badam7.gamecore.common.Badam7Util;
 import org.mk.badam7.gamecore.common.EmailSender;
 import org.mk.badam7.gamedto.player.PlayerDTO;
 import org.mk.badam7.gamedto.player.PlayerInDTO;
@@ -12,13 +13,16 @@ import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PlayerCRUDServiceImpl implements PlayerCRUDService
+public class PlayerServiceImpl implements PlayerService
 {
     @Autowired
     private PlayerDAO playerDAO;
 
     @Autowired
     private EmailSender emailSender;
+
+    @Autowired
+    private Badam7Util badam7Util;
 
     @Autowired
     private Mapper dozerMapper;
@@ -57,11 +61,7 @@ public class PlayerCRUDServiceImpl implements PlayerCRUDService
     @Override
     public PlayerDTO getPlayerById(Integer playerId)
     {
-        PlayerEntity playerEntity = playerDAO.findOne(playerId);
-        if (playerEntity == null)
-        {
-            throw new IllegalArgumentException("Player does not exist");
-        }
+        PlayerEntity playerEntity = badam7Util.getPlayerFromId(playerId);
         PlayerDTO playerDTO = dozerMapper.map(playerEntity, PlayerDTO.class);
         return playerDTO;
     }

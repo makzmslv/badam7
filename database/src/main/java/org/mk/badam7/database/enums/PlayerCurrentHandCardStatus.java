@@ -1,13 +1,13 @@
 package org.mk.badam7.database.enums;
 
-public enum PlayerCurrentCardStatus
+public enum PlayerCurrentHandCardStatus
 {
     IN_HAND(1),
     PLACED_ON_TABLE(2);
 
     private Integer status;
 
-    PlayerCurrentCardStatus(Integer id)
+    PlayerCurrentHandCardStatus(Integer id)
     {
         this.status = id;
     }

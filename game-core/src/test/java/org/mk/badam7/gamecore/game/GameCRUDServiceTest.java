@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mk.badam7.database.dao.HandCurrentCardDAO;
 import org.mk.badam7.gamedto.game.GameDTO;
 import org.mk.badam7.gamedto.game.GameInDTO;
 import org.mk.badam7.gamedto.game.GameUpdateDTO;
@@ -16,14 +17,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class GameCRUDServiceTest
 {
     @Autowired
-    private GameCRUDService gameCRUDService;
+    private GameService gameService;
+
+    @Autowired
+    private HandCurrentCardDAO handCurrentCardDAO;
 
     @Test
     public void createGameTest()
     {
         GameInDTO gameInDTO = createGameInDTO();
 
-        GameDTO gameDTO = gameCRUDService.createGame(gameInDTO);
+        GameDTO gameDTO = gameService.createGame(gameInDTO);
 
         assertNotNull(gameDTO);
         System.out.println(gameDTO);
@@ -33,11 +37,11 @@ public class GameCRUDServiceTest
     public void updateGameTest()
     {
         GameInDTO gameInDTO = createGameInDTO();
-        int gameId = gameCRUDService.createGame(gameInDTO).getId();
+        int gameId = gameService.createGame(gameInDTO).getId();
         GameUpdateDTO gameUpdateDTO = new GameUpdateDTO();
         gameUpdateDTO.setStatus(2);
 
-        GameDTO gameDTO = gameCRUDService.updateGame(gameId, gameUpdateDTO);
+        GameDTO gameDTO = gameService.updateGame(gameId, gameUpdateDTO);
 
         assertNotNull(gameDTO);
         System.out.println(gameDTO);

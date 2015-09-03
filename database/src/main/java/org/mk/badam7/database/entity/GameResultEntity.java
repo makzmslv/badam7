@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "RESULT_GAME")
-public class ResultGameEntity
+public class GameResultEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class ResultGameEntity
 
     @OneToOne
     @JoinColumn(name = "REF_PLAYER")
-    private PlayerEntity playerEntity;
+    private PlayerCurrentGameInstanceEntity playerCurrentGameInstanceEntity;
 
     @Column(name = "POINTS")
     private Integer points;
@@ -42,24 +42,24 @@ public class ResultGameEntity
         this.id = id;
     }
 
-    public GameEntity getGame()
+    public GameEntity getGameEntity()
     {
         return gameEntity;
     }
 
-    public void setGame(GameEntity gameEntity)
+    public void setGameEntity(GameEntity gameEntity)
     {
         this.gameEntity = gameEntity;
     }
 
-    public PlayerEntity getPlayer()
+    public PlayerCurrentGameInstanceEntity getPlayerCurrentGameInstanceEntity()
     {
-        return playerEntity;
+        return playerCurrentGameInstanceEntity;
     }
 
-    public void setPlayer(PlayerEntity playerEntity)
+    public void setPlayerCurrentGameInstanceEntity(PlayerCurrentGameInstanceEntity playerCurrentGameInstanceEntity)
     {
-        this.playerEntity = playerEntity;
+        this.playerCurrentGameInstanceEntity = playerCurrentGameInstanceEntity;
     }
 
     public Integer getPoints()
@@ -85,7 +85,7 @@ public class ResultGameEntity
     @Override
     public String toString()
     {
-        return "ResultGame [id=" + id + ", game=" + gameEntity + ", player=" + playerEntity + ", points=" + points + ", position=" + position + "]";
+        return "ResultGame [id=" + id + ", game=" + gameEntity + ", player=" + playerCurrentGameInstanceEntity + ", points=" + points + ", position=" + position + "]";
     }
 
 }

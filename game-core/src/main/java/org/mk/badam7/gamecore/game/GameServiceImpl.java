@@ -5,16 +5,18 @@ import java.util.List;
 import org.dozer.Mapper;
 import org.mk.badam7.database.dao.CardDAO;
 import org.mk.badam7.database.dao.GameDAO;
+import org.mk.badam7.database.dao.HandDAO;
 import org.mk.badam7.database.dao.PlayerCurrentGameInstanceDAO;
 import org.mk.badam7.database.entity.CardEntity;
 import org.mk.badam7.database.entity.GameEntity;
 import org.mk.badam7.database.entity.PlayerCurrentGameInstanceEntity;
 import org.mk.badam7.database.enums.GameStatus;
 import org.mk.badam7.database.enums.GameType;
+import org.mk.badam7.gamecore.common.Badam7Util;
 import org.mk.badam7.gamecore.common.CardShuffler;
-import org.mk.badam7.gamecore.hand.HandCRUDService;
+import org.mk.badam7.gamecore.hand.HandService;
 import org.mk.badam7.gamecore.library.Badam7Constants;
-import org.mk.badam7.gamecore.playercurrenthand.PlayerCurrentHandCardCRUDService;
+import org.mk.badam7.gamecore.playercurrenthand.PlayerCurrentHandCardService;
 import org.mk.badam7.gamedto.game.GameDTO;
 import org.mk.badam7.gamedto.game.GameInDTO;
 import org.mk.badam7.gamedto.game.GameUpdateDTO;
@@ -24,7 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GameCRUDServiceImpl implements GameCRUDService
+public class GameServiceImpl implements GameService
 {
 
     @Autowired
@@ -37,10 +39,19 @@ public class GameCRUDServiceImpl implements GameCRUDService
     private CardDAO cardDAO;
 
     @Autowired
-    private HandCRUDService handCRUDService;
+    private HandDAO handDAO;
 
     @Autowired
-    private PlayerCurrentHandCardCRUDService playerCurrentHandCardCRUDService;
+    private HandService handService;
+
+    @Autowired
+    private GameResultService gameResultService;
+
+    @Autowired
+    private PlayerCurrentHandCardService playerCurrentHandCardService;
+
+    @Autowired
+    private Badam7Util badam7Util;
 
     @Autowired
     private Mapper dozerMapper;
@@ -71,11 +82,7 @@ public class GameCRUDServiceImpl implements GameCRUDService
     @Override
     public GameDTO getById(Integer gameId)
     {
-        GameEntity gameEntity = gameDAO.findOne(gameId);
-        if (gameEntity == null)
-        {
-            throw new IllegalArgumentException("Game with given id does not exist");
-        }
+        GameEntity gameEntity = badam7Util.getGameFromId(gameId);
         GameDTO gameDTO = dozerMapper.map(gameEntity, GameDTO.class);
         return gameDTO;
     }
@@ -83,22 +90,34 @@ public class GameCRUDServiceImpl implements GameCRUDService
     @Override
     public GameDTO startGame(Integer gameId)
     {
-        GameEntity gameEntity = gameDAO.findOne(gameId);
-        if (gameEntity == null)
-        {
-            throw new IllegalArgumentException("Game with given id does not exist");
-        }
+        GameEntity gameEntity = badam7Util.getGameFromId(gameId);
         if (canGameStart(gameEntity))
         {
-            HandDTO hand = handCRUDService.createHand(gameId);
-            List<PlayerCurrentGameInstanceEntity> players = playerCurrentGameInstanceDAO.findByGameEntity(gameEntity);
-            List<CardEntity> cards = cardDAO.findAll();
-            cards = CardShuffler.shuffleCards(cards);
-            dealCards(cards, players, hand);
-            gameEntity.setStatus(GameStatus.IN_PROGRESS.getCode());
-            gameEntity = gameDAO.save(gameEntity);
+            gameEntity = startHand(gameId, gameEntity);
         }
         return dozerMapper.map(gameEntity, GameDTO.class);
+    }
+
+    @Override
+    public GameDTO endGame(Integer gameId)
+    {
+        GameEntity gameEntity = badam7Util.getGameFromId(gameId);
+        gameResultService.createGameResults(gameEntity);
+        gameEntity.setStatus(GameStatus.COMPLETED.getCode());
+        gameEntity = gameDAO.save(gameEntity);
+        return dozerMapper.map(gameEntity, GameDTO.class);
+    }
+
+    private GameEntity startHand(Integer gameId, GameEntity gameEntity)
+    {
+        HandDTO hand = handService.createHand(gameId);
+        List<PlayerCurrentGameInstanceEntity> players = playerCurrentGameInstanceDAO.findByGameEntity(gameEntity);
+        List<CardEntity> cards = cardDAO.findAll();
+        cards = CardShuffler.shuffleCards(cards);
+        dealCards(cards, players, hand);
+        gameEntity.setStatus(GameStatus.IN_PROGRESS.getCode());
+        gameEntity = gameDAO.save(gameEntity);
+        return gameEntity;
     }
 
     private void validateUpdateOperation(Integer gameId, GameUpdateDTO gameUpdateDTO)
@@ -108,11 +127,7 @@ public class GameCRUDServiceImpl implements GameCRUDService
             throw new IllegalArgumentException("GameId cannot be null");
         }
 
-        GameEntity gameEntity = gameDAO.findOne(gameId);
-        if (gameEntity == null)
-        {
-            throw new IllegalArgumentException("Game with given id does not exist");
-        }
+        GameEntity gameEntity = badam7Util.getGameFromId(gameId);
         Integer gameStatus = gameEntity.getStatus();
         if (!canGameBeUpdated(gameStatus))
         {
@@ -199,7 +214,7 @@ public class GameCRUDServiceImpl implements GameCRUDService
             }
             PlayerCurrentGameInstanceEntity player = players.get(currentPlayer);
             PlayerCurrentHandCardDTO playerCurrentHandCardDTO = createPlayerCurrentHandCardDTO(hand, card, player);
-            playerCurrentHandCardCRUDService.createPlayerCurrentHandCard(playerCurrentHandCardDTO);
+            playerCurrentHandCardService.createPlayerCurrentHandCard(playerCurrentHandCardDTO);
             currentPlayer++;
         }
 
@@ -210,7 +225,7 @@ public class GameCRUDServiceImpl implements GameCRUDService
         PlayerCurrentHandCardDTO playerCurrentHandCardDTO = new PlayerCurrentHandCardDTO();
         playerCurrentHandCardDTO.setCardId(card.getId());
         playerCurrentHandCardDTO.setHandId(hand.getId());
-        playerCurrentHandCardDTO.setPlayerId(player.getId());
+        playerCurrentHandCardDTO.setPlayerCurrentGameInstanceId(player.getId());
         return playerCurrentHandCardDTO;
     }
 
