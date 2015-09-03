@@ -8,6 +8,8 @@ public class HandResultDTO
 
     private Integer playerCurrentGameInstanceId;
 
+    private Integer points;
+
     public Integer getId()
     {
         return id;
@@ -36,5 +38,15 @@ public class HandResultDTO
     public void setPlayerCurrentGameInstanceId(Integer playerCurrentGameInstanceId)
     {
         this.playerCurrentGameInstanceId = playerCurrentGameInstanceId;
+    }
+
+    public Integer getPoints()
+    {
+        return points;
+    }
+
+    public void setPoints(Integer points)
+    {
+        this.points = points;
     }
 }

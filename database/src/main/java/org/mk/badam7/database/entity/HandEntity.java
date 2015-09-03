@@ -85,6 +85,26 @@ public class HandEntity
         this.handCurrentCardEntities = handCurrentCardEntities;
     }
 
+    public GameEntity getGameEntity()
+    {
+        return gameEntity;
+    }
+
+    public void setGameEntity(GameEntity gameEntity)
+    {
+        this.gameEntity = gameEntity;
+    }
+
+    public List<HandCurrentCardEntity> getHandCurrentCardEntities()
+    {
+        return handCurrentCardEntities;
+    }
+
+    public void setHandCurrentCardEntities(List<HandCurrentCardEntity> handCurrentCardEntities)
+    {
+        this.handCurrentCardEntities = handCurrentCardEntities;
+    }
+
     @Override
     public String toString()
     {

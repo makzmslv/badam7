@@ -69,6 +69,26 @@ public class HandCurrentCardEntity
         this.cardInsertionRank = cardInsertionRank;
     }
 
+    public HandEntity getHandEntity()
+    {
+        return handEntity;
+    }
+
+    public void setHandEntity(HandEntity handEntity)
+    {
+        this.handEntity = handEntity;
+    }
+
+    public CardEntity getCardEntity()
+    {
+        return cardEntity;
+    }
+
+    public void setCardEntity(CardEntity cardEntity)
+    {
+        this.cardEntity = cardEntity;
+    }
+
     @Override
     public String toString()
     {

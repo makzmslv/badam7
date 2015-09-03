@@ -8,6 +8,8 @@ public class HandCurrentCardDTO
 
     private Integer cardId;
 
+    private Integer cardInsertionRank;
+
     public Integer getHandId()
     {
         return handId;
@@ -36,5 +38,15 @@ public class HandCurrentCardDTO
     public void setId(Integer id)
     {
         this.id = id;
+    }
+
+    public Integer getCardInsertionRank()
+    {
+        return cardInsertionRank;
+    }
+
+    public void setCardInsertionRank(Integer cardInsertionRank)
+    {
+        this.cardInsertionRank = cardInsertionRank;
     }
 }

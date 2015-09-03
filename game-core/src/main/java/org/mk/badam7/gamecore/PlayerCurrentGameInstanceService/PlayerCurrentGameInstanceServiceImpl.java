@@ -10,7 +10,7 @@ import org.mk.badam7.database.entity.PlayerEntity;
 import org.mk.badam7.database.enums.GameStatus;
 import org.mk.badam7.database.enums.PlayerCurrentGameInstanceStatus;
 import org.mk.badam7.gamecore.common.Badam7Util;
-import org.mk.badam7.gamecore.playercurrentgameinstance.PlayerCurrentGameInstanceDTO;
+import org.mk.badam7.gamedto.playercurrentgameinstance.PlayerCurrentGameInstanceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

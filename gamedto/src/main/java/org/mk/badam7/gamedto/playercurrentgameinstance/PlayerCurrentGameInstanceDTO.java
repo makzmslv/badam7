@@ -1,4 +1,4 @@
-package org.mk.badam7.gamecore.playercurrentgameinstance;
+package org.mk.badam7.gamedto.playercurrentgameinstance;
 
 public class PlayerCurrentGameInstanceDTO
 {

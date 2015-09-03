@@ -28,6 +28,11 @@
     <!-- dozer -->
     <!--       -->
     <bean id="dozerMapper" name="dozerMapper" class="org.dozer.DozerBeanMapper">
+    <property name="mappingFiles">
+        <list>
+            <value>dozer-mappings.xml</value>
+        </list>
+    </property>
     </bean>
 
     <!--       -->

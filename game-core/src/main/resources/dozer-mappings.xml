@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+    <!--                                  -->
+    <!-- PlayerInDTO - PlayerEntity -->
+    <!--                                  -->
+
+    <mapping>
+        <class-a>org.mk.badam7.database.entity.GameResultEntity</class-a>
+        <class-b>org.mk.badam7.gamedto.game.GameResultDTO</class-b>
+
+        <field>
+            <a>id</a>
+            <b>id</b>
+        </field>
+        <field>
+            <a>gameEntity.id</a>
+            <b>gameId</b>
+        </field>
+        <field>
+            <a>playerCurrentGameInstanceEntity.id</a>
+            <b>playerId</b>
+        </field>
+        <field>
+            <a>points</a>
+            <b>points</b>
+        </field>
+        <field>
+            <a>position</a>
+            <b>position</b>
+        </field>
+    </mapping>
+
+    <mapping>
+        <class-a>org.mk.badam7.database.entity.HandResultEntity</class-a>
+        <class-b>org.mk.badam7.gamedto.hand.HandResultDTO</class-b>
+
+        <field>
+            <a>id</a>
+            <b>id</b>
+        </field>
+        <field>
+            <a>handEntity.id</a>
+            <b>handId</b>
+        </field>
+        <field>
+            <a>playerCurrentGameInstanceEntity.id</a>
+            <b>playerCurrentGameInstanceId</b>
+        </field>
+        <field>
+            <a>points</a>
+            <b>points</b>
+        </field>
+    </mapping>
+
+    <mapping>
+        <class-a>org.mk.badam7.database.entity.HandCurrentCardEntity</class-a>
+        <class-b>org.mk.badam7.gamedto.hand.HandCurrentCardDTO</class-b>
+
+        <field>
+            <a>id</a>
+            <b>id</b>
+        </field>
+        <field>
+            <a>handEntity.id</a>
+            <b>handId</b>
+        </field>
+        <field>
+            <a>cardEntity.id</a>
+            <b>cardId</b>
+        </field>
+        <field>
+            <a>cardInsertionRank</a>
+            <b>cardInsertionRank</b>
+        </field>
+    </mapping>
+
+    <mapping>
+        <class-a>org.mk.badam7.database.entity.HandEntity</class-a>
+        <class-b>org.mk.badam7.gamedto.hand.HandDTO</class-b>
+
+        <field>
+            <a>id</a>
+            <b>id</b>
+        </field>
+        <field>
+            <a>gameEntity</a>
+            <b>gameDTO</b>
+        </field>
+        <field>
+            <a>handNo</a>
+            <b>handNo</b>
+        </field>
+        <field>
+            <a>status</a>
+            <b>status</b>
+        </field>
+    </mapping>
+
+    <mapping>
+        <class-a>org.mk.badam7.database.entity.PlayerCurrentHandCardEntity</class-a>
+        <class-b>org.mk.badam7.gamedto.playercurrenthand.PlayerCurrentHandCardDTO</class-b>
+
+        <field>
+            <a>id</a>
+            <b>id</b>
+        </field>
+        <field>
+            <a>cardEntity.id</a>
+            <b>cardId</b>
+        </field>
+        <field>
+            <a>handEntity.id</a>
+            <b>handId</b>
+        </field>
+        <field>
+            <a>playerCurrentGameInstanceEntity.id</a>
+            <b>playerCurrentGameInstanceId</b>
+        </field>
+        <field>
+            <a>status</a>
+            <b>status</b>
+        </field>
+        <field>
+            <a>cardEntity.value</a>
+            <b>cardValue</b>
+        </field>
+    </mapping>
+
+    <mapping>
+        <class-a>org.mk.badam7.database.entity.PlayerCurrentGameInstanceEntity</class-a>
+        <class-b>org.mk.badam7.gamedto.playercurrentgameinstance.PlayerCurrentGameInstanceDTO</class-b>
+
+        <field>
+            <a>id</a>
+            <b>id</b>
+        </field>
+        <field>
+            <a>gameEntity.id</a>
+            <b>gameId</b>
+        </field>
+        <field>
+            <a>playerEntity.id</a>
+            <b>playerId</b>
+        </field>
+        <field>
+            <a>playerNo</a>
+            <b>playerNo</b>
+        </field>
+        <field>
+            <a>status</a>
+            <b>status</b>
+        </field>
+    </mapping>
+
+
+</mappings>

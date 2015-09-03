@@ -100,6 +100,36 @@ public class PlayerCurrentGameInstanceEntity
         this.playerCurrentHandCardEntities = playerCurrentHandCardEntities;
     }
 
+    public GameEntity getGameEntity()
+    {
+        return gameEntity;
+    }
+
+    public void setGameEntity(GameEntity gameEntity)
+    {
+        this.gameEntity = gameEntity;
+    }
+
+    public PlayerEntity getPlayerEntity()
+    {
+        return playerEntity;
+    }
+
+    public void setPlayerEntity(PlayerEntity playerEntity)
+    {
+        this.playerEntity = playerEntity;
+    }
+
+    public List<PlayerCurrentHandCardEntity> getPlayerCurrentHandCardEntities()
+    {
+        return playerCurrentHandCardEntities;
+    }
+
+    public void setPlayerCurrentHandCardEntities(List<PlayerCurrentHandCardEntity> playerCurrentHandCardEntities)
+    {
+        this.playerCurrentHandCardEntities = playerCurrentHandCardEntities;
+    }
+
     @Override
     public String toString()
     {
