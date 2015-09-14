@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mk.badam7.database.entity.GameEntity;
 import org.mk.badam7.database.entity.PlayerCurrentGameInstanceEntity;
+import org.mk.badam7.database.entity.PlayerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,4 +15,6 @@ public interface PlayerCurrentGameInstanceDAO extends JpaRepository<PlayerCurren
     public Integer getPlayerCountForGame(@Param("game") GameEntity GameEntity);
 
     public List<PlayerCurrentGameInstanceEntity> findByGameEntity(GameEntity gameEntity);
+
+    public PlayerCurrentGameInstanceEntity findByGameEntityAndPlayerEntity(GameEntity gameEntity, PlayerEntity playerEntity);
 }

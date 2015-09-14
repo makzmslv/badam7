@@ -87,10 +87,10 @@ public class PlayerServiceImpl implements PlayerService
     private PlayerEntity createPlayerEntityFromDTO(PlayerInDTO playerInDTO)
     {
         PlayerEntity playerEntity = dozerMapper.map(playerInDTO, PlayerEntity.class);
-        playerEntity.setVerified(false);
+        playerEntity.setVerified(true);
         String encodedPassword = encodeUserPassword(playerInDTO.getUsername(), playerInDTO.getPassword());
         playerEntity.setPassword(encodedPassword);
-        playerEntity.setRole(UserAuthorities.NOT_VERIFIED.getRole());
+        playerEntity.setRole(UserAuthorities.USER.getRole());
         return playerEntity;
     }
 

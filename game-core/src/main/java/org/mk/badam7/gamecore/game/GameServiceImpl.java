@@ -1,5 +1,6 @@
 package org.mk.badam7.gamecore.game;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.dozer.Mapper;
@@ -9,15 +10,18 @@ import org.mk.badam7.database.dao.HandDAO;
 import org.mk.badam7.database.dao.PlayerCurrentGameInstanceDAO;
 import org.mk.badam7.database.entity.CardEntity;
 import org.mk.badam7.database.entity.GameEntity;
+import org.mk.badam7.database.entity.HandEntity;
 import org.mk.badam7.database.entity.PlayerCurrentGameInstanceEntity;
 import org.mk.badam7.database.enums.GameStatus;
 import org.mk.badam7.database.enums.GameType;
+import org.mk.badam7.database.enums.HandStatus;
 import org.mk.badam7.gamecore.common.Badam7Util;
 import org.mk.badam7.gamecore.common.CardShuffler;
 import org.mk.badam7.gamecore.hand.HandService;
 import org.mk.badam7.gamecore.library.Badam7Constants;
 import org.mk.badam7.gamecore.playercurrenthand.PlayerCurrentHandCardService;
 import org.mk.badam7.gamedto.game.GameDTO;
+import org.mk.badam7.gamedto.game.GameDetailsDTO;
 import org.mk.badam7.gamedto.game.GameInDTO;
 import org.mk.badam7.gamedto.game.GameUpdateDTO;
 import org.mk.badam7.gamedto.hand.HandDTO;
@@ -57,6 +61,13 @@ public class GameServiceImpl implements GameService
     private Mapper dozerMapper;
 
     @Override
+    public List<GameDTO> getGamesToJoin()
+    {
+        List<GameEntity> activeGames = gameDAO.findByStatus(GameStatus.WAITING_FOR_PLAYERS.getCode());
+        return badam7Util.mapListOfEnitiesToDTOs(activeGames, GameDTO.class);
+    }
+
+    @Override
     public GameDTO createGame(GameInDTO gameInDTO)
     {
         validateInput(gameInDTO);
@@ -80,22 +91,29 @@ public class GameServiceImpl implements GameService
     }
 
     @Override
-    public GameDTO getById(Integer gameId)
+    public GameDetailsDTO getById(Integer gameId)
     {
         GameEntity gameEntity = badam7Util.getGameFromId(gameId);
-        GameDTO gameDTO = dozerMapper.map(gameEntity, GameDTO.class);
+        List<PlayerCurrentGameInstanceEntity> players = playerCurrentGameInstanceDAO.findByGameEntity(gameEntity);
+        HandEntity hand = handDAO.findByGameEntityAndStatus(gameEntity, HandStatus.IN_PROGRESS.getStatusCode());
+        GameDetailsDTO gameDTO = createGameDetailsDTO(players, hand.getId());
         return gameDTO;
     }
 
     @Override
-    public GameDTO startGame(Integer gameId)
+    public GameDetailsDTO startHand(Integer gameId)
     {
         GameEntity gameEntity = badam7Util.getGameFromId(gameId);
-        if (canGameStart(gameEntity))
+        GameDetailsDTO gameDetailsDTO;
+        if (canHandStart(gameEntity))
         {
-            gameEntity = startHand(gameId, gameEntity);
+            gameDetailsDTO = startHand(gameId, gameEntity);
         }
-        return dozerMapper.map(gameEntity, GameDTO.class);
+        else
+        {
+            throw new IllegalArgumentException("Game cannot be started");
+        }
+        return gameDetailsDTO;
     }
 
     @Override
@@ -108,16 +126,27 @@ public class GameServiceImpl implements GameService
         return dozerMapper.map(gameEntity, GameDTO.class);
     }
 
-    private GameEntity startHand(Integer gameId, GameEntity gameEntity)
+    private GameDetailsDTO startHand(Integer gameId, GameEntity gameEntity)
     {
-        HandDTO hand = handService.createHand(gameId);
         List<PlayerCurrentGameInstanceEntity> players = playerCurrentGameInstanceDAO.findByGameEntity(gameEntity);
+        HandDTO hand = handService.createHand(gameId);
         List<CardEntity> cards = cardDAO.findAll();
         cards = CardShuffler.shuffleCards(cards);
         dealCards(cards, players, hand);
         gameEntity.setStatus(GameStatus.IN_PROGRESS.getCode());
         gameEntity = gameDAO.save(gameEntity);
-        return gameEntity;
+        GameDetailsDTO gameDetailsDTO = createGameDetailsDTO(players, hand.getId());
+        return gameDetailsDTO;
+    }
+
+    private List<Integer> getPlayerIds(List<PlayerCurrentGameInstanceEntity> players)
+    {
+        List<Integer> playerIds = new ArrayList<Integer>();
+        for (PlayerCurrentGameInstanceEntity player : players)
+        {
+            playerIds.add(player.getId());
+        }
+        return playerIds;
     }
 
     private void validateUpdateOperation(Integer gameId, GameUpdateDTO gameUpdateDTO)
@@ -146,17 +175,9 @@ public class GameServiceImpl implements GameService
         }
     }
 
-    private boolean canGameStart(GameEntity gameEntity)
+    private boolean canHandStart(GameEntity gameEntity)
     {
         int gameStatus = gameEntity.getStatus();
-        if (canGameBeUpdated(gameStatus))
-        {
-            throw new IllegalArgumentException("Game cannot be updated");
-        }
-        if (gameStatus == GameStatus.WAITING_FOR_PLAYERS.getCode())
-        {
-            throw new IllegalArgumentException("Game cannot be started");
-        }
         if (gameStatus == GameStatus.WAITING_TO_START.getCode())
         {
             return true;
@@ -238,6 +259,15 @@ public class GameServiceImpl implements GameService
         gameEntity.setStatus(GameStatus.CREATED.getCode());
 
         return gameEntity;
+    }
+
+    private GameDetailsDTO createGameDetailsDTO(List<PlayerCurrentGameInstanceEntity> players, Integer handId)
+    {
+        GameDetailsDTO gameDetailsDTO = new GameDetailsDTO();
+        gameDetailsDTO.setCurrentHandId(handId);
+        List<Integer> playerIds = getPlayerIds(players);
+        gameDetailsDTO.setPlayerIds(playerIds);
+        return gameDetailsDTO;
     }
 
 }

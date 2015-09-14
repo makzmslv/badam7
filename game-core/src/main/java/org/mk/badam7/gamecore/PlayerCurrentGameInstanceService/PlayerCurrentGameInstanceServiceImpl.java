@@ -36,13 +36,18 @@ public class PlayerCurrentGameInstanceServiceImpl implements PlayerCurrentGameIn
     @Override
     public PlayerCurrentGameInstanceDTO createPlayerCurrentGameInstance(Integer gameId, Integer playerId)
     {
+        PlayerCurrentGameInstanceEntity playerCurrentGameInstanceEntity;
+
         GameEntity gameEntity = getGame(gameId);
         PlayerEntity playerEntity = badam7Util.getPlayerFromId(playerId);
-        PlayerCurrentGameInstanceEntity playerCurrentGameInstanceEntity = createPlayerGameInstanceEntity(gameEntity, playerEntity);
-        playerCurrentGameInstanceEntity = playerCurrentGameInstanceDAO.save(playerCurrentGameInstanceEntity);
-        updateGameStatus(gameEntity, playerCurrentGameInstanceEntity.getPlayerNo());
+        playerCurrentGameInstanceEntity = playerCurrentGameInstanceDAO.findByGameEntityAndPlayerEntity(gameEntity, playerEntity);
+        if (playerCurrentGameInstanceEntity == null)
+        {
+            playerCurrentGameInstanceEntity = createPlayerGameInstanceEntity(gameEntity, playerEntity);
+            playerCurrentGameInstanceEntity = playerCurrentGameInstanceDAO.save(playerCurrentGameInstanceEntity);
+            updateGameStatus(gameEntity, playerCurrentGameInstanceEntity.getPlayerNo());
+        }
         PlayerCurrentGameInstanceDTO playerCurrentGameInstanceDTO = dozerMapper.map(playerCurrentGameInstanceEntity, PlayerCurrentGameInstanceDTO.class);
-
         return playerCurrentGameInstanceDTO;
     }
 
@@ -75,11 +80,8 @@ public class PlayerCurrentGameInstanceServiceImpl implements PlayerCurrentGameIn
 
         if (gameEntity.getNoOfPlayers() == playerNo)
         {
-            if (gameStatus == GameStatus.CREATED.getCode())
-            {
-                gameEntity.setStatus(GameStatus.WAITING_TO_START.getCode());
-                gameDAO.save(gameEntity);
-            }
+            gameEntity.setStatus(GameStatus.WAITING_TO_START.getCode());
+            gameDAO.save(gameEntity);
         }
 
     }
