@@ -11,6 +11,6 @@ public interface HandDAO extends JpaRepository<HandEntity, Integer>
     @Query(value = "SELECT COUNT(hand) FROM HandEntity hand WHERE hand.gameEntity = :game")
     public Integer getHandNoForGame(@Param("game") GameEntity gameEntity);
 
-    public HandEntity findByGameEntityAndStatus(@Param("game") GameEntity gameEntity, Integer status);
+    public HandEntity findByGameEntityAndStatus(GameEntity gameEntity, Integer status);
 
 }

@@ -95,8 +95,13 @@ public class GameServiceImpl implements GameService
     {
         GameEntity gameEntity = badam7Util.getGameFromId(gameId);
         List<PlayerCurrentGameInstanceEntity> players = playerCurrentGameInstanceDAO.findByGameEntity(gameEntity);
-        HandEntity hand = handDAO.findByGameEntityAndStatus(gameEntity, HandStatus.IN_PROGRESS.getStatusCode());
-        GameDetailsDTO gameDTO = createGameDetailsDTO(players, hand.getId());
+        Integer hand = 0;
+        HandEntity handEntity = handDAO.findByGameEntityAndStatus(gameEntity, HandStatus.IN_PROGRESS.getStatusCode());
+        if (handEntity != null)
+        {
+            hand = handEntity.getId();
+        }
+        GameDetailsDTO gameDTO = createGameDetailsDTO(players, hand);
         return gameDTO;
     }
 

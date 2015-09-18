@@ -16,7 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PLAYER_GAME_CURRENT_INSTANCE")
+@Table(name = "PLAYER_CURRENT_GAME_INSTANCE")
 public class PlayerCurrentGameInstanceEntity
 {
     @Id
