@@ -5,7 +5,7 @@
     <artifactId>badam7</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>web</artifactId>
+  <artifactId>badam7-web</artifactId>
   <packaging>war</packaging>
   <name>web</name>
 
