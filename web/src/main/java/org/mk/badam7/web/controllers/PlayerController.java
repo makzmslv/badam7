@@ -10,8 +10,6 @@ import org.mk.badam7.gamedto.player.PlayerInDTO;
 import org.mk.badam7.gamedto.playercurrentgameinstance.PlayerCurrentGameInstanceDTO;
 import org.mk.badam7.gamedto.playercurrenthand.PlayerCurrentHandCardDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,9 +45,7 @@ public class PlayerController
     @ResponseBody
     public PlayerCurrentGameInstanceDTO joinGame(@PathVariable Integer id, @RequestParam Integer gameId)
     {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        return playerCurrentGameInstanceService.createPlayerCurrentGameInstance(gameId, id, username);
+        return playerCurrentGameInstanceService.createPlayerCurrentGameInstance(gameId, id);
     }
 
     @RequestMapping(value = "/{id}/playercurrentgameinstance", method = RequestMethod.GET)

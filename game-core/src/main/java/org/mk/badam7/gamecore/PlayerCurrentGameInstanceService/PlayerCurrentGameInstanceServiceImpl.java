@@ -34,12 +34,12 @@ public class PlayerCurrentGameInstanceServiceImpl implements PlayerCurrentGameIn
     private Mapper dozerMapper;
 
     @Override
-    public PlayerCurrentGameInstanceDTO createPlayerCurrentGameInstance(Integer gameId, Integer playerId, String username)
+    public PlayerCurrentGameInstanceDTO createPlayerCurrentGameInstance(Integer gameId, Integer playerId)
     {
         PlayerCurrentGameInstanceEntity playerCurrentGameInstanceEntity;
 
         GameEntity gameEntity = getGame(gameId);
-        PlayerEntity playerEntity = playerDAO.findByUsername(username);
+        PlayerEntity playerEntity = badam7Util.getPlayerFromId(playerId);
         playerCurrentGameInstanceEntity = playerCurrentGameInstanceDAO.findByGameEntityAndPlayerEntity(gameEntity, playerEntity);
         if (playerCurrentGameInstanceEntity == null)
         {

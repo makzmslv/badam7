@@ -4,5 +4,5 @@ import org.mk.badam7.gamedto.playercurrentgameinstance.PlayerCurrentGameInstance
 
 public interface PlayerCurrentGameInstanceService
 {
-    public PlayerCurrentGameInstanceDTO createPlayerCurrentGameInstance(Integer gameId, Integer playerId, String username);
+    public PlayerCurrentGameInstanceDTO createPlayerCurrentGameInstance(Integer gameId, Integer playerId);
 }
