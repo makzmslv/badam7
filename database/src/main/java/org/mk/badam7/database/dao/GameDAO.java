@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GameDAO extends JpaRepository<GameEntity, Integer>
 {
-    public List<GameEntity> findByStatus(Integer status);
+    public List<GameEntity> findByStatusIn(List<Integer> status);
 }

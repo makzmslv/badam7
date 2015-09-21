@@ -6,14 +6,16 @@
 <link rel="stylesheet" href="app.css" />
 <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" />
 </head>
-<body ng-controller="homeController" body background="resources/img/bg.jpg" style="background-repeat: no-repeat; background-position: center; ">
+<body ng-controller="homeController">
     <script src="resources/js/lib/angular/angular.js"></script>
     <script src="resources/js/lib/angular/angular.min.js"></script>
     <script src="resources/js/lib/angular/angular-route.js"></script>
     <script src="resources/js/lib/angular/angular-resource.js"></script>
     <script src="resources/js/app.js"></script>
+    <script src="resources/js/services.js"></script>
     <script src="resources/js/lib/moment.js"></script>
     <script src="resources/js/controllers/homeController.js"></script>
+    <script src="resources/js/controllers/gameController.js"></script>
 
 
 
@@ -21,9 +23,42 @@
 
 
     <div class="container col-md-18">
-        
         <div class="page-header ">
           <h1 style="color:red">Badam 7 <small> 7 of Hearts</small></h1>
+        </div>
+        
+        <div class="row">
+            <button class="btn btn-primary" ng-click="startCreateGame()">Create Game</button>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="row" ng-show="addgame">
+            <input id="noOfPlayers" type="number" class="form-control" ng-model="newgame.noOfPlayers">
+            <input id="noOfHands" type="number" class="form-control" ng-model="newgame.noOfHands">
+            <button class="btn btn-primary" ng-click="createGame()">Create</button>
+        </div>
+        
+        <div class="row">
+            <h3>Available Games</h3>
+            <div class="row col-md-18">
+                <table class="table" style="table-layout: fixed">
+                    <thead>
+                        <tr class="text-center">
+                            <th class="col-md-6">Game Id</th>
+                            <th class="col-md-6">No Of Players</th>
+                            <th class="col-md-2">No of Hands</th>
+                            <th class="col-md-4"></th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="game in games">
+                        <td class="text-center">{{game.id}}</td>
+                        <td class="text-center">{{game.noOfPlayers}}</td>
+                        <td class="text-center">{{game.noOfHands}}</td>
+                        <td><button class="btn btn-primary" ng-click="joinGame(game.id)">Join Game</button></td>                        
+                    </tr>
+                </table>      
+            </div>
         </div>
     </div>
 

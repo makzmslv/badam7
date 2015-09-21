@@ -41,5 +41,29 @@
             <column name="VERIFIED" valueBoolean="true"/>
             <column name="ROLE" valueNumeric="1"/>
         </insert>
+        <insert tableName="PLAYER">
+            <column name="NAME" value="vinay"/>
+            <column name="EMAIL" value="vinay@gmail.com"/>
+            <column name="USERNAME" value="vinay"/>
+            <column name="PASSWORD" value="2bfbefb9fb8b800d6355f5b265a455d01c951f73"/>
+            <column name="VERIFIED" valueBoolean="true"/>
+            <column name="ROLE" valueNumeric="1"/>
+        </insert>
+        <insert tableName="PLAYER">
+            <column name="NAME" value="aditya"/>
+            <column name="EMAIL" value="aditya@gmail.com"/>
+            <column name="USERNAME" value="aditya"/>
+            <column name="PASSWORD" value="2bfbefb9fb8b800d6355f5b265a455d01c951f73"/>
+            <column name="VERIFIED" valueBoolean="true"/>
+            <column name="ROLE" valueNumeric="1"/>
+        </insert>
+        <insert tableName="PLAYER">
+            <column name="NAME" value="mudit"/>
+            <column name="EMAIL" value="mudit@gmail.com"/>
+            <column name="USERNAME" value="mudit"/>
+            <column name="PASSWORD" value="2bfbefb9fb8b800d6355f5b265a455d01c951f73"/>
+            <column name="VERIFIED" valueBoolean="true"/>
+            <column name="ROLE" valueNumeric="1"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

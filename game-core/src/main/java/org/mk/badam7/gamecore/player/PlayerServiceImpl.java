@@ -37,7 +37,7 @@ public class PlayerServiceImpl implements PlayerService
         validateInputDTO(playerInDTO);
         PlayerEntity playerEntity = createPlayerEntityFromDTO(playerInDTO);
         playerEntity = playerDAO.save(playerEntity);
-        sendVerificationMail(playerEntity.getEmail());
+        // sendVerificationMail(playerEntity.getEmail());
         PlayerDTO playerDTO = dozerMapper.map(playerEntity, PlayerDTO.class);
 
         return playerDTO;

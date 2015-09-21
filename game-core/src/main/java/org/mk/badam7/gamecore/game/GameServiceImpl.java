@@ -63,7 +63,10 @@ public class GameServiceImpl implements GameService
     @Override
     public List<GameDTO> getGamesToJoin()
     {
-        List<GameEntity> activeGames = gameDAO.findByStatus(GameStatus.WAITING_FOR_PLAYERS.getCode());
+        List<Integer> validStatuses = new ArrayList<Integer>();
+        validStatuses.add(GameStatus.WAITING_FOR_PLAYERS.getCode());
+        validStatuses.add(GameStatus.CREATED.getCode());
+        List<GameEntity> activeGames = gameDAO.findByStatusIn(validStatuses);
         return badam7Util.mapListOfEnitiesToDTOs(activeGames, GameDTO.class);
     }
 

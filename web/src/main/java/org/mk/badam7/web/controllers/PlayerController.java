@@ -10,6 +10,8 @@ import org.mk.badam7.gamedto.player.PlayerInDTO;
 import org.mk.badam7.gamedto.playercurrentgameinstance.PlayerCurrentGameInstanceDTO;
 import org.mk.badam7.gamedto.playercurrenthand.PlayerCurrentHandCardDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,23 +43,25 @@ public class PlayerController
         return playerService.createPlayer(playerInDTO);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}/playercurrentgameinstance", method = RequestMethod.POST)
     @ResponseBody
     public PlayerCurrentGameInstanceDTO joinGame(@PathVariable Integer id, @RequestParam Integer gameId)
     {
-        return playerCurrentGameInstanceService.createPlayerCurrentGameInstance(gameId, id);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        return playerCurrentGameInstanceService.createPlayerCurrentGameInstance(gameId, id, username);
     }
 
-    @RequestMapping(value = "/{id}/games/{gameId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/playercurrentgameinstance", method = RequestMethod.GET)
     @ResponseBody
     public List<PlayerCurrentHandCardDTO> getAllPlayerCurrentHandCards(@PathVariable Integer id, @RequestParam Integer currentHandId, @RequestParam Integer playerCurrentGameInstanceId)
     {
         return playerCurrentHandCardService.getAllPlayerCurrentHandCards(currentHandId, playerCurrentGameInstanceId);
     }
 
-    @RequestMapping(value = "/{id}/games/{gameId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}/playercurrentgameinstance", method = RequestMethod.PUT)
     @ResponseBody
-    public PlayerCurrentHandCardDTO playCard(@RequestParam Integer playerCurrentHandCardId)
+    public PlayerCurrentHandCardDTO playCard(@PathVariable Integer id, @RequestParam Integer playerCurrentHandCardId)
     {
         return playerCurrentHandCardService.playCard(playerCurrentHandCardId);
     }
