@@ -262,7 +262,7 @@ public class GameServiceImpl implements GameService
         GameEntity gameEntity = new GameEntity();
         gameEntity.setGameType(gameInDTO.getGameType());
         gameEntity.setNoOfHands(gameInDTO.getNoOfHands());
-        gameEntity.setNoOfPlayers(gameInDTO.getNoOfHands());
+        gameEntity.setNoOfPlayers(gameInDTO.getNoOfPlayers());
         gameEntity.setStatus(GameStatus.CREATED.getCode());
 
         return gameEntity;

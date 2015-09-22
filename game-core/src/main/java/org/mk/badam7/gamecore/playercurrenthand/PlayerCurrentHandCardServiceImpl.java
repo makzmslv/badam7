@@ -61,6 +61,7 @@ public class PlayerCurrentHandCardServiceImpl implements PlayerCurrentHandCardSe
             HandCurrentCardDTO handCurrentCardDTO = new HandCurrentCardDTO();
             handCurrentCardDTO.setCardId(playerCurrentHandCardEntity.getCardEntity().getId());
             handCurrentCardDTO.setHandId(playerCurrentHandCardEntity.getHandEntity().getId());
+            handCurrentCardDTO.setPlayerCurrentGameInstanceId(playerCurrentHandCardEntity.getPlayerCurrentGameInstanceEntity().getId());
             handCurrentCardService.createHandCurrentCard(handCurrentCardDTO);
             playerCurrentHandCardEntity.setStatus(PlayerCurrentHandCardStatus.PLACED_ON_TABLE.getStatusCode());
             playerCurrentHandCardDAO.save(playerCurrentHandCardEntity);
@@ -129,7 +130,7 @@ public class PlayerCurrentHandCardServiceImpl implements PlayerCurrentHandCardSe
 
     private boolean isIt7OfHearts(CardEntity cardEntity)
     {
-        if (cardEntity.getSuite() == "H" && cardEntity.getValue() == 7)
+        if (cardEntity.getSuite().equals("H") && cardEntity.getValue() == 7)
         {
             return true;
         }

@@ -10,6 +10,8 @@ public class HandCurrentCardDTO
 
     private Integer cardInsertionRank;
 
+    private Integer playerCurrentGameInstanceId;
+
     public Integer getHandId()
     {
         return handId;
@@ -48,5 +50,15 @@ public class HandCurrentCardDTO
     public void setCardInsertionRank(Integer cardInsertionRank)
     {
         this.cardInsertionRank = cardInsertionRank;
+    }
+
+    public Integer getPlayerCurrentGameInstanceId()
+    {
+        return playerCurrentGameInstanceId;
+    }
+
+    public void setPlayerCurrentGameInstanceId(Integer playerCurrentGameInstanceId)
+    {
+        this.playerCurrentGameInstanceId = playerCurrentGameInstanceId;
     }
 }

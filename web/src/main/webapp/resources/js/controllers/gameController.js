@@ -55,7 +55,7 @@ var gameController = angular.module('gameController', [ 'ngRoute' ]).controller(
                 console.log($scope.play)
                 checkGameStatus();
                 getPlayerCards();         
-              }, 1000000);
+              }, 3000);
        
     }
 ]);

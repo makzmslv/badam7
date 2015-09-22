@@ -29,6 +29,7 @@ public class HandCurrentCardServiceImpl implements HandCurrentCardService
         HandCurrentCardEntity handCurrentCardEntity = new HandCurrentCardEntity();
         handCurrentCardEntity.setCard(badam7Util.getCardFromId(inputDTO.getCardId()));
         handCurrentCardEntity.setHand(badam7Util.getHandFromId(inputDTO.getHandId()));
+        handCurrentCardEntity.setPlayerCurrentGameInstanceEntity(badam7Util.getPlayerCurrentGameInstanceFromId(inputDTO.getPlayerCurrentGameInstanceId()));
         handCurrentCardEntity = handCurrentCardDAO.save(handCurrentCardEntity);
         return dozerMapper.map(handCurrentCardEntity, HandCurrentCardDTO.class);
     }

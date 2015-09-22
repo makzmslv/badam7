@@ -1,5 +1,7 @@
 package org.mk.badam7.gamecore.PlayerCurrentGameInstanceService;
 
+import java.util.List;
+
 import org.dozer.Mapper;
 import org.mk.badam7.database.dao.GameDAO;
 import org.mk.badam7.database.dao.PlayerCurrentGameInstanceDAO;
@@ -39,6 +41,11 @@ public class PlayerCurrentGameInstanceServiceImpl implements PlayerCurrentGameIn
         PlayerCurrentGameInstanceEntity playerCurrentGameInstanceEntity;
 
         GameEntity gameEntity = getGame(gameId);
+        List<PlayerCurrentGameInstanceEntity> players = playerCurrentGameInstanceDAO.findByGameEntity(gameEntity);
+        if (gameEntity.getNoOfPlayers() == players.size())
+        {
+            throw new IllegalArgumentException("Players full");
+        }
         PlayerEntity playerEntity = badam7Util.getPlayerFromId(playerId);
         playerCurrentGameInstanceEntity = playerCurrentGameInstanceDAO.findByGameEntityAndPlayerEntity(gameEntity, playerEntity);
         if (playerCurrentGameInstanceEntity == null)

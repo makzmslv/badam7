@@ -106,69 +106,69 @@
 
         <!-- ACES -->
         <insert tableName="CARD">
-            <column name="SUITE" value="1" />
+            <column name="SUITE" value="C" />
             <column name="VALUE" value="2" />
-            <column name="DESCRIPTION" value="2 of Aces" />
+            <column name="DESCRIPTION" value="2 of Clubs" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="1" />
+            <column name="SUITE" value="C" />
             <column name="VALUE" value="3" />
-            <column name="DESCRIPTION" value="3 of Aces" />
+            <column name="DESCRIPTION" value="3 of Clubs" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="1" />
+            <column name="SUITE" value="C" />
             <column name="VALUE" value="4" />
-            <column name="DESCRIPTION" value="4 of Aces" />
+            <column name="DESCRIPTION" value="4 of Clubs" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="1" />
+            <column name="SUITE" value="C" />
             <column name="VALUE" value="5" />
             <column name="DESCRIPTION" value="5 of Aces" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="1" />
+            <column name="SUITE" value="C" />
             <column name="VALUE" value="6" />
-            <column name="DESCRIPTION" value="6 of Aces" />
+            <column name="DESCRIPTION" value="6 of Clubs" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="1" />
+            <column name="SUITE" value="C" />
             <column name="VALUE" value="7" />
-            <column name="DESCRIPTION" value="7 of Aces" />
+            <column name="DESCRIPTION" value="7 of Clubs" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="1" />
+            <column name="SUITE" value="C" />
             <column name="VALUE" value="8" />
-            <column name="DESCRIPTION" value="8 of Aces" />
+            <column name="DESCRIPTION" value="8 of Clubs" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="1" />
+            <column name="SUITE" value="C" />
             <column name="VALUE" value="9" />
-            <column name="DESCRIPTION" value="9 of Aces" />
+            <column name="DESCRIPTION" value="9 of Clubs" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="1" />
+            <column name="SUITE" value="C" />
             <column name="VALUE" value="10" />
-            <column name="DESCRIPTION" value="10 of Aces" />
+            <column name="DESCRIPTION" value="10 of Clubs" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="1" />
+            <column name="SUITE" value="C" />
             <column name="VALUE" value="11" />
-            <column name="DESCRIPTION" value="Jack of Aces" />
+            <column name="DESCRIPTION" value="Jack of Clubs" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="1" />
+            <column name="SUITE" value="C" />
             <column name="VALUE" value="12" />
-            <column name="DESCRIPTION" value="Queen of Aces" />
+            <column name="DESCRIPTION" value="Queen of Clubs" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="1" />
+            <column name="SUITE" value="C" />
             <column name="VALUE" value="13" />
-            <column name="DESCRIPTION" value="King of Aces" />
+            <column name="DESCRIPTION" value="King of Clubs" />
         </insert>
         <insert tableName="CARD">
-            <column name="SUITE" value="1" />
+            <column name="SUITE" value="C" />
             <column name="VALUE" value="1" />
-            <column name="DESCRIPTION" value="Ace of Aces" />
+            <column name="DESCRIPTION" value="Ace of Clubs" />
         </insert>
 
         <!-- SPADES -->
