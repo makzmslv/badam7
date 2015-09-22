@@ -22,9 +22,9 @@ badam7Services.factory('Game', function($resource) {
             },
             "update" : function (id) {
                 var ret, restResource;
-                restResource = $resource('/badam7-web/games:id', {}, {
+                restResource = $resource('/badam7-web/games/:id', {id:'@id'}, {
                     update : {
-                        method : 'PUT'
+                        method : 'POST'
                     }
                 });
                 ret = restResource.update({id : id});
@@ -40,7 +40,7 @@ badam7Services.factory('Game', function($resource) {
             },
             "get" : function (id) {
                 var ret, restResource;
-                restResource = $resource('/badam7-web/games/:id', {}, {
+                restResource = $resource('/badam7-web/games/:id', {id:'@id'}, {
                     "get": {
                         "method" : "GET",
                         "isArray" : false
@@ -55,15 +55,15 @@ badam7Services.factory('Game', function($resource) {
 badam7Services.factory('Player', function($resource) {
     "use strict";
         return {
-            "query" : function (parameters) {
+            "query" : function (username) {
                 var ret, restResource;
-                restResource = $resource('/badam7-web/players', {}, {
+                restResource = $resource('/badam7-web/players', {username : username}, {
                     "query": {
                         "method" : "GET",
-                        "isArray" : true
+                        "isArray" : false
                     }
                 });
-                ret = restResource.query(parameters);
+                ret = restResource.query();
                 return ret;
             },
             "update" : function (id, currentHandId) {
@@ -78,13 +78,13 @@ badam7Services.factory('Player', function($resource) {
             },
             "save" : function (id, gameId) {
                 var ret, restResource;
-                restResource = $resource('/badam7-web/players/:id/playercurrentgameinstance', {gameId : gameId}, {
+                restResource = $resource('/badam7-web/players/playercurrentgameinstance', {id : id, gameId : gameId}, {
                     "save": {
                         "method" : "POST"
                     }
                     });
 
-                ret = restResource.save({id : id});
+                ret = restResource.save();
 
                 return ret;
             },

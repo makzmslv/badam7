@@ -41,9 +41,16 @@ public class PlayerController
         return playerService.createPlayer(playerInDTO);
     }
 
-    @RequestMapping(value = "/{id}/playercurrentgameinstance", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public PlayerCurrentGameInstanceDTO joinGame(@PathVariable Integer id, @RequestParam Integer gameId)
+    public PlayerDTO getById(@RequestParam String username)
+    {
+        return playerService.getByUsername(username);
+    }
+
+    @RequestMapping(value = "/playercurrentgameinstance", method = RequestMethod.POST)
+    @ResponseBody
+    public PlayerCurrentGameInstanceDTO joinGame(@RequestParam Integer id, @RequestParam Integer gameId)
     {
         return playerCurrentGameInstanceService.createPlayerCurrentGameInstance(gameId, id);
     }

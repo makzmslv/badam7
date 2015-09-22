@@ -12,6 +12,9 @@ public interface HandCurrentCardDAO extends JpaRepository<HandCurrentCardEntity,
 {
     public List<HandCurrentCardEntity> findByHandEntity(HandEntity handEntity);
 
+    @Query(value = "SELECT handCurrentCard FROM HandCurrentCardEntity handCurrentCard WHERE handCurrentCard.handEntity = :handEntity AND handCurrentCard.id = (SELECT MAX(handCurrentCard.id) FROM HandCurrentCardEntity handCurrentCard)")
+    public HandCurrentCardEntity getByHandEntityAndId(@Param("handEntity") HandEntity handEntity);
+
     @Query(value = "SELECT max(handCurrentCard.cardEntity.value) FROM HandCurrentCardEntity handCurrentCard WHERE handCurrentCard.cardEntity.suite = :suite)")
     public Integer getByCardSuiteAndCardValueMax(@Param("suite") String suite);
 

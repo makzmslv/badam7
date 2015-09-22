@@ -37,7 +37,7 @@ public class GameController
         return gameService.createGame(gameInDTO);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     @ResponseBody
     public GameDetailsDTO startHand(@PathVariable Integer id)
     {

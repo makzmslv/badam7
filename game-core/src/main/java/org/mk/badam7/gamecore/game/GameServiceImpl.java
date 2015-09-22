@@ -1,15 +1,19 @@
 package org.mk.badam7.gamecore.game;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.dozer.Mapper;
 import org.mk.badam7.database.dao.CardDAO;
 import org.mk.badam7.database.dao.GameDAO;
+import org.mk.badam7.database.dao.HandCurrentCardDAO;
 import org.mk.badam7.database.dao.HandDAO;
 import org.mk.badam7.database.dao.PlayerCurrentGameInstanceDAO;
 import org.mk.badam7.database.entity.CardEntity;
 import org.mk.badam7.database.entity.GameEntity;
+import org.mk.badam7.database.entity.HandCurrentCardEntity;
 import org.mk.badam7.database.entity.HandEntity;
 import org.mk.badam7.database.entity.PlayerCurrentGameInstanceEntity;
 import org.mk.badam7.database.enums.GameStatus;
@@ -44,6 +48,9 @@ public class GameServiceImpl implements GameService
 
     @Autowired
     private HandDAO handDAO;
+
+    @Autowired
+    private HandCurrentCardDAO handCurrentCardDAO;
 
     @Autowired
     private HandService handService;
@@ -104,7 +111,9 @@ public class GameServiceImpl implements GameService
         {
             hand = handEntity.getId();
         }
-        GameDetailsDTO gameDTO = createGameDetailsDTO(players, hand);
+        Integer nextPlayerId = getNextPlayerId(handEntity, players);
+        GameDetailsDTO gameDTO = createGameDetailsDTO(gameEntity, players, hand);
+        gameDTO.setNextPlayerId(nextPlayerId);
         return gameDTO;
     }
 
@@ -143,18 +152,8 @@ public class GameServiceImpl implements GameService
         dealCards(cards, players, hand);
         gameEntity.setStatus(GameStatus.IN_PROGRESS.getCode());
         gameEntity = gameDAO.save(gameEntity);
-        GameDetailsDTO gameDetailsDTO = createGameDetailsDTO(players, hand.getId());
+        GameDetailsDTO gameDetailsDTO = createGameDetailsDTO(gameEntity, players, hand.getId());
         return gameDetailsDTO;
-    }
-
-    private List<Integer> getPlayerIds(List<PlayerCurrentGameInstanceEntity> players)
-    {
-        List<Integer> playerIds = new ArrayList<Integer>();
-        for (PlayerCurrentGameInstanceEntity player : players)
-        {
-            playerIds.add(player.getId());
-        }
-        return playerIds;
     }
 
     private void validateUpdateOperation(Integer gameId, GameUpdateDTO gameUpdateDTO)
@@ -269,13 +268,42 @@ public class GameServiceImpl implements GameService
         return gameEntity;
     }
 
-    private GameDetailsDTO createGameDetailsDTO(List<PlayerCurrentGameInstanceEntity> players, Integer handId)
+    private GameDetailsDTO createGameDetailsDTO(GameEntity gameEntity, List<PlayerCurrentGameInstanceEntity> players, Integer handId)
     {
         GameDetailsDTO gameDetailsDTO = new GameDetailsDTO();
         gameDetailsDTO.setCurrentHandId(handId);
-        List<Integer> playerIds = getPlayerIds(players);
+        Map<Integer, Integer> playerIds = getPlayerIds(players);
         gameDetailsDTO.setPlayerIds(playerIds);
+        gameDetailsDTO.setGameStatus(gameEntity.getStatus());
         return gameDetailsDTO;
     }
 
+    private Map<Integer, Integer> getPlayerIds(List<PlayerCurrentGameInstanceEntity> players)
+    {
+        Map<Integer, Integer> playerIds = new HashMap<Integer, Integer>();
+        for (PlayerCurrentGameInstanceEntity player : players)
+        {
+            playerIds.put(player.getPlayer().getId(), player.getId());
+        }
+        return playerIds;
+    }
+
+    private Integer getNextPlayerId(HandEntity handEntity, List<PlayerCurrentGameInstanceEntity> players)
+    {
+        Integer nextPlayerId = 0;
+        HandCurrentCardEntity handCurrentCard = handCurrentCardDAO.getByHandEntityAndId(handEntity);
+        if (handCurrentCard != null)
+        {
+            Integer playerNo = handCurrentCard.getPlayerCurrentGameInstanceEntity().getPlayerNo();
+            Integer nextPLayerNo = Badam7Constants.nextPlayerMap.get(playerNo);
+            for (PlayerCurrentGameInstanceEntity player : players)
+            {
+                if (player.getPlayerNo() == nextPLayerNo)
+                {
+                    nextPlayerId = player.getPlayer().getId();
+                }
+            }
+        }
+        return nextPlayerId;
+    }
 }

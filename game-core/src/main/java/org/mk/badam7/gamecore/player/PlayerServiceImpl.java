@@ -44,6 +44,18 @@ public class PlayerServiceImpl implements PlayerService
     }
 
     @Override
+    public PlayerDTO getByUsername(String username)
+    {
+        PlayerEntity playerEntity = playerDAO.findByUsername(username);
+        if (playerEntity == null)
+        {
+            throw new IllegalArgumentException("invalid login details");
+        }
+        PlayerDTO playerDTO = dozerMapper.map(playerEntity, PlayerDTO.class);
+        return playerDTO;
+    }
+
+    @Override
     public PlayerDTO verifyPlayer(Integer playerId)
     {
         PlayerEntity playerEntity = playerDAO.findOne(playerId);

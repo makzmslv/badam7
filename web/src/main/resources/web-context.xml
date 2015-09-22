@@ -26,7 +26,7 @@
     <bean class="org.mk.badam7.web.swagger.SwaggerConfig"/>
     <!-- Server Configurations -->
     <!-- Enables the Spring MVC @Controller programming model -->
-    <mvc:resources mapping="*.html" location="/resources/" />
+    <mvc:resources mapping="/resources/**" location="/resources/" />
 
     <mvc:default-servlet-handler/>
 </beans>

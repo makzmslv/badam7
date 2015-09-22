@@ -17,10 +17,14 @@
             <column name="REF_CARD" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
+            <column name="REF_PLAYER_CURRENT_GAME_INSTANCE" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
             <column name="CARD_INSERTION_RANK" type="INTEGER">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
         </createTable>
+        <addForeignKeyConstraint constraintName="FK_HAND_CURRENT_CARD_REF_PLAYER_CURRENT_GAME_INSTANCE" baseTableName="HAND_CURRENT_CARD" baseColumnNames="REF_PLAYER_CURRENT_GAME_INSTANCE" referencedTableName="PLAYER_CURRENT_GAME_INSTANCE" referencedColumnNames="ID"/>
         <addForeignKeyConstraint constraintName="FK_HAND_CURRENT_CARD_REF_HAND" baseTableName="HAND_CURRENT_CARD" baseColumnNames="REF_HAND" referencedTableName="HAND" referencedColumnNames="ID"/>
         <addForeignKeyConstraint constraintName="FK_HAND_CURRENT_CARD_REF_CARD" baseTableName="HAND_CURRENT_CARD" baseColumnNames="REF_CARD" referencedTableName="CARD" referencedColumnNames="ID"/>
 

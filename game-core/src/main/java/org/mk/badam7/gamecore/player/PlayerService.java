@@ -10,4 +10,6 @@ public interface PlayerService
     public PlayerDTO verifyPlayer(Integer playerId);
 
     public PlayerDTO getPlayerById(Integer playerId);
+
+    public PlayerDTO getByUsername(String username);
 }

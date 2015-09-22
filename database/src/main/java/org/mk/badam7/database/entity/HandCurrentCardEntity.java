@@ -26,6 +26,10 @@ public class HandCurrentCardEntity
     @JoinColumn(name = "REF_CARD")
     private CardEntity cardEntity;
 
+    @ManyToOne
+    @JoinColumn(name = "REF_PLAYER_CURRENT_GAME_INSTANCE")
+    private PlayerCurrentGameInstanceEntity playerCurrentGameInstanceEntity;
+
     @Column(name = "CARD_INSERTION_RANK")
     private Integer cardInsertionRank;
 
@@ -87,6 +91,16 @@ public class HandCurrentCardEntity
     public void setCardEntity(CardEntity cardEntity)
     {
         this.cardEntity = cardEntity;
+    }
+
+    public PlayerCurrentGameInstanceEntity getPlayerCurrentGameInstanceEntity()
+    {
+        return playerCurrentGameInstanceEntity;
+    }
+
+    public void setPlayerCurrentGameInstanceEntity(PlayerCurrentGameInstanceEntity playerCurrentGameInstanceEntity)
+    {
+        this.playerCurrentGameInstanceEntity = playerCurrentGameInstanceEntity;
     }
 
     @Override

@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="app.css" />
 <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" />
 </head>
-<body ng-controller="homeController">
+<body>
     <script src="resources/js/lib/angular/angular.js"></script>
     <script src="resources/js/lib/angular/angular.min.js"></script>
     <script src="resources/js/lib/angular/angular-route.js"></script>
@@ -16,17 +16,38 @@
     <script src="resources/js/lib/moment.js"></script>
     <script src="resources/js/controllers/homeController.js"></script>
     <script src="resources/js/controllers/gameController.js"></script>
+    <script src="resources/js/controllers/loginController.js"></script>
 
+    <div class="page-header ">
+      <h1 style="color:red">Badam 7 <small> 7 of Hearts</small></h1>
+    </div>
+    <div  ng-controller="loginController" class="container" ng-show="showLogin">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="username" class="col-md-4 control-label" translate>Username</label>
+                <div class="col-md-5">
+                    <input id="username" type="text" class="form-control" ng-model="username">
+                </div>
+            </div>
 
+            <div class="form-group">
+                <label for="password" class="col-md-4 control-label" translate>Password</label>
+                <div class="col-md-5">
+                    <input id="password" type="password" class="form-control" ng-model="password">
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-md-18">
+                    <button type="submit" class="btn btn-primary" ng-click="doLogin()" >Login</button>
+                </div>
+            </div>
 
-
-
-    <div class="container col-md-18">
-        <div class="page-header ">
-          <h1 style="color:red">Badam 7 <small> 7 of Hearts</small></h1>
-        </div>
-        
+        </form>
+    
+    </div>
+    
+    <div ng-controller="homeController" class="container col-md-18" ng-show="!showLogin && !playGame">
         <div class="row">
             <button class="btn btn-primary" ng-click="startCreateGame()">Create Game</button>
         </div>
@@ -60,6 +81,20 @@
                 </table>      
             </div>
         </div>
+    </div>
+    
+    <div ng-controller="gameController" class="container col-md-18" ng-show="playGame && !play">
+        <div ng-show="!startButton && !play">
+            <p>Waiting for other players....</p>
+        </div>
+        <div class="row" ng-show="startButton">
+            <button class="btn btn-primary" ng-click="startGame()">Start Game</button>
+        </div>
+        
+        <div class="row" ng-show="play">
+            <p>HIIIIIIIIIIIIIIii</p>
+        </div>
+
     </div>
 
 </body>
