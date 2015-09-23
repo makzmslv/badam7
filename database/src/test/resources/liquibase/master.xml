@@ -14,5 +14,5 @@
     <include file="../database/src/test/resources/liquibase/07_hand_current_card.xml"/>
     <include file="../database/src/test/resources/liquibase/08_result_hand.xml"/>
     <include file="../database/src/test/resources/liquibase/09_result_game.xml"/>
-
+    <include file="../database/src/test/resources/liquibase/10_game_details.xml"/>
 </databaseChangeLog>

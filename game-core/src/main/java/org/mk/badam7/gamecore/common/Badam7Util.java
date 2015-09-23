@@ -6,10 +6,12 @@ import java.util.List;
 import org.dozer.DozerBeanMapper;
 import org.mk.badam7.database.dao.CardDAO;
 import org.mk.badam7.database.dao.GameDAO;
+import org.mk.badam7.database.dao.GameDetailsDAO;
 import org.mk.badam7.database.dao.HandDAO;
 import org.mk.badam7.database.dao.PlayerCurrentGameInstanceDAO;
 import org.mk.badam7.database.dao.PlayerDAO;
 import org.mk.badam7.database.entity.CardEntity;
+import org.mk.badam7.database.entity.GameDetailsEntity;
 import org.mk.badam7.database.entity.GameEntity;
 import org.mk.badam7.database.entity.HandEntity;
 import org.mk.badam7.database.entity.PlayerCurrentGameInstanceEntity;
@@ -36,6 +38,9 @@ public class Badam7Util
     private CardDAO cardDAO;
 
     @Autowired
+    private GameDetailsDAO gameDetailsDAO;
+
+    @Autowired
     private DozerBeanMapper mapper;
 
     public GameEntity getGameFromId(Integer gameId)
@@ -46,6 +51,17 @@ public class Badam7Util
             throw new IllegalArgumentException("Game with given id does not exist");
         }
         return gameEntity;
+    }
+
+    public GameDetailsEntity getGameDetailsFromGameId(Integer gameId)
+    {
+        GameEntity gameEntity = gameDAO.findOne(gameId);
+        if (gameEntity == null)
+        {
+            throw new IllegalArgumentException("Game with given id does not exist");
+        }
+        GameDetailsEntity gameDetailsEntity = gameDetailsDAO.findByGameEntity(gameEntity);
+        return gameDetailsEntity;
     }
 
     public PlayerEntity getPlayerFromId(Integer playerId)

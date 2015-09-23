@@ -8,7 +8,7 @@ public interface PlayerCurrentHandCardService
 {
     public PlayerCurrentHandCardDTO createPlayerCurrentHandCard(PlayerCurrentHandCardDTO playerCurrentHandCardDTO);
 
-    public PlayerCurrentHandCardDTO playCard(Integer playerCurrentHandCardId);
+    public PlayerCurrentHandCardDTO playCard(Integer playerId, Integer playerCurrentHandCardId, boolean skipChance);
 
     public List<PlayerCurrentHandCardDTO> getAllPlayerCurrentHandCards(Integer currentHandId, Integer playerCurrentGameInstanceId);
 }

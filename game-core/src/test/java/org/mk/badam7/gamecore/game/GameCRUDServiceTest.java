@@ -4,11 +4,11 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.mk.badam7.database.dao.CardDAO;
-import org.mk.badam7.database.entity.CardEntity;
 import org.mk.badam7.database.enums.GameType;
 import org.mk.badam7.gamecore.dbunit.AbstractDbUnit;
 import org.mk.badam7.gamecore.dbunit.ExpectedDataSet;
 import org.mk.badam7.gamecore.dbunit.SetUpDataSet;
+import org.mk.badam7.gamecore.playercurrenthand.PlayerCurrentHandCardService;
 import org.mk.badam7.gamedto.game.GameDetailsDTO;
 import org.mk.badam7.gamedto.game.GameInDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,9 @@ public class GameCRUDServiceTest extends AbstractDbUnit
     private GameService gameService;
 
     @Autowired
+    private PlayerCurrentHandCardService playerCurrentHandCardService;
+
+    @Autowired
     private CardDAO cardDAO;
 
     @Test
@@ -26,15 +29,7 @@ public class GameCRUDServiceTest extends AbstractDbUnit
     public void getGameTest()
     {
         GameDetailsDTO gameDTO = gameService.getById(1);
-        CardEntity card = cardDAO.findOne(1);
-        if (isIt7OfHearts(card))
-        {
-            System.out.println("here");
-        }
-        else
-        {
-            System.out.println("there");
-        }
+        // playerCurrentHandCardService.playCard(45);
 
         assertNotNull(gameDTO);
         System.out.println(gameDTO);
@@ -50,15 +45,6 @@ public class GameCRUDServiceTest extends AbstractDbUnit
         gameInDTO.setNoOfHands(4);
         gameInDTO.setNoOfPlayers(4);
         gameService.createGame(gameInDTO);
-    }
-
-    private boolean isIt7OfHearts(CardEntity cardEntity)
-    {
-        if (cardEntity.getSuite().equals("H") && cardEntity.getValue() == 7)
-        {
-            return true;
-        }
-        return false;
     }
 
 }

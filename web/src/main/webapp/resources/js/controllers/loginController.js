@@ -5,6 +5,8 @@ var loginController = angular.module('loginController', [ 'ngRoute' ]).controlle
         $scope.password = ""
         $rootScope.showLogin = $rootScope.playerId != null ? false : true;
         $rootScope.playGame = false;
+        var baseImgSrc = "resources/img/cards/"; 
+        var selc;
     
         $rootScope.clearAll = function () 
         {
@@ -21,5 +23,31 @@ var loginController = angular.module('loginController', [ 'ngRoute' ]).controlle
                 $rootScope.showLogin = false;
             });
         }
+        
+       $scope.$on('$locationChangeStart', function( event ) {
+            var answer = confirm("Are you sure you want to leave this page?")
+            if (!answer) {
+                event.preventDefault();
+            }
+        });  
+    
+        var init = function () {
+            Player.get(3, 1, 2).$promise.then(function(cards) {
+                
+                        $scope.playerCards = cards;
+                        angular.forEach($scope.playerCards, function (card) {
+                            card.imgsrc = baseImgSrc + card.cardId + ".png"
+                        });
+                    }); 
+        }
+        
+        $scope.selectCard =function (cardId)
+        {
+            console.log(cardId)
+            $scope.selectedCard = cardId;
+        }
+        
+        
+    
     }
 ]);

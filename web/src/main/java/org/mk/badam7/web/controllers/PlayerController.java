@@ -64,9 +64,9 @@ public class PlayerController
 
     @RequestMapping(value = "/{id}/playercurrentgameinstance", method = RequestMethod.PUT)
     @ResponseBody
-    public PlayerCurrentHandCardDTO playCard(@PathVariable Integer id, @RequestParam Integer playerCurrentHandCardId)
+    public PlayerCurrentHandCardDTO playCard(@PathVariable Integer id, @RequestParam Integer playerCurrentHandCardId, @RequestParam boolean skipChance)
     {
-        return playerCurrentHandCardService.playCard(playerCurrentHandCardId);
+        return playerCurrentHandCardService.playCard(id, playerCurrentHandCardId, skipChance);
     }
 
 }

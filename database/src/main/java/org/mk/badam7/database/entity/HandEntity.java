@@ -55,12 +55,12 @@ public class HandEntity
         this.handNo = handNo;
     }
 
-    public GameEntity getGame()
+    public GameEntity getGameEntity()
     {
         return gameEntity;
     }
 
-    public void setGame(GameEntity gameEntity)
+    public void setGameEntity(GameEntity gameEntity)
     {
         this.gameEntity = gameEntity;
     }
@@ -83,16 +83,6 @@ public class HandEntity
     public void setHandCurrentCards(List<HandCurrentCardEntity> handCurrentCardEntities)
     {
         this.handCurrentCardEntities = handCurrentCardEntities;
-    }
-
-    public GameEntity getGameEntity()
-    {
-        return gameEntity;
-    }
-
-    public void setGameEntity(GameEntity gameEntity)
-    {
-        this.gameEntity = gameEntity;
     }
 
     public List<HandCurrentCardEntity> getHandCurrentCardEntities()

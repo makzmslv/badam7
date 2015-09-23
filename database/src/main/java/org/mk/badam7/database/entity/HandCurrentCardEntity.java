@@ -103,10 +103,4 @@ public class HandCurrentCardEntity
         this.playerCurrentGameInstanceEntity = playerCurrentGameInstanceEntity;
     }
 
-    @Override
-    public String toString()
-    {
-        return "HandCurrentCard [id=" + id + ", hand=" + handEntity + ", card=" + cardEntity + ", cardInsertionRank=" + cardInsertionRank + "]";
-    }
-
 }

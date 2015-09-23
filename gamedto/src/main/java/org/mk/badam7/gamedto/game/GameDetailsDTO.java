@@ -4,13 +4,25 @@ import java.util.Map;
 
 public class GameDetailsDTO
 {
+    private Integer gameId;
+
     private Integer currentHandId;
 
     private Integer gameStatus;
 
-    private Integer nextPlayerId;
+    private Integer currentPlayerId;
 
     private Map<Integer, Integer> playerIds;
+
+    public Integer getGameId()
+    {
+        return gameId;
+    }
+
+    public void setGameId(Integer gameId)
+    {
+        this.gameId = gameId;
+    }
 
     public Integer getCurrentHandId()
     {
@@ -42,14 +54,14 @@ public class GameDetailsDTO
         this.playerIds = playerIds;
     }
 
-    public Integer getNextPlayerId()
+    public Integer getCurrentPlayerId()
     {
-        return nextPlayerId;
+        return currentPlayerId;
     }
 
-    public void setNextPlayerId(Integer nextPlayerId)
+    public void setCurrentPlayerId(Integer currentPlayerId)
     {
-        this.nextPlayerId = nextPlayerId;
+        this.currentPlayerId = currentPlayerId;
     }
 
 }

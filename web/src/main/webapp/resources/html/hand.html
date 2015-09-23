@@ -1,0 +1,6 @@
+var stop = $interval(function() {
+                        console.log("Card Played")
+                        checkGameStatus();
+                        getPlayerCards();  
+                        getHandCards();
+                      }, 3000, 100);

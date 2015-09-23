@@ -154,5 +154,28 @@
         </field>
     </mapping>
 
+    <mapping>
+        <class-a>org.mk.badam7.database.entity.GameDetailsEntity</class-a>
+        <class-b>org.mk.badam7.gamedto.game.GameDetailsDTO</class-b>
+
+        <field>
+            <a>gameEntity.id</a>
+            <b>gameId</b>
+        </field>
+        <field>
+            <a>currentHandId</a>
+            <b>currentHandId</b>
+        </field>
+        <field>
+            <a>currentPlayerId</a>
+            <b>currentPlayerId</b>
+        </field>
+        <field>
+            <a>gameEntity.status</a>
+            <b>gameStatus</b>
+        </field>
+    </mapping>
+
+
 
 </mappings>

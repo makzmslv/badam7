@@ -48,6 +48,17 @@ badam7Services.factory('Game', function($resource) {
                 });
                 ret = restResource.get({ id : id});
                 return ret;
+            },            
+            "getCards" : function (handId) {
+                var ret, restResource;
+                restResource = $resource('/badam7-web/games/hand', {handId : handId}, {
+                    "get": {
+                        "method" : "GET",
+                        "isArray" : false
+                    }
+                });
+                ret = restResource.get();
+                return ret;
             }
         };
 });
@@ -66,9 +77,9 @@ badam7Services.factory('Player', function($resource) {
                 ret = restResource.query();
                 return ret;
             },
-            "update" : function (id, currentHandId) {
+            "update" : function (id, playerCurrentHandCardId, skipChance) {
                 var ret, restResource;
-                restResource = $resource('/badam7-web/players/:id/playercurrentgameinstance', {currentHandId : currentHandId}, {
+                restResource = $resource('/badam7-web/players/:id/playercurrentgameinstance', {id:'@id', playerCurrentHandCardId : playerCurrentHandCardId, skipChance : skipChance}, {
                     update : {
                         method : 'PUT'
                     }

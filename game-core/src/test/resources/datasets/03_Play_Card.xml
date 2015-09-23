@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <hand_current_card ID="1" REF_HAND="1" REF_CARD="6" REF_PLAYER_CURRENT_GAME_INSTANCE="3"/>
+  <game ID="1" GAME_TYPE="1" NO_OF_PLAYERS="4" STATUS="4" NO_OF_HANDS="1"/>
+  <player_current_card ID="1" REF_CARD="46" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="1" STATUS="1"/>
+  <player_current_card ID="2" REF_CARD="40" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="2" STATUS="1"/>
+  <player_current_card ID="3" REF_CARD="6" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="3" STATUS="2"/>
+  <player_current_card ID="4" REF_CARD="33" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="4" STATUS="1"/>
+  <player_current_card ID="5" REF_CARD="31" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="1" STATUS="1"/>
+  <player_current_card ID="6" REF_CARD="41" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="2" STATUS="1"/>
+  <player_current_card ID="7" REF_CARD="8" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="3" STATUS="1"/>
+  <player_current_card ID="8" REF_CARD="14" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="4" STATUS="1"/>
+  <player_current_card ID="9" REF_CARD="24" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="1" STATUS="1"/>
+  <player_current_card ID="10" REF_CARD="50" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="2" STATUS="1"/>
+  <player_current_card ID="11" REF_CARD="49" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="3" STATUS="1"/>
+  <player_current_card ID="12" REF_CARD="18" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="4" STATUS="1"/>
+  <player_current_card ID="13" REF_CARD="39" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="1" STATUS="1"/>
+  <player_current_card ID="14" REF_CARD="37" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="2" STATUS="1"/>
+  <player_current_card ID="15" REF_CARD="25" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="3" STATUS="1"/>
+  <player_current_card ID="16" REF_CARD="36" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="4" STATUS="1"/>
+  <player_current_card ID="17" REF_CARD="44" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="1" STATUS="1"/>
+  <player_current_card ID="18" REF_CARD="12" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="2" STATUS="1"/>
+  <player_current_card ID="19" REF_CARD="42" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="3" STATUS="1"/>
+  <player_current_card ID="20" REF_CARD="16" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="4" STATUS="1"/>
+  <player_current_card ID="21" REF_CARD="15" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="1" STATUS="1"/>
+  <player_current_card ID="22" REF_CARD="7" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="2" STATUS="1"/>
+  <player_current_card ID="23" REF_CARD="21" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="3" STATUS="1"/>
+  <player_current_card ID="24" REF_CARD="35" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="4" STATUS="1"/>
+  <player_current_card ID="25" REF_CARD="34" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="1" STATUS="1"/>
+  <player_current_card ID="26" REF_CARD="5" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="2" STATUS="1"/>
+  <player_current_card ID="27" REF_CARD="4" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="3" STATUS="1"/>
+  <player_current_card ID="28" REF_CARD="51" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="4" STATUS="1"/>
+  <player_current_card ID="29" REF_CARD="3" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="1" STATUS="1"/>
+  <player_current_card ID="30" REF_CARD="9" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="2" STATUS="1"/>
+  <player_current_card ID="31" REF_CARD="13" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="3" STATUS="1"/>
+  <player_current_card ID="32" REF_CARD="23" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="4" STATUS="1"/>
+  <player_current_card ID="33" REF_CARD="17" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="1" STATUS="1"/>
+  <player_current_card ID="34" REF_CARD="47" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="2" STATUS="1"/>
+  <player_current_card ID="35" REF_CARD="22" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="3" STATUS="1"/>
+  <player_current_card ID="36" REF_CARD="27" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="4" STATUS="1"/>
+  <player_current_card ID="37" REF_CARD="19" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="1" STATUS="1"/>
+  <player_current_card ID="38" REF_CARD="28" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="2" STATUS="1"/>
+  <player_current_card ID="39" REF_CARD="30" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="3" STATUS="1"/>
+  <player_current_card ID="40" REF_CARD="45" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="4" STATUS="1"/>
+  <player_current_card ID="41" REF_CARD="2" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="1" STATUS="1"/>
+  <player_current_card ID="42" REF_CARD="26" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="2" STATUS="1"/>
+  <player_current_card ID="43" REF_CARD="11" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="3" STATUS="1"/>
+  <player_current_card ID="44" REF_CARD="10" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="4" STATUS="1"/>
+  <player_current_card ID="45" REF_CARD="48" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="1" STATUS="1"/>
+  <player_current_card ID="46" REF_CARD="52" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="2" STATUS="1"/>
+  <player_current_card ID="47" REF_CARD="1" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="3" STATUS="1"/>
+  <player_current_card ID="48" REF_CARD="20" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="4" STATUS="1"/>
+  <player_current_card ID="49" REF_CARD="32" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="1" STATUS="1"/>
+  <player_current_card ID="50" REF_CARD="38" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="2" STATUS="1"/>
+  <player_current_card ID="51" REF_CARD="29" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="3" STATUS="1"/>
+  <player_current_card ID="52" REF_CARD="43" REF_HAND="1" REF_PLAYER_CURRENT_GAME_INSTANCE="4" STATUS="1"/>
+  <player_current_game_instance ID="1" STATUS="1" REF_GAME="1" REF_PLAYER="1" PLAYER_NO="1"/>
+  <player_current_game_instance ID="2" STATUS="1" REF_GAME="1" REF_PLAYER="3" PLAYER_NO="2"/>
+  <player_current_game_instance ID="3" STATUS="1" REF_GAME="1" REF_PLAYER="4" PLAYER_NO="3"/>
+  <player_current_game_instance ID="4" STATUS="1" REF_GAME="1" REF_PLAYER="2" PLAYER_NO="4"/>
+  <card ID="1" SUITE="H" VALUE="2" DESCRIPTION="2 of Hearts"/>
+  <card ID="2" SUITE="H" VALUE="3" DESCRIPTION="3 of Hearts"/>
+  <card ID="3" SUITE="H" VALUE="4" DESCRIPTION="4 of Hearts"/>
+  <card ID="4" SUITE="H" VALUE="5" DESCRIPTION="5 of Hearts"/>
+  <card ID="5" SUITE="H" VALUE="6" DESCRIPTION="6 of Hearts"/>
+  <card ID="6" SUITE="H" VALUE="7" DESCRIPTION="7 of Hearts"/>
+  <card ID="7" SUITE="H" VALUE="8" DESCRIPTION="8 of Hearts"/>
+  <card ID="8" SUITE="H" VALUE="9" DESCRIPTION="9 of Hearts"/>
+  <card ID="9" SUITE="H" VALUE="10" DESCRIPTION="10 of Hearts"/>
+  <card ID="10" SUITE="H" VALUE="11" DESCRIPTION="Jack of Hearts"/>
+  <card ID="11" SUITE="H" VALUE="12" DESCRIPTION="Queen of Hearts"/>
+  <card ID="12" SUITE="H" VALUE="13" DESCRIPTION="King of Hearts"/>
+  <card ID="13" SUITE="H" VALUE="1" DESCRIPTION="Ace of Hearts"/>
+  <card ID="14" SUITE="C" VALUE="2" DESCRIPTION="2 of Clubs"/>
+  <card ID="15" SUITE="C" VALUE="3" DESCRIPTION="3 of Clubs"/>
+  <card ID="16" SUITE="C" VALUE="4" DESCRIPTION="4 of Clubs"/>
+  <card ID="17" SUITE="C" VALUE="5" DESCRIPTION="5 of Aces"/>
+  <card ID="18" SUITE="C" VALUE="6" DESCRIPTION="6 of Clubs"/>
+  <card ID="19" SUITE="C" VALUE="7" DESCRIPTION="7 of Clubs"/>
+  <card ID="20" SUITE="C" VALUE="8" DESCRIPTION="8 of Clubs"/>
+  <card ID="21" SUITE="C" VALUE="9" DESCRIPTION="9 of Clubs"/>
+  <card ID="22" SUITE="C" VALUE="10" DESCRIPTION="10 of Clubs"/>
+  <card ID="23" SUITE="C" VALUE="11" DESCRIPTION="Jack of Clubs"/>
+  <card ID="24" SUITE="C" VALUE="12" DESCRIPTION="Queen of Clubs"/>
+  <card ID="25" SUITE="C" VALUE="13" DESCRIPTION="King of Clubs"/>
+  <card ID="26" SUITE="C" VALUE="1" DESCRIPTION="Ace of Clubs"/>
+  <card ID="27" SUITE="S" VALUE="2" DESCRIPTION="2 of Spades"/>
+  <card ID="28" SUITE="S" VALUE="3" DESCRIPTION="3 of Spades"/>
+  <card ID="29" SUITE="S" VALUE="4" DESCRIPTION="4 of Spades"/>
+  <card ID="30" SUITE="S" VALUE="5" DESCRIPTION="5 of Spades"/>
+  <card ID="31" SUITE="S" VALUE="6" DESCRIPTION="6 of Spades"/>
+  <card ID="32" SUITE="S" VALUE="7" DESCRIPTION="7 of Spades"/>
+  <card ID="33" SUITE="S" VALUE="8" DESCRIPTION="8 of Spades"/>
+  <card ID="34" SUITE="S" VALUE="9" DESCRIPTION="9 of Spades"/>
+  <card ID="35" SUITE="S" VALUE="10" DESCRIPTION="10 of Spades"/>
+  <card ID="36" SUITE="S" VALUE="11" DESCRIPTION="Jack of Spades"/>
+  <card ID="37" SUITE="S" VALUE="12" DESCRIPTION="Queen of Spades"/>
+  <card ID="38" SUITE="S" VALUE="13" DESCRIPTION="King of Spades"/>
+  <card ID="39" SUITE="S" VALUE="1" DESCRIPTION="Ace of Spades"/>
+  <card ID="40" SUITE="D" VALUE="2" DESCRIPTION="2 of Diamonds"/>
+  <card ID="41" SUITE="D" VALUE="3" DESCRIPTION="3 of Diamonds"/>
+  <card ID="42" SUITE="D" VALUE="4" DESCRIPTION="4 of Diamonds"/>
+  <card ID="43" SUITE="D" VALUE="5" DESCRIPTION="5 of Diamonds"/>
+  <card ID="44" SUITE="D" VALUE="6" DESCRIPTION="6 of Diamonds"/>
+  <card ID="45" SUITE="D" VALUE="7" DESCRIPTION="7 of Diamonds"/>
+  <card ID="46" SUITE="D" VALUE="8" DESCRIPTION="8 of Diamonds"/>
+  <card ID="47" SUITE="D" VALUE="9" DESCRIPTION="9 of Diamonds"/>
+  <card ID="48" SUITE="D" VALUE="10" DESCRIPTION="10 of Diamonds"/>
+  <card ID="49" SUITE="D" VALUE="11" DESCRIPTION="Jack of Diamonds"/>
+  <card ID="50" SUITE="D" VALUE="12" DESCRIPTION="Queen of Diamonds"/>
+  <card ID="51" SUITE="D" VALUE="13" DESCRIPTION="King of Diamonds"/>
+  <card ID="52" SUITE="D" VALUE="1" DESCRIPTION="Ace of Diamonds"/>
+  <hand ID="1" HAND_NO="1" REF_GAME="1" STATUS="1"/>
+  <player ID="1" NAME="Makarandh" EMAIL="makzmslv@gmail.com" USERNAME="mk" PASSWORD="2bfbefb9fb8b800d6355f5b265a455d01c951f73" VERIFIED="true" ROLE="1"/>
+  <player ID="2" NAME="vinay" EMAIL="vinay@gmail.com" USERNAME="vinay" PASSWORD="2bfbefb9fb8b800d6355f5b265a455d01c951f73" VERIFIED="true" ROLE="1"/>
+  <player ID="3" NAME="aditya" EMAIL="aditya@gmail.com" USERNAME="aditya" PASSWORD="2bfbefb9fb8b800d6355f5b265a455d01c951f73" VERIFIED="true" ROLE="1"/>
+  <player ID="4" NAME="mudit" EMAIL="mudit@gmail.com" USERNAME="mudit" PASSWORD="2bfbefb9fb8b800d6355f5b265a455d01c951f73" VERIFIED="true" ROLE="1"/>
+</dataset>

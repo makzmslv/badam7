@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    <changeSet author="mk" id="1">
+        <!--                                 -->
+        <!-- GAME_DETAILS -->
+        <!--                                 -->
+        <createTable tableName="GAME_DETAILS" remarks="GAME_DETAILS">
+            <column name="ID" type="INTEGER" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="GAME_DETAILS_PK" nullable="false"/>
+            </column>
+            <column name="REF_GAME" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="CURRENT_HAND_ID" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CURRENT_PLAYER_ID" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint constraintName="FK_GAME_DETAILS_REF_GAME" baseTableName="GAME_DETAILS" baseColumnNames="REF_GAME" referencedTableName="GAME" referencedColumnNames="ID"/>
+
+
+    </changeSet>
+</databaseChangeLog>

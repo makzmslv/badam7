@@ -29,5 +29,12 @@ var homeController = angular.module('homeController', [ 'ngRoute' ]).controller(
                 $scope.addgame = false;
             });  
         }
+        $scope.$on('$locationChangeStart', function( event ) {
+            var answer = confirm("Are you sure you want to leave this page?")
+            if (!answer) {
+                event.preventDefault();
+            }
+        });    
     }
+                                                                                                  
 ]);

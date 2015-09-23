@@ -54,23 +54,23 @@ public class HandServiceImpl implements HandService
     public HandDTO endHand(Integer handId)
     {
         HandEntity handEntity = badam7Util.getHandFromId(handId);
-        List<PlayerCurrentGameInstanceEntity> players = playerCurrentGameInstanceDAO.findByGameEntity(handEntity.getGame());
+        List<PlayerCurrentGameInstanceEntity> players = playerCurrentGameInstanceDAO.findByGameEntity(handEntity.getGameEntity());
         for (PlayerCurrentGameInstanceEntity player : players)
         {
             createHandResult(handId, player);
         }
         handEntity.setStatus(HandStatus.COMPLETED.getStatusCode());
         handEntity = handDAO.save(handEntity);
-        if (isGameOver(handEntity.getGame(), handEntity.getHandNo()))
+        if (isGameOver(handEntity.getGameEntity(), handEntity.getHandNo()))
         {
-            gameService.endGame(handEntity.getGame().getId());
+            gameService.endGame(handEntity.getGameEntity().getId());
         }
         return dozerMapper.map(handEntity, HandDTO.class);
     }
 
     private boolean isGameOver(GameEntity game, Integer handNo)
     {
-        if (game.getNoOfHands() == handNo)
+        if (game.getNoOfHands().equals(handNo))
         {
             return true;
         }
@@ -88,7 +88,7 @@ public class HandServiceImpl implements HandService
     private HandEntity createHandEntity(GameEntity gameEntity)
     {
         HandEntity handEntity = new HandEntity();
-        handEntity.setGame(gameEntity);
+        handEntity.setGameEntity(gameEntity);
         handEntity.setStatus(HandStatus.IN_PROGRESS.getStatusCode());
         handEntity.setHandNo(getHandNo(gameEntity));
         return handEntity;

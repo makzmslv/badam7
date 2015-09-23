@@ -8,17 +8,19 @@ import java.util.Map;
 import org.dozer.Mapper;
 import org.mk.badam7.database.dao.CardDAO;
 import org.mk.badam7.database.dao.GameDAO;
+import org.mk.badam7.database.dao.GameDetailsDAO;
 import org.mk.badam7.database.dao.HandCurrentCardDAO;
 import org.mk.badam7.database.dao.HandDAO;
 import org.mk.badam7.database.dao.PlayerCurrentGameInstanceDAO;
+import org.mk.badam7.database.dao.PlayerCurrentHandCardDAO;
 import org.mk.badam7.database.entity.CardEntity;
+import org.mk.badam7.database.entity.GameDetailsEntity;
 import org.mk.badam7.database.entity.GameEntity;
-import org.mk.badam7.database.entity.HandCurrentCardEntity;
 import org.mk.badam7.database.entity.HandEntity;
 import org.mk.badam7.database.entity.PlayerCurrentGameInstanceEntity;
+import org.mk.badam7.database.entity.PlayerCurrentHandCardEntity;
 import org.mk.badam7.database.enums.GameStatus;
 import org.mk.badam7.database.enums.GameType;
-import org.mk.badam7.database.enums.HandStatus;
 import org.mk.badam7.gamecore.common.Badam7Util;
 import org.mk.badam7.gamecore.common.CardShuffler;
 import org.mk.badam7.gamecore.hand.HandService;
@@ -51,6 +53,12 @@ public class GameServiceImpl implements GameService
 
     @Autowired
     private HandCurrentCardDAO handCurrentCardDAO;
+
+    @Autowired
+    private GameDetailsDAO gameDetailsDAO;
+
+    @Autowired
+    private PlayerCurrentHandCardDAO playerCurrentHandCardDAO;
 
     @Autowired
     private HandService handService;
@@ -103,18 +111,26 @@ public class GameServiceImpl implements GameService
     @Override
     public GameDetailsDTO getById(Integer gameId)
     {
-        GameEntity gameEntity = badam7Util.getGameFromId(gameId);
-        List<PlayerCurrentGameInstanceEntity> players = playerCurrentGameInstanceDAO.findByGameEntity(gameEntity);
-        Integer hand = 0;
-        HandEntity handEntity = handDAO.findByGameEntityAndStatus(gameEntity, HandStatus.IN_PROGRESS.getStatusCode());
-        if (handEntity != null)
+        GameDetailsEntity gameDetailsEntity = badam7Util.getGameDetailsFromGameId(gameId);
+        GameDetailsDTO gameDetailsDTO = new GameDetailsDTO();
+        GameEntity gameEntity;
+        if (gameDetailsEntity == null)
         {
-            hand = handEntity.getId();
+            gameEntity = badam7Util.getGameFromId(gameId);
+            gameDetailsDTO.setGameStatus(gameEntity.getStatus());
+            gameDetailsDTO.setGameId(gameId);
+            gameDetailsDTO.setCurrentHandId(0);
+            gameDetailsDTO.setCurrentPlayerId(0);
         }
-        Integer nextPlayerId = getNextPlayerId(handEntity, players);
-        GameDetailsDTO gameDTO = createGameDetailsDTO(gameEntity, players, hand);
-        gameDTO.setNextPlayerId(nextPlayerId);
-        return gameDTO;
+        else
+        {
+            gameDetailsDTO = dozerMapper.map(gameDetailsEntity, GameDetailsDTO.class);
+            gameEntity = gameDetailsEntity.getGameEntity();
+        }
+        List<PlayerCurrentGameInstanceEntity> players = playerCurrentGameInstanceDAO.findByGameEntity(gameEntity);
+        Map<Integer, Integer> playerIds = getPlayerIds(players);
+        gameDetailsDTO.setPlayerIds(playerIds);
+        return gameDetailsDTO;
     }
 
     @Override
@@ -152,7 +168,7 @@ public class GameServiceImpl implements GameService
         dealCards(cards, players, hand);
         gameEntity.setStatus(GameStatus.IN_PROGRESS.getCode());
         gameEntity = gameDAO.save(gameEntity);
-        GameDetailsDTO gameDetailsDTO = createGameDetailsDTO(gameEntity, players, hand.getId());
+        GameDetailsDTO gameDetailsDTO = createGameDetailsEntity(gameEntity, players, hand.getId());
         return gameDetailsDTO;
     }
 
@@ -268,13 +284,20 @@ public class GameServiceImpl implements GameService
         return gameEntity;
     }
 
-    private GameDetailsDTO createGameDetailsDTO(GameEntity gameEntity, List<PlayerCurrentGameInstanceEntity> players, Integer handId)
+    private GameDetailsDTO createGameDetailsEntity(GameEntity gameEntity, List<PlayerCurrentGameInstanceEntity> players, Integer handId)
     {
-        GameDetailsDTO gameDetailsDTO = new GameDetailsDTO();
-        gameDetailsDTO.setCurrentHandId(handId);
+        GameDetailsEntity gameDetails = badam7Util.getGameDetailsFromGameId(gameEntity.getId());
+        if (gameDetails == null)
+        {
+            gameDetails = new GameDetailsEntity();
+            gameDetails.setGameEntity(gameEntity);
+        }
+        gameDetails.setCurrentHandId(handId);
+        gameDetails.setCurrentPlayerId(getFirstPlayerId(handId));
+        gameDetails = gameDetailsDAO.save(gameDetails);
+        GameDetailsDTO gameDetailsDTO = dozerMapper.map(gameDetails, GameDetailsDTO.class);
         Map<Integer, Integer> playerIds = getPlayerIds(players);
         gameDetailsDTO.setPlayerIds(playerIds);
-        gameDetailsDTO.setGameStatus(gameEntity.getStatus());
         return gameDetailsDTO;
     }
 
@@ -288,22 +311,11 @@ public class GameServiceImpl implements GameService
         return playerIds;
     }
 
-    private Integer getNextPlayerId(HandEntity handEntity, List<PlayerCurrentGameInstanceEntity> players)
+    private Integer getFirstPlayerId(Integer handId)
     {
-        Integer nextPlayerId = 0;
-        HandCurrentCardEntity handCurrentCard = handCurrentCardDAO.getByHandEntityAndId(handEntity);
-        if (handCurrentCard != null)
-        {
-            Integer playerNo = handCurrentCard.getPlayerCurrentGameInstanceEntity().getPlayerNo();
-            Integer nextPLayerNo = Badam7Constants.nextPlayerMap.get(playerNo);
-            for (PlayerCurrentGameInstanceEntity player : players)
-            {
-                if (player.getPlayerNo() == nextPLayerNo)
-                {
-                    nextPlayerId = player.getPlayer().getId();
-                }
-            }
-        }
-        return nextPlayerId;
+        HandEntity handEntity = badam7Util.getHandFromId(handId);
+        CardEntity cardEntity = cardDAO.findOne(6);
+        PlayerCurrentHandCardEntity playerCurrentCard = playerCurrentHandCardDAO.findByHandEntityAndCardEntity(handEntity, cardEntity);
+        return playerCurrentCard.getPlayerCurrentGameInstanceEntity().getPlayer().getId();
     }
 }

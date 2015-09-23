@@ -3,8 +3,17 @@
 <head>
 <title>Badam7</title>
 <link rel="shortcut icon" href="resources/img/title.ico"/>
-<link rel="stylesheet" href="app.css" />
+<link rel="stylesheet" href="resources/bootstrap/app.css"  />
 <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" language="javascript">
+        function DisableBackButton() {
+        window.history.forward()
+        }
+        DisableBackButton();
+        window.onload = DisableBackButton;
+        window.onpageshow = function(evt) { if (evt.persisted) DisableBackButton() }
+        window.onunload = function() { void (0) }
+    </script>
 </head>
 <body>
     <script src="resources/js/lib/angular/angular.js"></script>
@@ -42,9 +51,8 @@
                     <button type="submit" class="btn btn-primary" ng-click="doLogin()" >Login</button>
                 </div>
             </div>
-
         </form>
-    
+        
     </div>
     
     <div ng-controller="homeController" class="container col-md-18" ng-show="!showLogin && !playGame">
@@ -83,7 +91,7 @@
         </div>
     </div>
     
-    <div ng-controller="gameController" class="container col-md-18" ng-show="playGame && !play">
+    <div ng-controller="gameController" class="container col-md-18" ng-show="playGame">
         <div ng-show="!startButton && !play">
             <p>Waiting for other players....</p>
         </div>
@@ -91,8 +99,44 @@
             <button class="btn btn-primary" ng-click="startGame()">Start Game</button>
         </div>
         
+        <div class="row">
+            <ul class="row list-inline">
+                <li ng-repeat="card in heartCards">
+                    <img ng-src="{{card.imgsrc}}" alt="card" height="50" width="50"/>
+                </li>
+            </ul> 
+        </div>
+        <div class="row">
+            <ul class="row list-inline">
+                <li ng-repeat="card in spadeCards">
+                    <img ng-src="{{card.imgsrc}}" alt="card" height="50" width="50"/>
+                </li>
+            </ul> 
+        </div>
+        <div class="row">
+            <ul class="row list-inline">
+                <li ng-repeat="card in clubCards">
+                    <img ng-src="{{card.imgsrc}}" alt="card" height="50" width="50"/>
+                </li>
+            </ul> 
+        </div>
+        <div class="row">
+            <ul class="row list-inline">
+                <li ng-repeat="card in diamondCards">
+                    <img ng-src="{{card.imgsrc}}" alt="card" height="50" width="50"/>
+                </li>
+            </ul> 
+        </div>
         <div class="row" ng-show="play">
-            <p>HIIIIIIIIIIIIIIii</p>
+            <p>You</p>
+            <ul class="row list-inline">
+                <li ng-repeat="card in playerCards">
+                    <img ng-src="{{card.imgsrc}}" alt="card" height="50" width="50" ng-click="selectCard(card.id)"/>
+                </li>
+            </ul>
+            <button ng-show="playButton" class="btn btn-primary" ng-click="playCard()">Play Card</button>
+            <button ng-show="playButton" class="btn btn-primary" ng-click="skipChance()">Skip Chance</button>
+            <button class="btn btn-primary" ng-click="reload()">Refresh</button>
         </div>
 
     </div>

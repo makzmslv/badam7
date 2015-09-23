@@ -1,6 +1,7 @@
 package org.mk.badam7.web.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mk.badam7.gamecore.game.GameService;
 import org.mk.badam7.gamecore.hand.HandCurrentCardService;
@@ -60,7 +61,7 @@ public class GameController
 
     @RequestMapping(value = "/hand", method = RequestMethod.GET)
     @ResponseBody
-    public List<HandCurrentCardDTO> getAllHandCurrentCards(@RequestParam Integer handId)
+    public Map<Integer, List<HandCurrentCardDTO>> getAllHandCurrentCards(@RequestParam Integer handId)
     {
         return handCurrentCardService.getAllHandCurrentCards(handId);
     }
