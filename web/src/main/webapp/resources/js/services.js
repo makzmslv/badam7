@@ -59,6 +59,17 @@ badam7Services.factory('Game', function($resource) {
                 });
                 ret = restResource.get();
                 return ret;
+            },            
+            "getResults" : function (gameId) {
+                var ret, restResource;
+                restResource = $resource('/badam7-web/games/results', {gameId : gameId}, {
+                    "get": {
+                        "method" : "GET",
+                        "isArray" : true
+                    }
+                });
+                ret = restResource.get();
+                return ret;
             }
         };
 });

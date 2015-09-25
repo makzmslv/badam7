@@ -3,11 +3,13 @@ package org.mk.badam7.web.controllers;
 import java.util.List;
 import java.util.Map;
 
+import org.mk.badam7.gamecore.game.GameResultService;
 import org.mk.badam7.gamecore.game.GameService;
 import org.mk.badam7.gamecore.hand.HandCurrentCardService;
 import org.mk.badam7.gamedto.game.GameDTO;
 import org.mk.badam7.gamedto.game.GameDetailsDTO;
 import org.mk.badam7.gamedto.game.GameInDTO;
+import org.mk.badam7.gamedto.game.GameResultDTO;
 import org.mk.badam7.gamedto.hand.HandCurrentCardDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,9 @@ public class GameController
 
     @Autowired
     private HandCurrentCardService handCurrentCardService;
+
+    @Autowired
+    private GameResultService gameResultService;
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
@@ -64,5 +69,12 @@ public class GameController
     public Map<Integer, List<HandCurrentCardDTO>> getAllHandCurrentCards(@RequestParam Integer handId)
     {
         return handCurrentCardService.getAllHandCurrentCards(handId);
+    }
+
+    @RequestMapping(value = "/results", method = RequestMethod.GET)
+    @ResponseBody
+    public List<GameResultDTO> getGameResults(@RequestParam Integer gameId)
+    {
+        return gameResultService.getGameResults(gameId);
     }
 }

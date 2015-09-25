@@ -13,10 +13,14 @@ import org.mk.badam7.database.dao.HandCurrentCardDAO;
 import org.mk.badam7.database.dao.HandDAO;
 import org.mk.badam7.database.dao.PlayerCurrentGameInstanceDAO;
 import org.mk.badam7.database.dao.PlayerCurrentHandCardDAO;
+import org.mk.badam7.database.dao.ResultGameDAO;
+import org.mk.badam7.database.dao.ResultHandDAO;
 import org.mk.badam7.database.entity.CardEntity;
 import org.mk.badam7.database.entity.GameDetailsEntity;
 import org.mk.badam7.database.entity.GameEntity;
+import org.mk.badam7.database.entity.GameResultEntity;
 import org.mk.badam7.database.entity.HandEntity;
+import org.mk.badam7.database.entity.HandResultEntity;
 import org.mk.badam7.database.entity.PlayerCurrentGameInstanceEntity;
 import org.mk.badam7.database.entity.PlayerCurrentHandCardEntity;
 import org.mk.badam7.database.enums.GameStatus;
@@ -59,6 +63,12 @@ public class GameServiceImpl implements GameService
 
     @Autowired
     private PlayerCurrentHandCardDAO playerCurrentHandCardDAO;
+
+    @Autowired
+    private ResultHandDAO resultHandDAO;
+
+    @Autowired
+    private ResultGameDAO resultGameDAO;
 
     @Autowired
     private HandService handService;
@@ -126,6 +136,17 @@ public class GameServiceImpl implements GameService
         {
             gameDetailsDTO = dozerMapper.map(gameDetailsEntity, GameDetailsDTO.class);
             gameEntity = gameDetailsEntity.getGameEntity();
+            HandEntity handEntity = badam7Util.getHandFromId(gameDetailsEntity.getCurrentHandId());
+            HandResultEntity handResultEntity = resultHandDAO.findByHandEntityAndPointsIsMax(handEntity);
+            if (handResultEntity != null)
+            {
+                gameDetailsDTO.setHandWinnerId(handResultEntity.getPlayerCurrentGameInstanceEntity().getPlayer().getId());
+            }
+            GameResultEntity gameResultEntity = resultGameDAO.findByGameEntityAndPosition(gameDetailsEntity.getGameEntity(), 1);
+            if (gameResultEntity != null)
+            {
+                gameDetailsDTO.setGameWinnerId(gameResultEntity.getPlayerCurrentGameInstanceEntity().getPlayer().getId());
+            }
         }
         List<PlayerCurrentGameInstanceEntity> players = playerCurrentGameInstanceDAO.findByGameEntity(gameEntity);
         Map<Integer, Integer> playerIds = getPlayerIds(players);

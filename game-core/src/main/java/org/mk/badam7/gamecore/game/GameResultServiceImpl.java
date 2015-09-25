@@ -48,7 +48,15 @@ public class GameResultServiceImpl implements GameResultService
             points.add(gameResult.getPoints());
         }
         setPositionsOfPlayers(gameResults, points);
-        resultGameDAO.save(gameResults);
+        gameResults = resultGameDAO.save(gameResults);
+        return badam7Util.mapListOfEnitiesToDTOs(gameResults, GameResultDTO.class);
+    }
+
+    @Override
+    public List<GameResultDTO> getGameResults(Integer gameId)
+    {
+        GameEntity gameEntity = badam7Util.getGameFromId(gameId);
+        List<GameResultEntity> gameResults = resultGameDAO.findByGameEntityOrderByPositionAsc(gameEntity);
         return badam7Util.mapListOfEnitiesToDTOs(gameResults, GameResultDTO.class);
     }
 
@@ -70,15 +78,16 @@ public class GameResultServiceImpl implements GameResultService
     private void setPositionsOfPlayers(List<GameResultEntity> gameResults, List<Integer> points)
     {
         Collections.sort(points);
-        Collections.reverse(points);
-        int index = 0;
-        for (GameResultEntity gameResult : gameResults)
+        for (int i = 0; i < points.size(); i++)
         {
-            if (gameResult.getPoints() == points.get(index))
+            for (GameResultEntity gameResult : gameResults)
             {
-                gameResult.setPosition(index + 1);
-                index++;
+                if (gameResult.getPoints() == points.get(i))
+                {
+                    gameResult.setPosition(i + 1);
+                }
             }
         }
     }
+
 }

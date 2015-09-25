@@ -14,8 +14,19 @@
     font-weight: bolder;
 }
 
-ul {
+.userCards {
+    list-style-type: none;
+    padding:0; margin:0;
     column-count:13;
     -webkit-column-count:13;
     -moz-column-count:13;
+}
+
+.divider{
+    width:15px;
+    height:auto;
+    display:inline-block;
+}
+.selected {
+  background-color: red;
 }

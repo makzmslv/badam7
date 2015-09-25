@@ -19,26 +19,57 @@ var loginController = angular.module('loginController', [ 'ngRoute' ]).controlle
         $scope.doLogin = function ()
         {
             Player.query($scope.username).$promise.then(function(player) {
-                $rootScope.playerId = player.id;  
+                $rootScope.playerId = player.id; 
+                $rootScope.playerName = player.name;
                 $rootScope.showLogin = false;
             });
         }
-        
-       $scope.$on('$locationChangeStart', function( event ) {
-            var answer = confirm("Are you sure you want to leave this page?")
-            if (!answer) {
-                event.preventDefault();
-            }
-        });  
-    
+       
         var init = function () {
-            Player.get(3, 1, 2).$promise.then(function(cards) {
-                
-                        $scope.playerCards = cards;
-                        angular.forEach($scope.playerCards, function (card) {
-                            card.imgsrc = baseImgSrc + card.cardId + ".png"
-                        });
-                    }); 
+            Player.get(2, 1, 3).$promise.then(function(cards) {
+                    $scope.playerCards = cards;
+                    angular.forEach($scope.playerCards, function (card) {
+                        card.imgsrc = baseImgSrc + card.cardId + ".png"
+                    });
+                }); 
+            getHandCards();
+            getResults();
+            
+        }
+        
+        var getResults = function() 
+            {
+                 console.log("12")
+                Game.getResults(1).$promise.then(function(results) {
+                    console.log("erere")
+                    $scope.results = results;
+                });  
+            }
+        
+        var getHandCards = function () 
+        {
+            
+            {
+                Game.getCards(1).$promise.then(function(cards) {
+                    $scope.handCards = [cards[1], cards[2], cards[3], cards[4]];
+                    $scope.heartCards = cards[1];
+                    $scope.spadeCards = cards[2];
+                    $scope.diamondCards = cards[3];
+                    $scope.clubCards = cards[4];
+                    angular.forEach($scope.heartCards, function (card) {
+                        card.imgsrc = baseImgSrc + card.cardId + ".png"
+                    });
+                    angular.forEach($scope.diamondCards, function (card) {
+                        card.imgsrc = baseImgSrc + card.cardId + ".png"
+                    });
+                    angular.forEach($scope.spadeCards, function (card) {
+                        card.imgsrc = baseImgSrc + card.cardId + ".png"
+                    });
+                    angular.forEach($scope.clubCards, function (card) {
+                        card.imgsrc = baseImgSrc + card.cardId + ".png"
+                    });
+                });  
+            }
         }
         
         $scope.selectCard =function (cardId)
@@ -47,7 +78,7 @@ var loginController = angular.module('loginController', [ 'ngRoute' ]).controlle
             $scope.selectedCard = cardId;
         }
         
-        
+        init();
     
     }
 ]);

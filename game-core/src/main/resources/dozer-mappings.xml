@@ -6,31 +6,7 @@
     <!-- PlayerInDTO - PlayerEntity -->
     <!--                                  -->
 
-    <mapping>
-        <class-a>org.mk.badam7.database.entity.GameResultEntity</class-a>
-        <class-b>org.mk.badam7.gamedto.game.GameResultDTO</class-b>
 
-        <field>
-            <a>id</a>
-            <b>id</b>
-        </field>
-        <field>
-            <a>gameEntity.id</a>
-            <b>gameId</b>
-        </field>
-        <field>
-            <a>playerCurrentGameInstanceEntity.id</a>
-            <b>playerId</b>
-        </field>
-        <field>
-            <a>points</a>
-            <b>points</b>
-        </field>
-        <field>
-            <a>position</a>
-            <b>position</b>
-        </field>
-    </mapping>
 
     <mapping>
         <class-a>org.mk.badam7.database.entity.HandResultEntity</class-a>
@@ -173,6 +149,36 @@
         <field>
             <a>gameEntity.status</a>
             <b>gameStatus</b>
+        </field>
+    </mapping>
+
+    <mapping>
+        <class-a>org.mk.badam7.database.entity.GameResultEntity</class-a>
+        <class-b>org.mk.badam7.gamedto.game.GameResultDTO</class-b>
+
+        <field>
+            <a>id</a>
+            <b>id</b>
+        </field>
+        <field>
+            <a>gameEntity.id</a>
+            <b>gameId</b>
+        </field>
+        <field>
+            <a>points</a>
+            <b>points</b>
+        </field>
+        <field>
+            <a>position</a>
+            <b>position</b>
+        </field>
+        <field>
+            <a>playerCurrentGameInstanceEntity.playerEntity.id</a>
+            <b>playerId</b>
+        </field>
+        <field>
+            <a>playerCurrentGameInstanceEntity.playerEntity.name</a>
+            <b>playerName</b>
         </field>
     </mapping>
 

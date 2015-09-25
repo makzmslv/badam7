@@ -12,6 +12,8 @@ public class GameResultDTO
 
     private Integer position;
 
+    private String playerName;
+
     public Integer getId()
     {
         return id;
@@ -60,5 +62,15 @@ public class GameResultDTO
     public void setPosition(Integer position)
     {
         this.position = position;
+    }
+
+    public String getPlayerName()
+    {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName)
+    {
+        this.playerName = playerName;
     }
 }

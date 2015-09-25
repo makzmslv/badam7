@@ -10,6 +10,12 @@ public class GameDetailsDTO
 
     private Integer gameStatus;
 
+    private Integer currentHandStatus;
+
+    private Integer handWinnerId;
+
+    private Integer gameWinnerId;
+
     private Integer currentPlayerId;
 
     private Map<Integer, Integer> playerIds;
@@ -62,6 +68,36 @@ public class GameDetailsDTO
     public void setCurrentPlayerId(Integer currentPlayerId)
     {
         this.currentPlayerId = currentPlayerId;
+    }
+
+    public Integer getCurrentHandStatus()
+    {
+        return currentHandStatus;
+    }
+
+    public void setCurrentHandStatus(Integer currentHandStatus)
+    {
+        this.currentHandStatus = currentHandStatus;
+    }
+
+    public Integer getHandWinnerId()
+    {
+        return handWinnerId;
+    }
+
+    public void setHandWinnerId(Integer handWinnerId)
+    {
+        this.handWinnerId = handWinnerId;
+    }
+
+    public Integer getGameWinnerId()
+    {
+        return gameWinnerId;
+    }
+
+    public void setGameWinnerId(Integer gameWinnerId)
+    {
+        this.gameWinnerId = gameWinnerId;
     }
 
 }

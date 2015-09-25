@@ -8,4 +8,6 @@ import org.mk.badam7.gamedto.game.GameResultDTO;
 public interface GameResultService
 {
     public List<GameResultDTO> createGameResults(GameEntity gameEntity);
+
+    public List<GameResultDTO> getGameResults(Integer gameId);
 }

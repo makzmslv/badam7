@@ -4,3 +4,57 @@ var stop = $interval(function() {
                         getPlayerCards();  
                         getHandCards();
                       }, 3000, 100);
+
+<ol style="list-style-type: none; display: inline-block;">
+              <li ng-repeat="card in clubCards">
+                <img ng-src="{{card.imgsrc}}" alt="card" height="50" width="50"/>
+              </li>
+           </ol>
+           <ol style= "list-style-type: none; display: inline-block;">
+              <li ng-repeat="card in diamondCards">
+                <img ng-src="{{card.imgsrc}}" alt="card" height="50" width="50"/>
+              </li>
+           </ol>
+
+playerCards {
+    list-style-type: none;
+    padding:0; margin:0;
+    column-count:13;
+    -webkit-column-count:13;
+    -moz-column-count:13;
+}
+
+<div>
+                <span>
+                    <ul style="list-style-type: none; display: inline-block;">
+                      <li ng-repeat="card in heartCards">
+                        <img ng-src="{{card.imgsrc}}" alt="card" height="50" width="50"/>
+                      </li>
+                    </ul>
+                    <div class="divider"/>
+                   <ul style="list-style-type: none; display: inline-block;">
+                      <li ng-repeat="card in spadeCards">
+                        <img ng-src="{{card.imgsrc}}" alt="card" height="50" width="50"/>
+                      </li>
+                   </ul>
+                    <div class="divider"/>
+                    <ul style="list-style-type: none; display: inline-block;">
+                      <li ng-repeat="card in clubCards">
+                        <img ng-src="{{card.imgsrc}}" alt="card" height="50" width="50"/>
+                      </li>
+                   </ul>
+                    <div class="divider"/>
+                    <ul style="list-style-type: none; display: inline-block;">
+                      <li ng-repeat="card in diamondCards">
+                        <img ng-src="{{card.imgsrc}}" alt="card" height="50" width="50"/>
+                      </li>
+                   </ul>
+                <span>
+            </div>
+                    
+                    $scope.$on('$locationChangeStart', function( event ) {
+            var answer = confirm("Are you sure you want to leave this page?")
+            if (!answer) {
+                event.preventDefault();
+            }
+        });  
