@@ -3,15 +3,10 @@ var loginController = angular.module('loginController', [ 'ngRoute' ]).controlle
         
         $scope.username = "";
         $scope.password = ""
-        $rootScope.showLogin = $rootScope.playerId != null ? false : true;
-        $rootScope.playGame = false;
+        
         var baseImgSrc = "resources/img/cards/"; 
-        var selc;
-    
         $rootScope.clearAll = function () 
         {
-            $rootScope.playerId = undefined;
-            $rootScope.playGame = false;
             $rootScope.playerId = undefined;
             $rootScope.gameId = undefined;
         }
@@ -21,7 +16,7 @@ var loginController = angular.module('loginController', [ 'ngRoute' ]).controlle
             Player.query($scope.username).$promise.then(function(player) {
                 $rootScope.playerId = player.id; 
                 $rootScope.playerName = player.name;
-                $rootScope.showLogin = false;
+                $location.path('/home/' + player.id)
             });
         }
        
@@ -77,8 +72,6 @@ var loginController = angular.module('loginController', [ 'ngRoute' ]).controlle
             console.log(cardId)
             $scope.selectedCard = cardId;
         }
-        
-        init();
-    
+        $rootScope.clearAll();
     }
 ]);

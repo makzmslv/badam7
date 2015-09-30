@@ -1,29 +1,23 @@
-<div ng-controller="loginController">
-    
-    <div class="page-header ">
-      <h1 style="color:red">Badam 7 <small> 7 of Hearts</small></h1>
-    </div>
+<div  ng-controller="loginController" class="container">
     <form class="form-horizontal" role="form">
         <div class="form-group">
-            <label for="username" class="col-md-4 control-label" translate>Username</label>
+            <label for="username" class="col-md-4 control-label" style="color:black" ><b>Username</b></label>
             <div class="col-md-5">
                 <input id="username" type="text" class="form-control" ng-model="username">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="password" class="col-md-4 control-label" translate>Password</label>
+            <label for="password" class="col-md-4 control-label" style="color:black"><b>Password</b></label>
             <div class="col-md-5">
                 <input id="password" type="password" class="form-control" ng-model="password">
             </div>
         </div>
 
-        <div class="row">
+        <div class="form-group">
             <div class="col-md-18">
                 <button type="submit" class="btn btn-primary" ng-click="doLogin()" >Login</button>
             </div>
         </div>
-
     </form>
-
 </div>

@@ -1,4 +1,80 @@
-<div ng-controller="gameController">
-    
+<div ng-controller="gameController" class="container col-md-18">
+    <div ng-show="!startButton && !play">
+        <h3 style="color:black">Waiting for other players....</h3>
+    </div>
+    <div class="row" ng-show="startButton">
+        <button class="btn btn-primary" ng-click="startGame()">Start Game</button>
+    </div>
 
+    <div class="row">
+        <div class="row" ng-show="play">
+            <h3 style="color:black">Your Cards</h3>
+            <ul class="row list-inline userCards">
+                <li ng-repeat="card in playerCards">
+                    <img ng-src="{{card.imgsrc}}" alt="card" height="75" width="75" ng-click="selectCard(card.id)" ng-class="{selected: card.id === selectedCard}"/>
+                </li>
+            </ul>
+        </div>
+        <br><br><br><br>
+        <div class="row col-md-18" ng-show="showResults">
+            <table class="table" style="table-layout: fixed">
+                <thead>
+                    <tr class="text-center">
+                        <th class="col-md-6" style="color:red">Position</th>
+                        <th class="col-md-6" style="color:red">Player</th>
+                        <th class="col-md-2" style="color:red">Points</th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="result in results">
+                    <td class="text-center" style="color:black"><b>{{result.position}}</b></td>
+                    <td class="text-center" style="color:black"><b>{{result.playerName}}</b></td>
+                    <td class="text-center" style="color:black"><b>{{result.points}}</b></td>                
+                </tr>
+            </table>      
+        </div>
+        <div class="row">
+            <button ng-show="showButton" class="btn btn-primary" ng-click="playCard()">Play Card</button>
+            <button ng-show="showButton" class="btn btn-primary" ng-click="skipChance()">Skip Chance</button>
+            <button ng-show="showResults" class="btn btn-primary" ng-click="getResults()">Show Results</button>
+            <button class="btn btn-primary" ng-click="reload()">Refresh</button>
+        </div>
+        <br>
+        <br>
+        <br>
+        <h3 style="color:black">Cards on Deck</h3>
+        <div class="row">
+            <ul class="row list-inline userCards">
+                <li ng-repeat="card in heartCards">
+                    <img ng-src="{{card.imgsrc}}" alt="card" height="75" width="75"/>
+                </li>
+            </ul> 
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <ul class="row list-inline userCards">
+                <li ng-repeat="card in spadeCards">
+                    <img ng-src="{{card.imgsrc}}" alt="card" height="75" width="75"/>
+                </li>
+            </ul> 
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <ul class="row list-inline userCards">
+                <li ng-repeat="card in clubCards">
+                    <img ng-src="{{card.imgsrc}}" alt="card" height="75" width="75"/>
+                </li>
+            </ul> 
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <ul class="row list-inline userCards">
+                <li ng-repeat="card in diamondCards">
+                    <img ng-src="{{card.imgsrc}}" alt="card" height="75" width="75"/>
+                </li>
+            </ul> 
+        </div>
+    </div>
 </div>

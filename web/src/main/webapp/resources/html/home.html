@@ -1,196 +1,51 @@
-<!doctype html>
-<html lang="en" ng-app="badam7">
-<head>
-<title>Badam7</title>
-<link rel="shortcut icon" href="resources/img/title.ico"/>
-<link rel="stylesheet" href="resources/bootstrap/app.css"  />
-<link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" />
-    <script type="text/javascript" language="javascript">
-        function DisableBackButton() {
-        window.history.forward()
-        }
-        DisableBackButton();
-        window.onload = DisableBackButton;
-        window.onpageshow = function(evt) { if (evt.persisted) DisableBackButton() }
-        window.onunload = function() { void (0) }
-    </script>
-</head>
-<body background="resources/img/bg.jpg" style="opacity:10">
-    <script src="resources/js/lib/angular/angular.js"></script>
-    <script src="resources/js/lib/angular/angular.min.js"></script>
-    <script src="resources/js/lib/angular/angular-route.js"></script>
-    <script src="resources/js/lib/angular/angular-resource.js"></script>
-    <script src="resources/js/app.js"></script>
-    <script src="resources/js/services.js"></script>
-    <script src="resources/js/lib/moment.js"></script>
-    <script src="resources/js/controllers/homeController.js"></script>
-    <script src="resources/js/controllers/gameController.js"></script>
-    <script src="resources/js/controllers/loginController.js"></script>
-
-    <div class="page-header ">
-      <h1 style="color:red">Badam 7 <small> 7 of Hearts</small></h1>
+<div ng-controller="homeController" class="container col-md-18">
+    <div class="row" ng-show="!addgame">
+        <button class="btn btn-primary" ng-click="startCreateGame()">Create Game</button>
     </div>
-    <div  ng-controller="loginController" class="container" ng-show="showLogin">
+    <br><br><br>
+    <div class="row" ng-show="addgame">
         <form class="form-horizontal" role="form">
             <div class="form-group">
-                <label for="username" class="col-md-4 control-label" style="color:black" ><b>Username</b></label>
+                <label for="username" class="col-md-4 control-label" style="color:black" ><b>No of Players</b></label>
                 <div class="col-md-5">
-                    <input id="username" type="text" class="form-control" ng-model="username">
+                    <input id="noOfPlayers" type="number" class="form-control" ng-model="newgame.noOfPlayers">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="password" class="col-md-4 control-label" style="color:black"><b>Password</b></label>
+                <label for="password" class="col-md-4 control-label" style="color:black"><b>No Of hands</b></label>
                 <div class="col-md-5">
-                    <input id="password" type="password" class="form-control" ng-model="password">
+                    <input id="noOfHands" type="number" class="form-control" ng-model="newgame.noOfHands">
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-18">
-                    <button type="submit" class="btn btn-primary" ng-click="doLogin()" >Login</button>
+                    <button class="btn btn-primary" ng-click="createGame()">Create</button>
                 </div>
             </div>
         </form>
     </div>
-    
-    <div ng-controller="homeController" class="container col-md-18" ng-show="!showLogin && !playGame">
-        <div class="row">
-            <button class="btn btn-primary" ng-click="startCreateGame()">Create Game</button>
-        </div>
-        <br>
-        <br>
-        <br>
-        <div class="row" ng-show="addgame">
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
-                    <label for="username" class="col-md-4 control-label" style="color:black" ><b>No of Players</b></label>
-                    <div class="col-md-5">
-                        <input id="noOfPlayers" type="number" class="form-control" ng-model="newgame.noOfPlayers">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="password" class="col-md-4 control-label" style="color:black"><b>No Of hands</b></label>
-                    <div class="col-md-5">
-                        <input id="noOfHands" type="number" class="form-control" ng-model="newgame.noOfHands">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-18">
-                        <button class="btn btn-primary" ng-click="createGame()">Create</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        
-        <div class="row">
-            <h3 style="color:black">Available Games</h3>
-            <div class="row col-md-18">
-                <table class="table" style="table-layout: fixed">
-                    <thead>
-                        <tr class="text-center">
-                            <th class="col-md-6" style="color:black">Game Id</th>
-                            <th class="col-md-6" style="color:black">No Of Players</th>
-                            <th class="col-md-2" style="color:black">No of Hands</th>
-                            <th class="col-md-4" style="color:black"></th>
-                        </tr>
-                    </thead>
-                    <tr ng-repeat="game in games">
-                        <td class="text-center" style="color:black">{{game.id}}</td>
-                        <td class="text-center" style="color:black">{{game.noOfPlayers}}</td>
-                        <td class="text-center" style="color:black">{{game.noOfHands}}</td>
-                        <td><button class="btn btn-primary" ng-click="joinGame(game.id)">Join Game</button></td>                        
+    <br><br><br>
+    <div class="row">
+        <h3 style="color:black">Available Games</h3>
+        <div class="row col-md-18">
+            <table class="table" style="table-layout: fixed">
+                <thead>
+                    <tr class="text-center">
+                        <th class="col-md-6" style="color:black">Game Id</th>
+                        <th class="col-md-6" style="color:black">No Of Players</th>
+                        <th class="col-md-2" style="color:black">No of Hands</th>
+                        <th class="col-md-4" style="color:black"></th>
                     </tr>
-                </table>      
-            </div>
+                </thead>
+                <tr ng-repeat="game in games">
+                    <td class="text-center" style="color:black">{{game.id}}</td>
+                    <td class="text-center" style="color:black">{{game.noOfPlayers}}</td>
+                    <td class="text-center" style="color:black">{{game.noOfHands}}</td>
+                    <td><button class="btn btn-primary" ng-click="joinGame(game.id)">Join Game</button></td>                        
+                </tr>
+            </table>      
         </div>
-    </div>
-    
-    <div ng-controller="gameController" class="container col-md-18" ng-show="playGame">
-        <div ng-show="!startButton && !play">
-            <h3 style="color:black">Waiting for other players....</h3>
-        </div>
-        <div class="row" ng-show="startButton">
-            <button class="btn btn-primary" ng-click="startGame()">Start Game</button>
-        </div>
-        
-        <div class="row" ng-show="true">
-            <div class="row" ng-show="play">
-                <h3 style="color:black">Your Cards</h3>
-                <ul class="row list-inline userCards">
-                    <li ng-repeat="card in playerCards">
-                        <img ng-src="{{card.imgsrc}}" alt="card" height="75" width="75" ng-click="selectCard(card.id)" ng-class="{selected: card.id === selectedCard}"/>
-                    </li>
-                </ul>
-            </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <div class="row col-md-18" ng-show="showResults">
-                <table class="table" style="table-layout: fixed">
-                    <thead>
-                        <tr class="text-center">
-                            <th class="col-md-6" style="color:red">Position</th>
-                            <th class="col-md-6" style="color:red">Player</th>
-                            <th class="col-md-2" style="color:red">Points</th>
-                        </tr>
-                    </thead>
-                    <tr ng-repeat="result in results">
-                        <td class="text-center" style="color:black"><b>{{result.position}}</b></td>
-                        <td class="text-center" style="color:black"><b>{{result.playerName}}</b></td>
-                        <td class="text-center" style="color:black"><b>{{result.points}}</b></td>                
-                    </tr>
-                </table>      
-            </div>
-            <div class="row">
-                <button ng-show="playButton" class="btn btn-primary" ng-click="playCard()">Play Card</button>
-                <button ng-show="playButton" class="btn btn-primary" ng-click="skipChance()">Skip Chance</button>
-                <button ng-show="showResults" class="btn btn-primary" ng-click="getResults()">Show Results</button>
-                <button class="btn btn-primary" ng-click="reload()">Refresh</button>
-            </div>
-            <br>
-            <br>
-            <br>
-            <h3 style="color:black">Cards on Deck</h3>
-            <div class="row">
-                <ul class="row list-inline userCards">
-                    <li ng-repeat="card in heartCards">
-                        <img ng-src="{{card.imgsrc}}" alt="card" height="75" width="75"/>
-                    </li>
-                </ul> 
-            </div>
-            <br>
-            <br>
-            <div class="row">
-                <ul class="row list-inline userCards">
-                    <li ng-repeat="card in spadeCards">
-                        <img ng-src="{{card.imgsrc}}" alt="card" height="75" width="75"/>
-                    </li>
-                </ul> 
-            </div>
-            <br>
-            <br>
-            <div class="row">
-                <ul class="row list-inline userCards">
-                    <li ng-repeat="card in clubCards">
-                        <img ng-src="{{card.imgsrc}}" alt="card" height="75" width="75"/>
-                    </li>
-                </ul> 
-            </div>
-            <br>
-            <br>
-            <div class="row">
-                <ul class="row list-inline userCards">
-                    <li ng-repeat="card in diamondCards">
-                        <img ng-src="{{card.imgsrc}}" alt="card" height="75" width="75"/>
-                    </li>
-                </ul> 
-            </div>
-        </div>
-    </div>
-
-</body>
-</html>
+    </div> 
+</div>

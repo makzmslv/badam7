@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" ng-app="badam7">
+<head>
+<title>Badam7</title>
+<link rel="shortcut icon" href="resources/img/title.ico"/>
+<link rel="stylesheet" href="resources/bootstrap/app.css"  />
+<link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" language="javascript">
+        function DisableBackButton() {
+        window.history.forward()
+        }
+        DisableBackButton();
+        window.onload = DisableBackButton;
+        window.onpageshow = function(evt) { if (evt.persisted) DisableBackButton() }
+        window.onunload = function() { void (0) }
+    </script>
+</head>
+<body background="resources/img/bg.jpg" style="opacity:10">
+    <script src="resources/js/lib/angular/angular.js"></script>
+    <script src="resources/js/lib/angular/angular.min.js"></script>
+    <script src="resources/js/lib/angular/angular-route.js"></script>
+    <script src="resources/js/lib/angular/angular-resource.js"></script>
+    <script src="resources/js/lib/bootstrapui.js"></script>
+    <script src="resources/js/app.js"></script>
+    <script src="resources/js/services.js"></script>
+    <script src="resources/js/lib/moment.js"></script>
+    <script src="resources/js/controllers/homeController.js"></script>
+    <script src="resources/js/controllers/gameController.js"></script>
+    <script src="resources/js/controllers/loginController.js"></script>
+    <script src="resources/js/controllers/showMessageController.js"></script>
+
+    <div class="page-header ">
+      <h1 style="color:red">Badam 7 <small> 7 of Hearts</small></h1>
+    </div>
+    <div ng-view></div>
+</body>
+</html>

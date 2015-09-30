@@ -58,3 +58,55 @@ playerCards {
                 event.preventDefault();
             }
         });  
+                    
+                    
+            
+              Game.get(gid).$promise.then(function(game) {
+                    $scope.game = game;
+                  if(game.gameStatus === 3)
+                  {
+                      $scope.startButton = true;
+                  }
+                  if(game.gameStatus === 4)
+                  {
+
+                      if($scope.heartCards === undefined)
+                      {
+                          currentPlayer = game.currentPlayerId;
+                          getPlayerCards();
+                          getHandCards();
+                      }
+                      $scope.play = true;
+                      $scope.startButton = false;
+                  }
+                  if(game.gameStatus === 6)
+                  {
+                      $scope.showResults = true;
+                      $scope.getResults();
+                      $scope.play = false;
+                  }
+                  if(game.currentPlayerId === $rootScope.playerId)
+                  {
+                      $scope.playButton = true;
+                  }
+                  else
+                  {
+                      $scope.playButton = false;
+                  }
+                  if(game.currentHandStatus === 2)
+                  {
+
+                      alert("Hand has ended.")
+                      if(game.handWinnerId === $rootScope.playerId)
+                      {
+                          alert("The winner is player : " + game.handWinnerId)
+                      }
+                  }
+
+                  if(currentPlayer !== game.currentPlayerId)
+                  {
+                      currentPlayer = game.currentPlayerId;
+                      getPlayerCards();
+                      getHandCards();
+                  }
+              });  
