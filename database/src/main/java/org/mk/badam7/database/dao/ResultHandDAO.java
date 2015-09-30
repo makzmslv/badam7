@@ -13,6 +13,6 @@ public interface ResultHandDAO extends JpaRepository<HandResultEntity, Integer>
 {
     public List<HandResultEntity> findByPlayerCurrentGameInstanceEntity(PlayerCurrentGameInstanceEntity player);
 
-    @Query(value = "SELECT handResultEntity FROM HandResultEntity handResultEntity WHERE handResultEntity.handEntity = :handEntity AND handResultEntity.points = (SELECT MAX(handResultEntity.points) FROM HandResultEntity handResultEntity)")
-    public HandResultEntity findByHandEntityAndPointsIsMax(@Param("handEntity") HandEntity handEntity);
+    @Query(value = "SELECT handResultEntity FROM HandResultEntity handResultEntity WHERE handResultEntity.handEntity = :handEntity AND handResultEntity.points = (SELECT MIN(handResultEntity.points) FROM HandResultEntity handResultEntity)")
+    public List<HandResultEntity> findByHandEntityAndPointsIsMin(@Param("handEntity") HandEntity handEntity);
 }

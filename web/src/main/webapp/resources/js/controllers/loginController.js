@@ -39,9 +39,9 @@ var loginController = angular.module('loginController', [ 'ngRoute' ]).controlle
         
         var getResults = function() 
             {
-                 console.log("12")
+                 
                 Game.getResults(1).$promise.then(function(results) {
-                    console.log("erere")
+                    
                     $scope.results = results;
                 });  
             }

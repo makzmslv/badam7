@@ -137,10 +137,10 @@ public class GameServiceImpl implements GameService
             gameDetailsDTO = dozerMapper.map(gameDetailsEntity, GameDetailsDTO.class);
             gameEntity = gameDetailsEntity.getGameEntity();
             HandEntity handEntity = badam7Util.getHandFromId(gameDetailsEntity.getCurrentHandId());
-            HandResultEntity handResultEntity = resultHandDAO.findByHandEntityAndPointsIsMax(handEntity);
-            if (handResultEntity != null)
+            List<HandResultEntity> handResultEntity = resultHandDAO.findByHandEntityAndPointsIsMin(handEntity);
+            if (!handResultEntity.isEmpty())
             {
-                gameDetailsDTO.setHandWinnerId(handResultEntity.getPlayerCurrentGameInstanceEntity().getPlayer().getId());
+                gameDetailsDTO.setHandWinnerId(handResultEntity.get(0).getPlayerCurrentGameInstanceEntity().getPlayer().getId());
             }
             GameResultEntity gameResultEntity = resultGameDAO.findByGameEntityAndPosition(gameDetailsEntity.getGameEntity(), 1);
             if (gameResultEntity != null)

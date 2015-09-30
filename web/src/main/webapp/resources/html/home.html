@@ -129,7 +129,7 @@
             <br>
             <br>
             <br>
-            <div class="row col-md-18" ng-show="true">
+            <div class="row col-md-18" ng-show="showResults">
                 <table class="table" style="table-layout: fixed">
                     <thead>
                         <tr class="text-center">
@@ -148,7 +148,7 @@
             <div class="row">
                 <button ng-show="playButton" class="btn btn-primary" ng-click="playCard()">Play Card</button>
                 <button ng-show="playButton" class="btn btn-primary" ng-click="skipChance()">Skip Chance</button>
-                <button ng-show="showResults" class="btn btn-primary" ng-click="getResults()">Skip Chance</button>
+                <button ng-show="showResults" class="btn btn-primary" ng-click="getResults()">Show Results</button>
                 <button class="btn btn-primary" ng-click="reload()">Refresh</button>
             </div>
             <br>

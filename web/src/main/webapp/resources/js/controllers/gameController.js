@@ -2,6 +2,7 @@ var gameController = angular.module('gameController', [ 'ngRoute' ]).controller(
                     'use strict';
 
         var baseImgSrc = "resources/img/cards/";  
+        var currentPlayer = 0;
     
         
         var initPage = function () 
@@ -19,6 +20,7 @@ var gameController = angular.module('gameController', [ 'ngRoute' ]).controller(
     
         var checkGameStatus = function () 
         {
+            
               Game.get(1).$promise.then(function(game) {
                     $scope.game = game;
                   if(game.gameStatus === 3)
@@ -27,12 +29,21 @@ var gameController = angular.module('gameController', [ 'ngRoute' ]).controller(
                   }
                   if(game.gameStatus === 4)
                   {
+                      
+                      if($scope.heartCards === undefined)
+                      {
+                          currentPlayer = game.currentPlayerId;
+                          getPlayerCards();
+                          getHandCards();
+                      }
                       $scope.play = true;
                       $scope.startButton = false;
                   }
                   if(game.gameStatus === 6)
                   {
                       $scope.showResults = true;
+                      $scope.getResults();
+                      $scope.play = false;
                   }
                   if(game.currentPlayerId === $rootScope.playerId)
                   {
@@ -51,6 +62,13 @@ var gameController = angular.module('gameController', [ 'ngRoute' ]).controller(
                           alert("The winner is player : " + game.handWinnerId)
                       }
                   }
+                  
+                  if(currentPlayer !== game.currentPlayerId)
+                  {
+                      currentPlayer = game.currentPlayerId;
+                      getPlayerCards();
+                      getHandCards();
+                  }
               });  
         }
         
@@ -58,6 +76,7 @@ var gameController = angular.module('gameController', [ 'ngRoute' ]).controller(
         {
             if($scope.play) 
             {
+                console.log("GetPlayerCards")
                 var pid = $scope.game.playerIds[$rootScope.playerId];
                 Player.get($rootScope.playerId, $scope.game.currentHandId, pid).$promise.then(function(cards) {
                     $scope.playerCards = cards;
@@ -72,6 +91,7 @@ var gameController = angular.module('gameController', [ 'ngRoute' ]).controller(
         {
             if($scope.play) 
             {
+                console.log("GetHandCards")
                 Game.getCards($scope.game.currentHandId).$promise.then(function(cards) {
                     $scope.handCards = [cards[1], cards[2], cards[3], cards[4]];
                     $scope.heartCards = cards[1];
@@ -139,6 +159,10 @@ var gameController = angular.module('gameController', [ 'ngRoute' ]).controller(
         }
         
         initPage();
+        var stop = $interval(function() {
+                checkGameStatus();
+              }, 3000);
+
         
         
     }
